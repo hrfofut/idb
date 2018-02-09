@@ -21,7 +21,6 @@ def about():
 
 
 
-
 @app.route("/foods")
 def food():
     return render_template('foods/food.html')
