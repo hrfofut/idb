@@ -4,5 +4,6 @@ The group consists of:
 1. Harrison Foreman
 2. Brandon Harrison
 3. Wesley Joe
-3. Bao Than
-4. Cindy Truong
+4. Bao Than
+5. Cindy Truong
+

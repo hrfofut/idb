@@ -1,0 +1,29 @@
+sudo: false
+
+language: python
+
+python:
+   - "3.6"
+
+before_install:
+    - cat .travis.yml
+    - pip install --upgrade pip
+    - pip --version
+
+install:
+    - pip install -r requirements.txt
+    - pip list
+
+before_script:
+    - date
+    - uname -a
+    - printenv | sort
+    - cat requirements.txt
+    - git       --version
+    - make      --version
+    - python3.6 --version
+    - ls -al
+    - cat makefile
+
+script:
+    - make travis
