@@ -7,3 +7,4 @@ The group consists of:
 4. Bao Than
 5. Cindy Truong
 
+Autoformatter hook grabbed from: https://github.com/chibiegg/git-autopep8/blob/master/pre-commit
