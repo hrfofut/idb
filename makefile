@@ -2,7 +2,7 @@ ACTIVATE := ./bin/activate
 
 install: requirements.txt
 	- chmod +x .pre-commit.sh
-	- ln -s .pre-commit.sh .git/hooks/pre-commit
+	- cp .pre-commit.sh .git/hooks/pre-commit
 	. $(ACTIVATE)
 	pip install -r requirements.txt
 
