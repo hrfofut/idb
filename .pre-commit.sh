@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
+echo "Formatting..."
 autopep8 --in-place --recursive .
