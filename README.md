@@ -1,3 +1,17 @@
+# Build status:
+[![Build Status](https://travis-ci.org/hrfofut/idb.svg?branch=master)](https://travis-ci.org/hrfofut/idb)
+
+# Usage and development guide
+This project uses python's [virtualenv](https://virtualenv.pypa.io/en/stable/userguide/)
+in order to share and maintain libraries.  The list of currently used libraries is listed
+in `requirements.txt`.  This list should be updated whenever a new library or tool is
+installed.
+
+## Installation
+Installation for this project is straightforward.  To install, simply run `make install`.
+To run, simply run `make run`.
+
+# Credits
 This is a project for CS373 Software Engineering.
 
 The group consists of:
