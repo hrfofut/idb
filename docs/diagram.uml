@@ -1,0 +1,63 @@
+@startuml
+Class Food {
+  String name
+  Int calories
+}
+
+Class Ingredients {
+  String name
+  Int calories
+}
+
+Class Gyms {
+  String name
+  Object location
+  String pricing
+  String equipment
+  Object reviews
+}
+
+Class Exercises {
+  String name
+  Object METS_formula
+  String equipment
+  String muscles
+  String description  
+}
+
+Class Grocery_Stores {
+  String name
+  Object location
+  String description
+  Object reviews
+}
+
+Class Nutritional_info {
+  String name
+  String value
+}
+
+Class Location {
+  String lat
+  String long
+  String url_to_map
+}
+
+Class Reviews {
+  String description
+  Int rating
+}
+
+Food "1" - "0...1" Nutritional_info
+
+Gyms "1" - "0...*" Reviews
+Gyms "1" - "1" Location
+
+Grocery_Stores "1" - "0...*" Reviews
+
+Food - Ingredients
+Food - Exercises
+Ingredients - Grocery_Stores
+Exercises - Gyms
+Gyms - Grocery_Stores
+@enduml
