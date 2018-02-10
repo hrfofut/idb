@@ -16,6 +16,13 @@ run: src/app.py
 		python3 src/app.py; \
 	) # Used to tell makefile to use the virtualenv shell
 
+# Run all tests
+test: src/app.py tests/test.py
+	( \
+		source bin/activate; \
+		python3 tests/test.py; \
+	) # Used to tell makefile to use the virtualenv shell
+
 clean:
 	rm -rf .git/hooks/pre-commit
 
@@ -23,4 +30,4 @@ clean:
 travis:
 	make clean
 	ls -a
-	python3 tests/test.py
+	make test
