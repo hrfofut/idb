@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 @app.route("/<name>")
-def spash(name):
+def splash(name):
     return render_template('splash.html', name=name)
 
 
