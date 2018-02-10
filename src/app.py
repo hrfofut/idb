@@ -5,8 +5,11 @@ app = Flask(__name__)
 
 @app.route("/")
 @app.route("/<name>")
-def spash(name):
-    return render_template('splash.html', name=name)
+def splash(name=None):
+    if not name is None:
+        return render_template('splash.html', name=name)
+    else:
+        return render_template('splash.html')
 
 
 @app.route("/about")
