@@ -10,7 +10,10 @@ run: src/app.py
 	. $(ACTIVATE)
 	python3 src/app.py
 
+clean:
+	rm -rf .git/hooks/pre-commit
+
 travis:
-	#make clean
+	make clean
 	ls -a
 	python3 tests/test.py
