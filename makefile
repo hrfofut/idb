@@ -7,14 +7,17 @@ install: requirements.txt
 		virtualenv .; \
 		source bin/activate; \
 		pip install -r requirements.txt; \
-	)
+	) # Used to tell makefile to use the virtualenv shell
 
 # Run flask
 run: src/app.py
 	( \
 		source bin/activate; \
 		python3 src/app.py; \
-	)
+	) # Used to tell makefile to use the virtualenv shell
+
+clean:
+	rm -rf .git/hooks/pre-commit
 
 # Remove unescessary files and then launch flask
 travis:
