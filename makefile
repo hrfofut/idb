@@ -11,6 +11,6 @@ run: src/app.py
 	python3 src/app.py
 
 travis:
-	make clean
+	#make clean
 	ls -a
 	python3 tests/test.py
