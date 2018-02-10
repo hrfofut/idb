@@ -11,6 +11,9 @@ installed.
 Installation for this project is straightforward.  To install, simply run `make install`.
 To run, simply run `make run`.
 
+# Documentation
+The UML diagram is generated via [PlantUML](http://plantuml.com/)
+
 # Credits
 This is a project for CS373 Software Engineering.
 

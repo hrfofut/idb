@@ -36,6 +36,6 @@ scrub-virtualenv:
 
 # Remove unescessary files and then launch flask
 travis:
-	make clean
+	make install
 	ls -a
 	make test
