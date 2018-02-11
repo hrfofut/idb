@@ -9,7 +9,8 @@ installed.
 
 ## Installation
 Installation for this project is straightforward.  To install, simply run `make install`.
-To run, simply run `make run`.
+To run, simply run `make run`.  Finally, rename `default_config.py` in `src/instance/`
+to `application.py` and fill with your desired config values.
 
 # Documentation
 The UML diagram is generated via [PlantUML](http://plantuml.com/)
