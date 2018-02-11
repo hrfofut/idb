@@ -3,12 +3,12 @@ import json
 import requests
 
 app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('application.py')
+app.config.from_pyfile('default_config.py')
+app.config.from_pyfile('application.py', silent=True)
 
 
 @app.route("/")
 def splash(name=None):
-    print(app.config)
     return render_template('splash.html')
 
 
@@ -71,6 +71,7 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_error(e):
     return render_template('errors/500.html'), 500
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=4000)
