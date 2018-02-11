@@ -1,9 +1,10 @@
 # Emacs backups
 *~
 
+# Instance variables
+instance/
+
 # VirtualEnv
-bin
-include
-lib
+env/
 pip-selfcheck.json
-share
+

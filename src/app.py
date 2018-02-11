@@ -1,10 +1,12 @@
 from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
+app.config.from_pyfile('application.py')
 
 
 @app.route("/")
 def splash(name=None):
+    print(app.config)
     return render_template('splash.html')
 
 
