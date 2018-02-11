@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+import json
+import requests
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('application.py')

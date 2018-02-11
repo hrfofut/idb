@@ -6,7 +6,7 @@ install: requirements.txt
 	( \
 		virtualenv -p python3 env; \
 		. env/bin/activate; \
-		pip install -r requirements.txt; \
+		pip3 install -r requirements.txt; \
 	) # Used to tell makefile to use the virtualenv shell
 
 # Run flask

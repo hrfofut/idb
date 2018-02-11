@@ -27,3 +27,6 @@ before_script:
 
 script:
     - make travis
+
+notifications:
+    slack: cs373-group10:wW0GSRNiXUC2f6VfRnM6DXsJ
