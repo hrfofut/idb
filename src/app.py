@@ -4,12 +4,8 @@ app = Flask(__name__)
 
 
 @app.route("/")
-@app.route("/<name>")
 def splash(name=None):
-    if not name is None:
-        return render_template('splash.html', name=name)
-    else:
-        return render_template('splash.html')
+    return render_template('splash.html')
 
 
 @app.route("/about")
@@ -60,6 +56,17 @@ def storesdetail(id):
     """TODO: Have the template be filled from a database in the future"""
     return render_template('stores/storesdetail.html')
 
+# Error handling
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('errors/404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(e):
+    return render_template('errors/500.html'), 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=4000)
