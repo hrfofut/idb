@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 import json
 import requests
+import logging
+from logging.handlers import RotatingFileHandler
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('default_config.py')
@@ -74,4 +76,14 @@ def internal_error(e):
 
 
 if __name__ == "__main__":
+    formatter = logging.Formatter(
+        "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
+    handler = RotatingFileHandler(app.config.get('LOG_FILENAME',
+                                                 'idb.log'),
+                                  maxBytes=10000000,
+                                  backupCount=5)
+    handler.setFormatter(formatter)
+    app.logger.addHandler(handler)
+    app.logger.setLevel(app.config.get('LOG_LEVEL', logging.INFO))
+
     app.run(host='0.0.0.0', port=4000)

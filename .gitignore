@@ -1,6 +1,9 @@
 # Emacs backups
 *~
 
+# Log files
+*.log
+
 # Instance variables
 instance/
 
