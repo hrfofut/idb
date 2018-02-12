@@ -8,26 +8,97 @@
 {% endblock %}
 {% block content %}
 <h1>About Us</h1>
-<div class="container text-center justify-content-center">
-  <div class="row">
-    <div class="col-sm">
-      One of three columns
+
+<div class="container-fluid" style="text-align: center">
+  <!-- About -->
+  <div class="card border-light" style="width: 100%">
+    <div class="card-header" id="about">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAbout" aria-expanded="true" aria-controls="collapseAbout">
+          About
+        </button>
+      </h5>
     </div>
-    <div class="col-sm">
-      Two of three columns
-    </div>
-    <div class="col-sm">
-      Three of three columns
+    <div id="collapseAbout" class="collapse show" aria-labelledby="about">
+      <div class="card-body">
+        <p>[description of the site, its purpose, its intended users]</p>
+        <p>[explanation of the interesting result of integrating disparate data]</p>
+        <p>[a link to the GitBook report]</p>
+        <p>[a link to the GitHub repo]</p>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm">
-      One of two columns
+  <!-- People -->
+  <div class="card border-light" style="width: 100%">
+    <div class="card-header" id="people">
+      <h5 class="mb-0" >
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapsePeople" aria-expanded="false" aria-controls="collapsePeople">
+          People
+        </button>
+      </h5>
     </div>
-    <div class="col-sm">
-      Two of two columns
+    <div id="collapsePeople" class="collapse" aria-labelledby="people">
+      <div class="card-body">
+        <p class="lead">name of the group</p>
+        <p>[the group members, grid here]</p>
+        
+        <div class="container text-center justify-content-center">
+          <div class="row">
+            <div class="col-sm">
+              One of three columns
+            </div>
+            <div class="col-sm">
+              Two of three columns
+            </div>
+            <div class="col-sm">
+              Three of three columns
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm">
+              One of two columns
+            </div>
+            <div class="col-sm">
+              Two of two columns
+            </div>
+          </div>
+        </div>
+        <p>[total no. of commits, issues, and unit tests]</p>
+      </div>
     </div>
   </div>
+  <!-- Data -->
+  <div class="card border-light" style="width: 100%">
+    <div class="card-header" id="data">
+      <h5 class="mb-0" >
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+          Data
+        </button>
+      </h5>
+    </div>
+    <div id="collapseData" class="collapse" aria-labelledby="data">
+      <div class="card-body">
+        <p>[links to the data sources]</p>
+        <p>[description of how each was scraped]</p>
+      </div>
+    </div>
+  </div>  
+  <!-- Tools -->
+  <div class="card border-light" style="width: 100%">
+    <div class="card-header" id="tools">
+      <h5 class="mb-0" >
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTools" aria-expanded="false" aria-controls="collapseTools">
+          Tools
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTools" class="collapse" aria-labelledby="tools">
+      <div class="card-body">
+        <p>[tools used with description, special focus on optional tools that were not required]</p>
+      </div>
+    </div>
+  </div> 
 </div>
+
 <p> {{ statistics  }}</p>
 {% endblock %}

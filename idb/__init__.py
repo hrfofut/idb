@@ -15,10 +15,10 @@ app.config.from_pyfile('application.py', silent=True)
 
 # Blueprints
 app.register_blueprint(general)
-app.register_blueprint(foods, url_prefix='/foods/')
-app.register_blueprint(gyms, url_prefix='/gymss/')
-app.register_blueprint(stores, url_prefix='/storess/')
-app.register_blueprint(workouts, url_prefix='/workouts/')
+app.register_blueprint(foods, url_prefix='/foods')
+app.register_blueprint(gyms, url_prefix='/gyms')
+app.register_blueprint(stores, url_prefix='/stores')
+app.register_blueprint(workouts, url_prefix='/workouts')
 
 import idb.views
 
@@ -26,11 +26,16 @@ if __name__ == "__main__":
     formatter = logging.Formatter(
         "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
     handler = RotatingFileHandler(views.config.get('LOG_FILENAME',
-                                                 'views.log'),
+                                                 'idb.log'),
                                   maxBytes=10000000,
                                   backupCount=5)
     handler.setFormatter(formatter)
     app.logger.addHandler(handler)
-    app.logger.setLevel(views.config.get('LOG_LEVEL', logging.INFO))
 
-    app.run(host='0.0.0.0', port=5000)
+    mode = app.config.get('MODE', 'DEV')
+    if mode == 'PRODUCTION':
+        app.logger.setLevel(app.config.get('LOG_LEVEL', logging.WARNING))
+        app.run()
+    elif mode == 'DEV':
+        app.logger.setLevel(app.config.get('LOG_LEVEL', logging.DEBUG))
+        app.run(host='0.0.0.0', port=5000)
