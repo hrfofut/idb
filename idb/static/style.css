@@ -319,4 +319,16 @@ p.fakepre {
     overflow: hidden;
 }
 
+img {
+    width: 200px; 
+    height: 200px;
+    object-fit: cover;
+}
+
+.img-thumbnail {
+    height: 150px;
+    width: 150px;
+}
+
+
 
