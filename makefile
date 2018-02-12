@@ -22,8 +22,8 @@ run: idb/ instance/
 # Restart everything on the production server
 restart-prod:
 	systemctl stop nginx
-	systemctl stop gunicorn
-	systemctl start gunicorn
+	systemctl stop idb
+	systemctl start idb
 	systemctl start nginx
 
 # Run all tests

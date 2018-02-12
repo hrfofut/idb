@@ -8,12 +8,20 @@ in `requirements.txt`.  This list should be updated whenever a new library or to
 installed.
 
 ## Installation
+### Develpoment
 Installation for this project is as follows.  To install, first create an enviornment variable
-called `FLASK_APP` set to `idb/__init.py`.  In Linux, this is `export FLASK_APP=idb/__init__.py`.
+called `FLASK_APP` set to `idb/__init__.py`.  In Linux, this is `export FLASK_APP=idb/__init__.py`.
 Then, run `make install`.
 
 To run, simply run `make run`.  Finally, to have non-default configs copy `default_config.py`
-in `src/instance/` to `application.py` and fill with your desired config values.
+in `instance/` to `application.py` and fill with your desired config values.
+
+### Production
+To install on the produciton server, run `make install`.  You must [set up NGINX and Gunicorn]
+(https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04) to get the site to work.
+
+To make a change to an existing produciton, do the following.  If a new module is required,
+make sure it is in `requirements.txt`.  Then run `make restart-prod`.
 
 # Documentation
 The UML diagram is generated via [PlantUML](http://plantuml.com/)
