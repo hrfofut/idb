@@ -17,6 +17,10 @@ To run, simply run `make run`.  Finally, to have non-default configs copy `defau
 in `instance/` to `application.py` and fill with your desired config values.
 
 ### Production
+First, create your own config file from the default config in `instance/`.  Call the config file
+`application.py`.  One key value to change is to set `MODE = 'PRODUCTION'`.  Fill out the rest of
+the config as nescessary.
+
 To install on the produciton server, run `make install`.  You must [set up NGINX and Gunicorn]
 (https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04) to get the site to work.
 
