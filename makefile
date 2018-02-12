@@ -31,7 +31,7 @@ clean:
 	- rm -rf .git/hooks/pre-commit
 	- rm -rf *.egg*
 	- rm idb/idb.log
-	- find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+	- find . | grep -E "(__pycache__|\.pyc|\.pyo)" | xargs rm -rf
 
 # Reset all virtual enviornment data
 scrub-virtualenv:
