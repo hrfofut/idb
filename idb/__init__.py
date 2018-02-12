@@ -4,60 +4,60 @@ import requests
 import logging
 from logging.handlers import RotatingFileHandler
 
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('default_config.py')
-app.config.from_pyfile('application.py', silent=True)
+idb = Flask(__name__, instance_relative_config=True)
+idb.config.from_pyfile('default_config.py')
+idb.config.from_pyfile('idblication.py', silent=True)
 
 
-@app.route("/")
+@idb.route("/")
 def splash(name=None):
     return render_template('splash.html')
 
 
-@app.route("/about")
+@idb.route("/about")
 def about():
     return render_template('about.html')
 
 
-@app.route("/foods")
+@idb.route("/foods")
 def food():
     return render_template('foods/food.html')
 
 
-@app.route("/foods/<id>")
+@idb.route("/foods/<id>")
 def fooddetail(id):
     """TODO: Have the template be filled from a database in the future"""
     return render_template('foods/fooddetail.html')
 
 
-@app.route("/workouts")
+@idb.route("/workouts")
 def workouts():
     return render_template('workouts/workouts.html')
 
 
-@app.route("/workouts/<id>")
+@idb.route("/workouts/<id>")
 def workoutsdetail(id):
     """TODO: Have the template be filled from a database in the future"""
     return render_template('workouts/workoutsdetail.html')
 
 
-@app.route("/gyms")
+@idb.route("/gyms")
 def gyms():
     return render_template('gyms/gyms.html')
 
 
-@app.route("/gyms/<id>")
+@idb.route("/gyms/<id>")
 def gymsdetail(id):
     """TODO: Have the template be filled from a database in the future"""
     return render_template('gyms/gymsdetail.html')
 
 
-@app.route("/stores")
+@idb.route("/stores")
 def stores():
     return render_template('stores/stores.html')
 
 
-@app.route("/stores/<id>")
+@idb.route("/stores/<id>")
 def storesdetail(id):
     """TODO: Have the template be filled from a database in the future"""
     return render_template('stores/storesdetail.html')
@@ -65,12 +65,12 @@ def storesdetail(id):
 # Error handling
 
 
-@app.errorhandler(404)
+@idb.errorhandler(404)
 def page_not_found(e):
     return render_template('errors/404.html'), 404
 
 
-@app.errorhandler(500)
+@idb.errorhandler(500)
 def internal_error(e):
     return render_template('errors/500.html'), 500
 
@@ -78,12 +78,12 @@ def internal_error(e):
 if __name__ == "__main__":
     formatter = logging.Formatter(
         "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
-    handler = RotatingFileHandler(app.config.get('LOG_FILENAME',
+    handler = RotatingFileHandler(idb.config.get('LOG_FILENAME',
                                                  'idb.log'),
                                   maxBytes=10000000,
                                   backupCount=5)
     handler.setFormatter(formatter)
-    app.logger.addHandler(handler)
-    app.logger.setLevel(app.config.get('LOG_LEVEL', logging.INFO))
+    idb.logger.addHandler(handler)
+    idb.logger.setLevel(idb.config.get('LOG_LEVEL', logging.INFO))
 
-    app.run(host='0.0.0.0', port=4000)
+    idb.run(host='0.0.0.0', port=4000)
