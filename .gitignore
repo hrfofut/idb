@@ -1,6 +1,10 @@
 # Emacs backups
 *~
 
+# Python files
+*.egg*
+__pycache__*
+
 # Log files
 *.log
 

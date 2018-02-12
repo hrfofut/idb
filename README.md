@@ -8,9 +8,12 @@ in `requirements.txt`.  This list should be updated whenever a new library or to
 installed.
 
 ## Installation
-Installation for this project is straightforward.  To install, simply run `make install`.
-To run, simply run `make run`.  Finally, rename `default_config.py` in `src/instance/`
-to `application.py` and fill with your desired config values.
+Installation for this project is as follows.  To install, first create an enviornment variable
+called `FLASK_APP` set to `idb/__init.py`.  In Linux, this is `export FLASK_APP=idb/__init__.py`.
+Then, run `make install`.
+
+To run, simply run `make run`.  Finally, to have non-default configs copy `default_config.py`
+in `src/instance/` to `application.py` and fill with your desired config values.
 
 # Documentation
 The UML diagram is generated via [PlantUML](http://plantuml.com/)
