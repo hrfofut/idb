@@ -34,6 +34,39 @@ The UML diagram is generated via [PlantUML](http://plantuml.com/)
 To connect to AWS server, first download the pem file on Slack. Then ssh by saying 
 $ ssh -i "FileName.pem" ubuntu@caloriekiller.club 
 
+# Tools
+## Postman
+To install Postman on the lab machines, run the following command:
+```bash
+cd ~ && mkdir apt-src bin && wget https://dl.pstmn.io/download/latest/linux64 -O apt-src/postman.tar.gz && tar -xvf apt-src/postman.tar.gz -C apt-src/ && rm apt-src/postman.tar.gz && ln -s ~/apt-src/Postman/Postman ~/bin/postman && echo "export PATH=$HOME/bin:\$PATH" >> .bash_profile && source .bash_profile
+```
+
+An explanation of the commands:
+
+```bash
+# Install files in home directory
+cd ~
+
+# Make a location for source files and for exectuables
+mkdir apt-src bin
+
+# Download postman
+wget https://dl.pstmn.io/download/latest/linux64 -O apt-src/postman.tar.gz
+
+# Extract postman and delete the tar
+tar -xvf apt-src/postman.tar.gz -C apt-src/
+rm apt-src/postman.tar.gz
+
+# Link the exectuable to bin
+ln -s ~/apt-src/Postman/Postman ~/bin/postman
+
+# Include bin in $PATH and reload path
+echo "export PATH=$HOME/bin:\$PATH" >> .bash_profile
+source .bash_profile
+```
+
+Then to run, simply type `postman`.
+
 # Credits
 This is a project for CS373 Software Engineering.
 
