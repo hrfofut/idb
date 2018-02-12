@@ -2,8 +2,32 @@
 {% block title %}About Us{% endblock %}
 {% block head %}
     {{ super() }}
+    <style>
+    .nav-item.nav-link.nav-abou {color: rgba(0, 0, 0, 0.9);}
+		</style>
 {% endblock %}
 {% block content %}
 <h1>About Us</h1>
-
+<div class="container text-center justify-content-center">
+  <div class="row">
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      Two of three columns
+    </div>
+    <div class="col-sm">
+      Three of three columns
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      One of two columns
+    </div>
+    <div class="col-sm">
+      Two of two columns
+    </div>
+  </div>
+</div>
+<p> {{ statistics  }}</p>
 {% endblock %}

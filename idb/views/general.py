@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template
 
+import requests
+
 general = Blueprint('general', __name__)
 
 
@@ -10,7 +12,8 @@ def splash(name=None):
 
 @general.route("/about")
 def about():
-    return render_template('about.html')
+    r = requests.get('https://api.github.com/repos/hrfofut/idb/stats/contributors')
+    return render_template('about.html', statistics=r.text)
 
 # Error handling
 

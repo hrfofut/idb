@@ -18,6 +18,11 @@ in `src/instance/` to `application.py` and fill with your desired config values.
 # Documentation
 The UML diagram is generated via [PlantUML](http://plantuml.com/)
 
+# Connecting to AWS server
+For now, to connect to AWS server, first download the pem file on Slack. Then ssh by saying 
+$ ssh -i "FileName.pem" ubuntu@ec2-34-209-147-2.us-west-2.compute.amazonaws.com 
+This will be updated when the domain name is working. 
+
 # Credits
 This is a project for CS373 Software Engineering.
 
