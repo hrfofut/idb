@@ -1,15 +1,15 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{{ url_for('splash') }}">Calorie Killer Club</a>
+  <a class="navbar-brand" href="{{ url_for('general.splash') }}">Calorie Killer Club</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="{{url_for('food') }}">Foods <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="{{ url_for('workouts') }}">Exercises</a>
-      <a class="nav-item nav-link" href="{{ url_for('gyms') }}">Gyms</a>
-      <a class="nav-item nav-link" href="{{ url_for('stores') }}">Stores</a>
-      <a class="nav-item nav-link" href="{{ url_for('about')  }}">About</a>
+      <a class="nav-item nav-link active" href="{{url_for('foods.foods_overview') }}">Foods <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="{{ url_for('workouts.workouts_overview') }}">Exercises</a>
+      <a class="nav-item nav-link" href="{{ url_for('gyms.gyms_overview') }}">Gyms</a>
+      <a class="nav-item nav-link" href="{{ url_for('stores.stores_overview') }}">Stores</a>
+      <a class="nav-item nav-link" href="{{ url_for('general.about')  }}">About</a>
     </div>
   </div>
 </nav>

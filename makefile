@@ -20,7 +20,7 @@ run: idb/ instance/
 	) # Used to tell makefile to use the virtualenv shell
 
 # Run all tests
-test: src/app.py tests/test.py
+test: idb/ tests/test.py
 	( \
 		. env/bin/activate; \
 		cd tests; \
@@ -30,8 +30,8 @@ test: src/app.py tests/test.py
 clean:
 	- rm -rf .git/hooks/pre-commit
 	- rm -rf *.egg*
-	- rm -rf idb/__pycache__/
 	- rm idb/idb.log
+	- find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 
 # Reset all virtual enviornment data
 scrub-virtualenv:
