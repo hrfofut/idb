@@ -33,3 +33,4 @@ The group consists of:
 5. Cindy Truong
 
 Autoformatter hook grabbed from: https://github.com/chibiegg/git-autopep8/blob/master/pre-commit
+Gunicorn and NGINX installation guide: https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04

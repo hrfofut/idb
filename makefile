@@ -11,13 +11,20 @@ install: requirements.txt idb/ setup.py
 		pip3 install -e .; \
 	) # Used to tell makefile to use the virtualenv shell
 
-# Run flask
+# Run Flask
 run: idb/ instance/
 	printenv | grep "FLASK_APP" # must set environment variable FLASK_APP to "idb/__init__.py"
 	( \
 		. env/bin/activate; \
 		flask run; \
 	) # Used to tell makefile to use the virtualenv shell
+
+# Restart everything on the production server
+restart-prod:
+	systemctl stop nginx
+	systemctl stop gunicorn
+	systemctl start gunicorn
+	systemctl start nginx
 
 # Run all tests
 test: idb/ tests/test.py

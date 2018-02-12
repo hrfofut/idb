@@ -1,3 +1,3 @@
 # Example configuration
-DEBUG = False
-is_this_working = "yes"
+DEBUG = True
+MODE = 'DEV'
