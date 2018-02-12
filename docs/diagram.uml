@@ -1,15 +1,15 @@
 @startuml
-Class Food {
+Object Food {
   String name
   Int calories
 }
 
-Class Ingredients {
+Object Ingredients {
   String name
   Int calories
 }
 
-Class Gyms {
+Object Gyms {
   String name
   Object location
   String pricing
@@ -17,7 +17,7 @@ Class Gyms {
   Object reviews
 }
 
-Class Exercises {
+Object Exercises {
   String name
   Object METS_formula
   String equipment
@@ -25,25 +25,25 @@ Class Exercises {
   String description  
 }
 
-Class Grocery_Stores {
+Object Grocery_Stores {
   String name
   Object location
   String description
   Object reviews
 }
 
-Class Nutritional_info {
+Object Nutritional_info {
   String name
   String value
 }
 
-Class Location {
+Object Location {
   String lat
   String long
   String url_to_map
 }
 
-Class Reviews {
+Object Reviews {
   String description
   Int rating
 }
