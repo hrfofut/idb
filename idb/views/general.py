@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 
 import requests
+import json
 
 general = Blueprint('general', __name__)
 
@@ -12,8 +13,12 @@ def splash(name=None):
 
 @general.route("/about")
 def about():
-    r = requests.get('https://api.github.com/repos/hrfofut/idb/stats/contributors')
-    return render_template('about.html', statistics=r.text)
+    req = requests.get('https://api.github.com/repos/hrfofut/idb/stats/contributors')
+    req_list = req.json()
+    d = {}
+    for x in req_list:
+        d[x['author']['login']] = x['total']
+    return render_template('about.html', statistics=d)
 
 # Error handling
 
@@ -26,4 +31,3 @@ def page_not_found(e):
 @general.errorhandler(500)
 def internal_error(e):
     return render_template('errors/500.html'), 500
-
