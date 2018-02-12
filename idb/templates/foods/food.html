@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "models.html" %}
 {% block title %}CKC - Food{% endblock %}
 {% block head %}
     {{ super() }}
@@ -9,7 +9,9 @@
 {% block content %}
 <h1>Food</h1>
 
-<div class="container">
+{{ super() }}
+
+<!-- <div class="container">
   <div class="row">
     <div class="col-sm">
     	<h5 class=text-sm-left>Food 1</h5>
@@ -24,7 +26,7 @@
     	<a href= "/foods/3"> <img src="https://blognumbers.files.wordpress.com/2010/09/3.jpg" class="img-thumbnail"></a>
     </div>
   </div>
-</div>
+</div> -->
 
 
 {% endblock %}
