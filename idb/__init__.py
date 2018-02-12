@@ -15,10 +15,10 @@ app.config.from_pyfile('application.py', silent=True)
 
 # Blueprints
 app.register_blueprint(general)
-app.register_blueprint(foods, url_prefix='/foods/')
-app.register_blueprint(gyms, url_prefix='/gymss/')
-app.register_blueprint(stores, url_prefix='/storess/')
-app.register_blueprint(workouts, url_prefix='/workouts/')
+app.register_blueprint(foods, url_prefix='/foods')
+app.register_blueprint(gyms, url_prefix='/gyms')
+app.register_blueprint(stores, url_prefix='/stores')
+app.register_blueprint(workouts, url_prefix='/workouts')
 
 import idb.views
 
