@@ -312,3 +312,11 @@ p.fakepre {
     font-family: monospace;
     font-size: .9em
 }
+
+.carousel {
+    max-height: 450px;
+    min-height: 450px;
+    overflow: hidden;
+}
+
+
