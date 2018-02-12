@@ -16,7 +16,8 @@ def splash(name=None):
 
 @app.route("/about")
 def about():
-    return render_template('about.html')
+    r = requests.get('https://api.github.com/repos/hrfofut/idb/stats/contributors')
+    return render_template('about.html', statistics=r.text)
 
 
 @app.route("/foods")
