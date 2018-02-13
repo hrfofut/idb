@@ -11,4 +11,6 @@ def foods_overview():
 @foods.route("/<id>")
 def food_detail(id):
     """TODO: Have the template be filled from a database in the future"""
-    return render_template('foods/fooddetail.html')
+    # However the backend will work, use id to find all the info.
+
+    return render_template('foods/fooddetail.html', title=id)
