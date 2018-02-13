@@ -8,8 +8,8 @@ in `requirements.txt`.  This list should be updated whenever a new library or to
 installed.
 
 ## Installation
-### Develpoment
-Installation for this project is as follows.  To install, first create an enviornment variable
+### Development
+Installation for this project is as follows.  To install, first create an environment variable
 called `FLASK_APP` set to `idb/__init__.py`.  In Linux, this is `export FLASK_APP=idb/__init__.py`.
 Then, run `make install`.
 
@@ -19,12 +19,12 @@ in `instance/` to `application.py` and fill with your desired config values.
 ### Production
 First, create your own config file from the default config in `instance/`.  Call the config file
 `application.py`.  One key value to change is to set `MODE = 'PRODUCTION'`.  Fill out the rest of
-the config as nescessary.
+the config as necessary.
 
-To install on the produciton server, run `make install`.  You must [set up NGINX and Gunicorn]
+To install on the production server, run `make install`.  You must [set up NGINX and Gunicorn]
 (https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04) to get the site to work.
 
-To make a change to an existing produciton, do the following.  If a new module is required,
+To make a change to an existing production, do the following.  If a new module is required,
 make sure it is in `requirements.txt`.  Then run `make restart-prod`.
 
 # Documentation
@@ -36,6 +36,8 @@ $ ssh -i "FileName.pem" ubuntu@caloriekiller.club
 
 # Tools
 ## Postman
+
+### Lab machines installation
 To install Postman on the lab machines, run the following command:
 ```bash
 cd ~ && mkdir apt-src bin && wget https://dl.pstmn.io/download/latest/linux64 -O apt-src/postman.tar.gz && tar -xvf apt-src/postman.tar.gz -C apt-src/ && rm apt-src/postman.tar.gz && ln -s ~/apt-src/Postman/Postman ~/bin/postman && echo "export PATH=$HOME/bin:\$PATH" >> .bash_profile && source .bash_profile
@@ -47,7 +49,7 @@ An explanation of the commands:
 # Install files in home directory
 cd ~
 
-# Make a location for source files and for exectuables
+# Make a location for source files and for executables
 mkdir apt-src bin
 
 # Download postman
@@ -57,7 +59,7 @@ wget https://dl.pstmn.io/download/latest/linux64 -O apt-src/postman.tar.gz
 tar -xvf apt-src/postman.tar.gz -C apt-src/
 rm apt-src/postman.tar.gz
 
-# Link the exectuable to bin
+# Link the executable to bin
 ln -s ~/apt-src/Postman/Postman ~/bin/postman
 
 # Include bin in $PATH and reload path
@@ -66,6 +68,17 @@ source .bash_profile
 ```
 
 Then to run, simply type `postman`.
+
+### macOS installation
+To install Postman on macOS (make sure to have Homebrew already installed; if not, instructions located [here](https://brew.sh):
+```bash
+brew cask install postman
+```
+
+Then to run:
+```bash
+open -a postman
+```
 
 # Credits
 This is a project for CS373 Software Engineering.
