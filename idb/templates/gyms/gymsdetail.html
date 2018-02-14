@@ -7,5 +7,28 @@
 		</style>
 {% endblock %}
 {% block content %}
-<h1>Gyms Details</h1>
+<div class="container-fluid">
+	<div class="text-center">
+  		<img class="detail-img" src="{{gym['img']}}">
+	</div>
+	<h1 class="display-4" style="text-transform: capitalize; text-align: center">{{gym['name']}}</h1>
+    <table class="table">
+      <tbody>     
+        <tr>
+          <th scope="row">Location</th>
+          <td>{{gym['location']}}</td>
+        </tr>        
+        <tr>
+          <th scope="row">Pricing</th>
+          <td>{{gym['pricing']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Ratings</th>
+          <td>{{gym['ratings']}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p> <a href= "/workouts">Workouts</a> </p>
+    <p> <a href= "/stores">Grocery Stores</a> </p>
+</div>
 {% endblock %}
