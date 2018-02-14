@@ -49,8 +49,8 @@
               <p class="lead">Responsibilities</p>
               <p style="text-align: justify">Bio and stuff apparently? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis massa nisl. Ut sed ultricies tellus.  </p>
               <ul class="list-unstyled">
-                <li>No. of Commits: {{statistics['cindyqtruong']}}</li>
-                <li>No. of Issues: {{chk[0]}}</li>
+                <li>No. of Commits: {{commits['cindyqtruong']}}</li>
+                <li>No. of Issues: {{issues[0]}}</li>
                 <li>No. of Unit Tests: 0</li>
               </ul>
             </div>
@@ -60,8 +60,8 @@
               <p class="lead">Responsibilities</p>
               <p style="text-align: justify">Bio and stuff apparently? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis massa nisl. Ut sed ultricies tellus.  </p>
               <ul class="list-unstyled">
-                <li>No. of Commits: {{statistics['BrandonHarrisonCode']}}</li>
-                <li>No. of Issues: {{chk[1]}}</li>
+                <li>No. of Commits: {{commits['BrandonHarrisonCode']}}</li>
+                <li>No. of Issues: {{issues[1]}}</li>
                 <li>No. of Unit Tests: 0</li>
               </ul>
             </div>
@@ -71,8 +71,8 @@
               <p class="lead">Front End, Code Beautician </p>
               <p style="text-align: justify">I coded some of this stuff.</p>
               <ul class="list-unstyled">
-                <li>No. of Commits: {{statistics['hrfofut']}}</li>
-                <li>No. of Issues: {{chk[2]}}</li>
+                <li>No. of Commits: {{commits['hrfofut']}}</li>
+                <li>No. of Issues: {{issues[2]}}</li>
                 <li>No. of Unit Tests: 1</li>
               </ul>
             </div>
@@ -84,8 +84,8 @@
               <p class="lead">Responsibilities</p>
               <p style="text-align: justify">Bio and stuff apparently? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis massa nisl. Ut sed ultricies tellus.  </p>
               <ul class="list-unstyled">
-                <li>No. of Commits: {{statistics['straitlaced']}}</li>
-                <li>No. of Issues: {{chk[3]}}</li>
+                <li>No. of Commits: {{commits['straitlaced']}}</li>
+                <li>No. of Issues: {{issues[3]}}</li>
                 <li>No. of Unit Tests: 0</li>
               </ul>
             </div>
@@ -95,15 +95,15 @@
               <p class="lead">Responsibilities</p>
               <p style="text-align: justify">Bio and stuff apparently? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis massa nisl. Ut sed ultricies tellus.  </p>
               <ul class="list-unstyled">
-                <li>No. of Commits: {{statistics['fantomats15']}}</li>
-                <li>No. of Issues: {{chk[4]}}</li>
+                <li>No. of Commits: {{commits['fantomats15']}}</li>
+                <li>No. of Issues: {{issues[4]}}</li>
                 <li>No. of Unit Tests: 0</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <p>Total Commits: {{statistics['total']}} Total Issues: {{chk[5]}} Total Tests: 1</p>
+        <p>Total Commits: {{commits['total']}} Total Issues: {{issues[5]}} Total Tests: 1</p>
       </div>
     </div>
   </div>
@@ -139,6 +139,6 @@
     </div>
   </div> 
 </div>
-<p> {{chk}} </p>
+<p> {{commits}} </p>
 {% include 'bootstrapscripts.html' %}
 {% endblock %}

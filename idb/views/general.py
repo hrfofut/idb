@@ -20,7 +20,7 @@ def about():
         iss_count.append(0)
     req = requests.get('https://api.github.com/repos/hrfofut/idb/stats/contributors')
     req_list = req.json()
-    d = {'total': 0}
+    d = {'total': 0, 'cindyqtruong': 0, 'BrandonHarrisonCode': 0, 'hrfofut': 0, 'straitlaced': 0, 'fantomats15': 0}
     for x in req_list:
         d[x['author']['login']] = x['total']
         d['total'] += x['total']
@@ -29,7 +29,7 @@ def about():
         iss_total += 1
         iss_count[logins[x['user']['login']]] += 1
     iss_count.append(iss_total)
-    return render_template('about.html', statistics=d, chk=iss_count)
+    return render_template('about.html', commits=d, issues=iss_count)
 
 # Error handling
 
