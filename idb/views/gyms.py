@@ -10,7 +10,7 @@ gym0 = {
         'name': 'Castle Hill Fitness',
         'ratings': '4.7/5',
         'location': '1112 N Lamar Blvd, Austin, TX',
-        'pricing': '$89/month or $139/month memberships'
+        'pricing': '$89/month or $139/month'
 }
 
 gym1 = {
@@ -40,7 +40,7 @@ def gyms_overview():
     for val in gyms_list:
         items.append([val['name'], val['img'], val['ratings'], val['pricing']])
 
-    return render_template('gyms/gyms.html')
+    return render_template('gyms/gyms.html', items=items)
 
 
 @gyms.route("/<int:id>")
