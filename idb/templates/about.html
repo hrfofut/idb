@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 <h1>About Us</h1>
-
+<div class="sneaky-workaround">
 <div class="container-fluid" style="text-align: center">
   <!-- About -->
   <div class="card border-light" style="width: 100%">
@@ -21,10 +21,10 @@
     </div>
     <div id="collapseAbout" class="collapse show" aria-labelledby="about">
       <div class="card-body">
-        <p>[description of the site, its purpose, its intended users]</p>
-        <p>[explanation of the interesting result of integrating disparate data]</p>
-        <p>[a link to the GitBook report]</p>
-        <p>[a link to the GitHub repo]</p>
+        <p>Calorie Killer Club allows users to find recipes and calorie counts for the food that they enjoy and then find exercises that burn off that same amount of calories. We even further suggest gyms that allow you to do the type of workouts you enjoy and restaurants that serve the type of food you like. Anyone who is interested in either bulking up or losing weight can benefit from our site.</p>
+        <p>We can show you exactly how much you should be ashamed of yourself for eating a certain amount of food. :)</p>
+        <p><a href="https://hrfofut.gitbooks.io/report/">GitBook Report</a></p>
+        <p><a href="https://github.com/hrfofut/idb">GitHub Repo</a></p>
       </div>
     </div>
   </div>
@@ -46,8 +46,8 @@
             <div class="col-sm group-member">
               <img class="img-circle group-photos" src="https://help.github.com/assets/images/help/profile/identicon.png" alt="Group Member 1">
               <h5>Cindy Truong</h5>
-              <p class="lead">Responsibilities</p>
-              <p style="text-align: justify">Bio and stuff apparently? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis massa nisl. Ut sed ultricies tellus.  </p>
+              <p class="lead">Front End, Co-Maker of Beauty</p>
+              <p style="text-align: justify">CS major at UT Austin. Amazing.</p>
               <ul class="list-unstyled">
                 <li>No. of Commits: {{commits['cindyqtruong']}}</li>
                 <li>No. of Issues: {{issues[0]}}</li>
@@ -118,8 +118,8 @@
     </div>
     <div id="collapseData" class="collapse" aria-labelledby="data">
       <div class="card-body">
-        <p>[links to the data sources]</p>
-        <p>[description of how each was scraped]</p>
+        <p><a href="https://developer.github.com/v3/">GitHub</a> | Wesley does API and JSON parsing magic.</p>
+        <p><a href="https://spoonacular.com/food-api">Spoonacular - Food API and Recipe API</a> | We use good ol' manual labor.</p>
       </div>
     </div>
   </div>  
@@ -139,6 +139,9 @@
     </div>
   </div> 
 </div>
+
+</div>
+
 <p> {{commits}} </p>
 {% include 'bootstrapscripts.html' %}
 {% endblock %}
