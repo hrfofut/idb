@@ -38,7 +38,7 @@ def gyms_overview():
 
     items = []
     for val in gyms_list:
-        items.append([val['name'], val['img'], val['ratings'], val['pricing']])
+        items.append([val['name'], val['img'], val['location'], val['ratings']])
 
     return render_template('gyms/gyms.html', items=items)
 
