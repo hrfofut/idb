@@ -2,8 +2,8 @@ from flask import Blueprint, render_template
 
 foods = Blueprint('foods', __name__)
 
-first = 0
-last = 2
+first = 1
+last = 3
 
 
 @foods.route("/")
