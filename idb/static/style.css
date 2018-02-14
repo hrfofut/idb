@@ -321,10 +321,17 @@ p.fakepre {
     min-width: 400px;
     max-width: 60%;
 }
-
+.c-img {
+    min-height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
 img {
-    width: 100%;
-    object-fit: cover;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 .img-thumbnail {
