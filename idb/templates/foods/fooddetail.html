@@ -7,14 +7,42 @@
 		</style>
 {% endblock %}
 {% block content %}
-<h1></h1>
+<div class="container-fluid">
 	<div class="text-center">
-  		<img src="{{food['img']}}" class="rounded" style="height: 200px; width: 200px;">
+  		<img src="{{food['img']}}"  style="height: 300px; width: 300px; border-radius: 50%; box-shadow: 1px 1px 2px grey">
 	</div>
-	<p> <h6>Name:{{food['name']}}</h6> </p>
-    <p> <h6>Calories:{{food['calories']}}</h6> </p>
-    <p> <h6>Nutrional Information: Sodium: {{food['sodium']}} Fat: {{food['fat']}} Protein: {{food['protein']}}</h6> </p>
+	<h1 class="display-4" style="text-transform: capitalize; text-align: center">{{food['name']}}</h1>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" colspan="3">Nutritional Information</th>
+        </tr>
+        <tr>
+          <th scope="row">Amount Per 1 serving</th>
+          <th >{{food['serving']}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <th scope="row">Calories</th>
+          <td>{{food['calories']}}</td>
+        </tr>        
+        <tr>
+          <th scope="row">Sodium</th>
+          <td>{{food['sodium']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Fat</th>
+          <td>{{food['fat']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Protein</th>
+          <td>{{food['protein']}}</td>
+        </tr>
+      </tbody>
+    </table>
     <p> <a href= "/stores">Grocery Stores</a> </p>
     <p> <a href= "/workouts">Workouts</a> </p>
-
+</div>
 {% endblock %}
