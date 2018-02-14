@@ -20,9 +20,10 @@ def about():
         iss_count.append(0)
     req = requests.get('https://api.github.com/repos/hrfofut/idb/stats/contributors')
     req_list = req.json()
-    d = {}
+    d = {'total': 0}
     for x in req_list:
         d[x['author']['login']] = x['total']
+        d['total'] += x['total']
     req_issue = requests.get('https://api.github.com/repos/hrfofut/idb/issues?state=all&page=1&per_page=500')
     for x in (req_issue.json()):
         iss_total += 1
