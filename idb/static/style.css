@@ -327,6 +327,14 @@ p.fakepre {
     background-position: center center;
     background-repeat: no-repeat;
 }
+.detail-img {
+
+    object-fit: cover;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px grey;
+}
 
 .img-thumbnail {
     height: 150px;
