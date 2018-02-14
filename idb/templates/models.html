@@ -8,7 +8,7 @@
 <div class="container">
   {% block gridhead %} {% endblock %}
   <div class="row">
-    {% for x in range(0,3) %}
+    {% for x in range(0, items.__len__()) %}
     <div class="col-sm">
     	<h5 class=text-sm-left>{{items[x][0]}}</h5>
     	<a href="./{{x}}"> <img src="{{items[x][1]}}" class="img-thumbnail"> </a>

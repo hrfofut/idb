@@ -13,7 +13,8 @@ def foods_overview():
     waffle = {'img': 'http://catchyscoop.com/wp-content/uploads/2016/07/calories-in-a-waffle.jpg', 'name': 'waffle', 'calories': '82', 'serving': '1 oz', 'sodium': '145 mg', 'fat': '4 g', 'protein': '2.2 g'}
     foods = [icecream, burger, waffle]
     # TODO: I need to remember to describe whats going on later.
-    items = [] for val in foods:
+    items = []
+    for val in foods:
         items.append([val['name'], val['img'], val['calories'], val['fat']])
     return render_template('foods/food.html', items=items)
 
