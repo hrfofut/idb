@@ -37,7 +37,13 @@ stores_list = [store0, store1, store2]
 
 @stores.route("/")
 def stores_overview():
-    return render_template('stores/stores.html')
+    global stores_list
+
+    items = []
+    for val in stores_list:
+        items.append([val['name'], val['img'], val['location'], val['ratings']])
+
+    return render_template('stores/stores.html', items=items)
 
 
 @stores.route("/<int:id>")

@@ -7,5 +7,36 @@
 		</style>
 {% endblock %}
 {% block content %}
-<h1>Workout Details</h1>
+<div class="container">
+	<div class="center-block">
+		<div class="videosize">
+			<div class="embed-responsive embed-responsive-16by9">
+  				<iframe class="embed-responsive-item" src="{{workout['link']}}"></iframe>
+  			</div>
+  		</div>
+	</div>
+	<h1 class="display-4" style="text-transform: capitalize; text-align: center">{{workout['name']}}</h1>
+    <table class="table">
+      <tbody> 
+        <tr>
+          <th scope="row">Equipment Required</th>
+          <td>{{workout['equipment']}}</td>
+        </tr>        
+        <tr>
+          <th scope="row">Category</th>
+          <td>{{workout['category']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Muscle Targeted</th>
+          <td>{{workout['muscle']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Description</th>
+          <td>{{workout['description']}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p> <a href= "/foods">Foods</a> </p>
+    <p> <a href= "/gyms">Gyms</a> </p>
+</div>
 {% endblock %}

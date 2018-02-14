@@ -5,6 +5,38 @@ workouts = Blueprint('workouts', __name__)
 first = 0
 last = 2
 
+bench_press = {
+        'name': 'Bench Press',
+        'img': 'http://cdn2.coachmag.co.uk/sites/coachmag/files/styles/insert_main_wide_image/public/2016/07/1-1-bench-press.jpg?itok=bJYGPFGO',
+        'link': 'https://www.youtube.com/embed/9l9guSIjnZY',
+        'category': 'Chest',
+        'equipment': 'Barbell, Bench',
+        'description': "Lay down on a bench, the bar should be directly above your eyes, the knees are somewhat angled and the feet are firmly on the floor. Concentrate, breath deeply and grab the bar more than shoulder wide. Bring it slowly down till it briefly touches your chest at the height of your nipples. Push the bar up.",
+        'muscle': 'Pectoralis major, biceps brachii'
+}
+
+push_up = {
+        'name': 'Push Ups',
+        'img': 'https://yurielkaim.com/wp-content/uploads/2013/07/Advanced-Push-up-Variations-Traditional-Push-up.jpg',
+        'link': 'https://www.youtube.com/embed/_l3ySVKYVJ8',
+        'category': 'Arms',
+        'equipment': 'None',
+        'description': "Start with your body streched, your hands are shoulder-wide appart on the ground. Push yourself off the ground till you strech your arms. The back is always straight and as well as the neck (always look to the ground). Lower yourself to the initial position and repeat.",
+        'muscle': 'Anterior deltoid, pectoralis major, rectus abdominis, triceps brachii'
+}
+
+running = {
+        'name': 'Running',
+        'img': 'http://www.runguides.com/assets/running-icon.svg',
+        'link': 'https://www.youtube.com/embed/lCpotGr0TB4',
+        'category': 'Legs',
+        'equipment': 'None',
+        'description': "Running or jogging outside in a park, on the tracks,...",
+        'muscle': 'Hamstrings, quadriceps, hip flexors, gluteals, calf muscles'
+}
+
+workouts_list = [bench_press, push_up, running]
+
 
 @workouts.route("/")
 def workouts_overview():
@@ -13,9 +45,12 @@ def workouts_overview():
 
 @workouts.route("/<int:id>")
 def workouts_detail(id):
-    """TODO: Have the template be filled from a database in the future"""
+    global workouts_list
+    # TODO: Have the template be filled from a database in the future
 
     # ID 0-2 returns certain food page, else return error
+
     if id < first or id > last:
         return render_template('errors/404.html'), 404
-    return render_template('workouts/workoutsdetail.html', title=id)
+
+    return render_template('workouts/workoutsdetail.html', workout=workouts_list[id])
