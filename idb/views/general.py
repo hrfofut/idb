@@ -20,16 +20,16 @@ def about():
         iss_count.append(0)
     req = requests.get('https://api.github.com/repos/hrfofut/idb/stats/contributors')
     req_list = req.json()
-    d = {'total': 0}
-    for x in req_list:
-        d[x['author']['login']] = x['total']
-        d['total'] += x['total']
+    commit_count = {'total': 0}
+    for contributor in req_list:
+        commit_count[contributor['author']['login']] = contributor['total']
+        commit_count['total'] += contributor['total']
     req_issue = requests.get('https://api.github.com/repos/hrfofut/idb/issues?state=all&page=1&per_page=500')
-    for x in (req_issue.json()):
+    for issue in (req_issue.json()):
         iss_total += 1
-        iss_count[logins[x['user']['login']]] += 1
+        iss_count[logins[issue['user']['login']]] += 1
     iss_count.append(iss_total)
-    return render_template('about.html', commits=d, issues=iss_count)
+    return render_template('about.html', commits=commit_count, issues=iss_count)
 
 # Error handling
 
