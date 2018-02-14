@@ -8,18 +8,15 @@
 <div class="container">
   {% block gridhead %} {% endblock %}
   <div class="row">
+    {% for x in range(0,3) %}
     <div class="col-sm">
-    	<h5 class=text-sm-left>Pic 1</h5>
-    	<a href="./0"> <img src="https://blognumbers.files.wordpress.com/2010/09/1.jpg" class="img-thumbnail"> </a>
+    	<h5 class=text-sm-left>{{items[x][0]}}</h5>
+    	<a href="./{{x}}"> <img src="{{items[x][1]}}" class="img-thumbnail"> </a>
+        <p>{%block atr1%} {% endblock %}: {{items[x][2]}}
+           {%block atr2%} {% endblock %}: {{items[x][3]}}</p>
     </div>
-    <div class="col-sm">
-    	<h5 class=text-sm-left>Pic 2</h5>
-    	<a href= "./1"> <img src="https://blognumbers.files.wordpress.com/2010/09/2.jpg" class="img-thumbnail"></a>
-    </div>
-    <div class="col-sm">
-    	<h5 class=text-sm-left>Pic 3</h5>
-    	<a href= "./2"> <img src="https://blognumbers.files.wordpress.com/2010/09/3.jpg" class="img-thumbnail"></a>
-    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
+
