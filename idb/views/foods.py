@@ -2,8 +2,8 @@ from flask import Blueprint, render_template
 
 foods = Blueprint('foods', __name__)
 
-first = 1
-last = 3
+first = 0
+last = 2
 
 
 @foods.route("/")
@@ -16,7 +16,7 @@ def food_detail(id):
     """TODO: Have the template be filled from a database in the future"""
     # However the backend will work, use id to find all the info.
 
-    # ID 1-3 returns certain food page, else return error
+    # ID 0-2 returns certain food page, else return error
     if id < first or id > last:
         return render_template('errors/404.html'), 404
     return render_template('foods/fooddetail.html', title=id)
