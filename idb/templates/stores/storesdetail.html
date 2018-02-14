@@ -7,5 +7,32 @@
 		</style>
 {% endblock %}
 {% block content %}
-<h1>Store Details</h1>
+<div class="container-fluid">
+	<div class="text-center">
+  		<img class="detail-img" src="{{store['img']}}">
+	</div>
+	<h1 class="display-4" style="text-transform: capitalize; text-align: center">{{store['name']}}</h1>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">Location</th>
+          <td>{{store['location']}}</td>
+        </tr>        
+        <tr>
+          <th scope="row">Description</th>
+          <td>{{store['description']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Phone Number</th>
+          <td>{{store['phone']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Rating</th>
+          <td>{{store['ratings']}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p> <a href= "/foods">Foods</a> </p>
+    <p> <a href= "/gyms">Gyms</a> </p>
+</div>
 {% endblock %}
