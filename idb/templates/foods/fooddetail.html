@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}food-{{title}}{% endblock %} <!-- TODO: Make titles dynamic -->
+{% block title %}{{food['name']}}{% endblock %} <!-- TODO: Make titles dynamic -->
 {% block head %}
     {{ super() }}
     <style>
@@ -9,11 +9,12 @@
 {% block content %}
 <h1></h1>
 	<div class="text-center">
-  		<img src="http://www.flooringvillage.co.uk/ekmps/shops/flooringvillage/images/request-a-sample--547-p.jpg" class="rounded">
+  		<img src="{{food['img']}}" class="rounded" style="height: 200px; width: 200px;">
 	</div>
-	<p> <h6>Name:</h6> </p>
-    <p> <h6>Calories:</h6> </p>
-    <p> <h6>Nutrional Information:</h6> </p>
+	<p> <h6>Name:{{food['name']}}</h6> </p>
+    <p> <h6>Calories:{{food['calories']}}</h6> </p>
+    <p> <h6>Nutrional Information: Sodium: {{food['sodium']}} Fat: {{food['fat']}} Protein: {{food['protein']}}</h6> </p>
     <p> <a href= "/stores">Grocery Stores</a> </p>
     <p> <a href= "/workouts">Workouts</a> </p>
+
 {% endblock %}
