@@ -40,15 +40,21 @@ workouts_list = [bench_press, push_up, running]
 
 @workouts.route("/")
 def workouts_overview():
-    return render_template('workouts/workouts.html')
+    global workouts_list
+
+    items = []
+    for val in workouts_list:
+        items.append([val['name'], val['img'], val['category'], val['muscle']])
+
+    return render_template('workouts/workouts.html', items=items)
 
 
 @workouts.route("/<int:id>")
 def workouts_detail(id):
     global workouts_list
-    # TODO: Have the template be filled from a database in the future
+# TODO: Have the template be filled from a database in the future
 
-    # ID 0-2 returns certain food page, else return error
+# ID 0-2 returns certain food page, else return error
 
     if id < first or id > last:
         return render_template('errors/404.html'), 404
