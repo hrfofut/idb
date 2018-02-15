@@ -328,6 +328,11 @@ p.fakepre {
     background-position: center center;
     background-repeat: no-repeat;
 }
+.t-img {
+    width:42px;
+    height:42px;
+    border:0;
+}
 .detail-img {
 
     object-fit: cover;
@@ -419,4 +424,13 @@ circle {
 	50% {
 		transform: rotate(360deg);
 	}
+}
+
+#exTab1 .tab-content {
+  color : white;
+  padding : 5px 15px;
+}
+
+#exTab2 h3 {
+  padding : 5px 15px;
 }
