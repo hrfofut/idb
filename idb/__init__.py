@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from flask_assets import Environment, Bundle
 
 import logging
 from logging.handlers import RotatingFileHandler
@@ -12,6 +13,12 @@ from .views.workouts import workouts
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('default_config.py')
 app.config.from_pyfile('application.py', silent=True)
+
+# Convert scss files to css
+assets = Environment(app)
+assets.url = app.static_url_path
+scss = Bundle('style.scss', filters='pyscss', output='style.css')
+assets.register('scss_all', scss)
 
 # Blueprints
 app.register_blueprint(general)

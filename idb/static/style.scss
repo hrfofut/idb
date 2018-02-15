@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 html {
-    background-color: #fefefe
+    background-color: #fefefe;
 }
 
 body {
@@ -8,31 +9,31 @@ body {
     color: #454545;
     font-size: 16px;
     line-height: 1.4;
-    text-align: justify
+    text-align: justify;
 }
 
 html.contrast body {
-    color: #050505
+    color: #050505;
 }
 
 html.contrast blockquote {
-    color: #11151a
+    color: #11151a;
 }
 
 html.contrast blockquote:before {
-    color: #262626
+    color: #262626;
 }
 
 html.contrast a {
-    color: #0051c9
+    color: #0051c9;
 }
 
 html.contrast a:visited {
-    color: #7d013e
+    color: #7d013e;
 }
 
 html.contrast span.wr {
-    color: #800
+    color: #800;
 }
 
 html.contrast span.mfw {
@@ -354,3 +355,68 @@ p.fakepre {
     margin: auto; 
 }
 
+.roundedrectangle {
+    font-size: 72px;
+    border-radius: 15px;
+    background-color: #16A6C5;
+    color: #FFFFFF;
+    z-index: 100;
+}
+
+.circle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #EDEDED;
+}
+
+.loader {
+    max-width: 40vw;
+    width: 100%;
+    height: auto;
+    stroke-linecap: round;
+}
+
+circle {
+    fill: none;
+    stroke-width: 3.5;
+    animation-name: preloader;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    transform-origin: 400px 400px;
+    will-change: transform;
+
+    &:nth-of-type(1) {
+        stroke-dasharray: 550;
+    }
+    
+    &:nth-of-type(2) {
+        stroke-dasharray: 500;
+    }
+
+    &:nth-of-type(3) {
+        stroke-dasharray: 450;
+    }
+
+    &:nth-of-type(4) {
+        stroke-dasharray: 300;
+    }
+
+    @for $i from 1 through 4 {
+        &:nth-of-type(#{$i}) {
+            animation-delay: #{$i * 0.15}s;
+        }
+    }
+}
+
+.center {
+    height: 100vh;
+}
+
+@keyframes preloader {
+	50% {
+		transform: rotate(360deg);
+	}
+}

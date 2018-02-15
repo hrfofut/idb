@@ -1,1 +1,19 @@
-Uh oh we're gonna fail
+{% extends "base.html" %}
+{% block title %}Error: 404{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="circle-container">
+  <svg class="loader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+    <circle cx="400" cy="400" r="376" stroke="#16A6C5"/>
+    <circle cx="400" cy="400" r="318" stroke="#404041"/>
+    <circle cx="400" cy="400" r="259" stroke="#00d2ff"/>
+    <circle cx="400" cy="400" r="200" stroke="#404041"/>
+    <text font-size="72" x="330" y="400" fill="black">500</text>
+    <text font-size="42" x="250" y="450" fill="black">Internal Error</text>
+  </svg>
+</div>
+{% endblock %}
+

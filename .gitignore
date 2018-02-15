@@ -4,6 +4,10 @@
 # Emacs backups
 *~
 
+# Webpack
+.webassets-cache/
+style.css
+
 # Python files
 *.egg*
 __pycache__*
