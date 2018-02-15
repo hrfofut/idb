@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, abort
 
 stores = Blueprint('stores', __name__)
 
@@ -53,6 +53,6 @@ def stores_detail(id):
 
     # ID 0-2 returns certain food page, else return error
     if id < first or id > last:
-        return render_template('errors/404.html'), 404
+        abort(404)
 
     return render_template('stores/storesdetail.html', store=stores_list[id])

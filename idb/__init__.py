@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 import logging
 from logging.handlers import RotatingFileHandler
@@ -21,6 +21,17 @@ app.register_blueprint(stores, url_prefix='/stores')
 app.register_blueprint(workouts, url_prefix='/workouts')
 
 import idb.views
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('errors/404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(e):
+    return render_template('errors/500.html'), 500
+
 
 if __name__ == "__main__":
     formatter = logging.Formatter(

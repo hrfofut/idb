@@ -1,3 +1,6 @@
+# Private keys
+*.pem
+
 # Emacs backups
 *~
 
