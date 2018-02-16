@@ -24,3 +24,4 @@ instance/*
 env/
 pip-selfcheck.json
 
+.DS_Store
