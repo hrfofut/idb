@@ -12,7 +12,8 @@ bench_press = {
         'category': 'Chest',
         'equipment': 'Barbell, Bench',
         'description': "Lay down on a bench, the bar should be directly above your eyes, the knees are somewhat angled and the feet are firmly on the floor. Concentrate, breath deeply and grab the bar more than shoulder wide. Bring it slowly down till it briefly touches your chest at the height of your nipples. Push the bar up.",
-        'muscle': 'Pectoralis major, biceps brachii'
+        'muscle': 'Pectoralis major, biceps brachii',
+        'met': 5.0
 }
 
 push_up = {
@@ -22,7 +23,8 @@ push_up = {
         'category': 'Arms',
         'equipment': 'None',
         'description': "Start with your body streched, your hands are shoulder-wide appart on the ground. Push yourself off the ground till you strech your arms. The back is always straight and as well as the neck (always look to the ground). Lower yourself to the initial position and repeat.",
-        'muscle': 'Anterior deltoid, pectoralis major, rectus abdominis, triceps brachii'
+        'muscle': 'Anterior deltoid, pectoralis major, rectus abdominis, triceps brachii',
+        'met': 3.8
 }
 
 running = {
@@ -32,7 +34,8 @@ running = {
         'category': 'Legs',
         'equipment': 'None',
         'description': "Running or jogging outside in a park, on the tracks,...",
-        'muscle': 'Hamstrings, quadriceps, hip flexors, gluteals, calf muscles'
+        'muscle': 'Hamstrings, quadriceps, hip flexors, gluteals, calf muscles',
+        'met': 7.0
 }
 
 workouts_list = [bench_press, push_up, running]
