@@ -1,202 +1,221 @@
-{% extends "base.html" %}
-{% block title %}About Us{% endblock %}
-{% block head %}
-    {{ super() }}
-    <style>
-    .nav-item.nav-link.nav-abou {color: rgba(0, 0, 0, 0.9);}
-		</style>
-{% endblock %}
-{% block content %}
-<div class="container-fluid" style="text-align: center">
-  <!-- About -->
-  <div class="card border-light" style="width: 100%">
-    <div class="card-header" id="about">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAbout" aria-expanded="true" aria-controls="collapseAbout">
-          About
-        </button>
-      </h5>
-    </div>
-    <div id="collapseAbout" class="collapse show" aria-labelledby="about">
-      <div class="card-body">
-        <p>Calorie Killer Club allows users to find recipes and calorie counts for the food that they enjoy and then find exercises that burn off that same amount of calories. We even further suggest gyms that allow you to do the type of workouts you enjoy and restaurants that serve the type of food you like. Anyone who is interested in either bulking up or losing weight can benefit from our site.</p>
-        <p>We can show you exactly how much you should be ashamed of yourself for eating a certain amount of food. :)</p>
-        <p><a href="https://hrfofut.gitbooks.io/report/">GitBook Report</a></p>
-        <p><a href="https://github.com/hrfofut/idb">GitHub Repo</a></p>
-      </div>
-    </div>
-  </div>
-  <!-- People -->
-  <div class="card border-light" style="width: 100%">
-    <div class="card-header" id="people">
-      <h5 class="mb-0" >
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapsePeople" aria-expanded="false" aria-controls="collapsePeople">
-          People
-        </button>
-      </h5>
-    </div>
-    <div id="collapsePeople" class="collapse" aria-labelledby="people">
-      <div class="card-body">
-        <h4>name of the group</h4>
-        <!--Group members line-up-->
-        <div class="container group-members text-center justify-content-center">
-          <div class="row">
-            <div class="col-xs-12 col-sm group-member">
-              <img class="img-circle group-photos" src="https://github.com/cindyqtruong.png" alt="Group Member 1">
-              <h5>Cindy Truong</h5>
-              <p class="lead">Front End, Co-Maker of Beauty</p>
-              <p>CS major at UT Austin. Amazing.</p>
-              <ul class="list-unstyled">
-                <li>No. of Commits: {{commits['cindyqtruong']}}</li>
-                <li>No. of Issues: {{issues[0]}}</li>
-                <li>No. of Unit Tests: 0</li>
-              </ul>
-            </div>
-            <div class="col-xs-12 col-sm group-member">
-              <img class="img group-photos" src="https://github.com/BrandonHarrisonCode.png" alt="Group Member 2">
-              <h5>Brandon Harrison</h5>
-              <p class="lead">Back end, Magic</p>
-              <p>Writes code while studying at UT Austin. </p>
-              <ul class="list-unstyled">
-                <li>No. of Commits: {{commits['BrandonHarrisonCode']}}</li>
-                <li>No. of Issues: {{issues[1]}}</li>
-                <li>No. of Unit Tests: 0</li>
-              </ul>
-            </div>
-            <div class="col-xs-12 col-sm group-member">
-              <img class="img group-photos" src="https://github.com/hrfofut.png" alt="Group Member 3">
-              <h5>Harrison Foreman</h5>
-              <p class="lead">Front End, Code Beautician </p>
-              <p>I coded some of this stuff. Student at UT Austin.</p>
-              <ul class="list-unstyled">
-                <li>No. of Commits: {{commits['hrfofut']}}</li>
-                <li>No. of Issues: {{issues[2]}}</li>
-                <li>No. of Unit Tests: 1</li>
-              </ul>
-            </div>
-          </div>
-          <div class="row justify-content-around">
-            <div class="col-xs-12 col-sm group-member">
-              <img class="img group-photos" src="https://github.com/straitlaced.png" alt="Group Member 4">
-              <h5>Wesley Joe</h5>
-              <p class="lead">Front and backend, Resident API guy</p>
-              <p>Student at UT Austin. Studies CS  </p>
-              <ul class="list-unstyled">
-                <li>No. of Commits: {{commits['straitlaced']}}</li>
-                <li>No. of Issues: {{issues[3]}}</li>
-                <li>No. of Unit Tests: 0</li>
-              </ul>
-            </div>
-            <div class="col-xs-12 col-sm group-member">
-              <img class="img group-photos" src="https://github.com/fantomats15.png" alt="Group Member 5">
-              <h5>Bao Than</h5>
-              <p class="lead">Back end, King of servers</p>
-              <p>Coder primarily, but seeking education at UT Austin.</p>
-              <ul class="list-unstyled">
-                <li>No. of Commits: {{commits['fantomats15']}}</li>
-                <li>No. of Issues: {{issues[4]}}</li>
-                <li>No. of Unit Tests: 0</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
 
-        <p>Total Commits: {{commits['total']}} Total Issues: {{issues[5]}} Total Tests: 1</p>
-      </div>
-    </div>
-  </div>
-  <!-- Data -->
-  <div class="card border-light" style="width: 100%">
-    <div class="card-header" id="data">
-      <h5 class="mb-0" >
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
-          Data
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Calorie Killer Club</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/modern-business.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">Calorie Killer Club</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-      </h5>
-    </div>
-    <div id="collapseData" class="collapse" aria-labelledby="data">
-      <div class="card-body">
-        <p><a href="https://developer.github.com/v3/">GitHub</a> | Wesley does API and JSON parsing magic.</p>
-        <p><a href="https://spoonacular.com/food-api">Spoonacular - Food API and Recipe API</a> | We use good ol' manual labor.</p>
-      </div>
-    </div>
-  </div>  
-  <!-- Tools -->
-  <div class="card border-light" style="width: 100%">
-    <div class="card-header" id="tools">
-      <h5 class="mb-0" >
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTools" aria-expanded="false" aria-controls="collapseTools">
-          Tools
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTools" class="collapse" aria-labelledby="tools">
-      <div class="card-body">
-        <div id="exTab2" class="container"> 
-          <ul class="nav nav-tabs">
-            <li class="active">
-              <a  href="#1" data-toggle="tab">
-                <img src="http://flask.pocoo.org/docs/0.12/_static/flask.png" alt="flask" class="t-img"> </a>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="about">About</a>
             </li>
-            <li><a href="#2" data-toggle="tab">
-                <img src="https://d29fhpw069ctt2.cloudfront.net/icon/image/38839/preview.svg" alt="bootstrap" class="t-img"> </a>
+            <li class="nav-item">
+              <a class="nav-link" href="services">Services</a>
             </li>
-            <li><a href="#3" data-toggle="tab">
-                <img src="https://sass-lang.com/assets/img/styleguide/seal-color-aef0354c.png" alt="SASS" class="t-img"> </a>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact</a>
             </li>
-            <li><a href="#4" data-toggle="tab">
-                <img src="https://i.lensdump.com/i/TD3gC.md.png" alt="Github" class="t-img"> </a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Portfolio
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+              </div>
             </li>
-            <li><a href="#5" data-toggle="tab">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png" alt="Slack" class="t-img"> </a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Blog
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
+                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+              </div>
             </li>
-            <li><a href="#6" data-toggle="tab">
-                <img src="https://img.crx4chrome.com/9f/6a/e5/legbfeljfbjgfifnkmpoajgpgejojooj-logo.png" alt="PlantUML" class="t-img"> </a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Other Pages
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="full-width.html">Full Width Page</a>
+                <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
+                <a class="dropdown-item" href="faq.html">FAQ</a>
+                <a class="dropdown-item" href="404.html">404</a>
+                <a class="dropdown-item" href="pricing.html">Pricing Table</a>
+              </div>
             </li>
-            <li><a href="#7" data-toggle="tab">
-                <img src="https://cdn.worldvectorlogo.com/logos/gunicorn.svg" alt="Gunicorn" class="t-img"> </a>
-            </li>
-            <li><a href="#8" data-toggle="tab">
-                <img src="https://pbs.twimg.com/profile_images/567774844322713600/tYoVju31_400x400.png" alt="NGINX" class="t-img"> </a>
-            </li>
-            <li><a href="#9" data-toggle="tab">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/AWS_Simple_Icons_AWS_Cloud.svg/2000px-AWS_Simple_Icons_AWS_Cloud.svg.png" alt="AWS" class="t-img"> </a>
-            </li>
-            
           </ul>
-        <div class="tab-content ">
-          <div class="tab-pane active" id="1">
-            <h3>Flask is a web framework in python</h3>
-          </div>
-          <div class="tab-pane" id="2">
-            <h3>Bootstrap is CSS, and JS.</h3>
-          </div>
-          <div class="tab-pane" id="3">
-            <h3>Sass is A CSS extension that allows more CSS code to be written in fewer lines.</h3>
-          </div>
-          <div class="tab-pane" id="4">
-            <h3>Github is Version Control.</h3>
-          </div>
-          <div class="tab-pane" id="5">
-            <h3>Slack is a platform for team communication</h3>
-          </div>
-          <div class="tab-pane" id="6">
-            <h3>PlantUML was used to create UML Diagrams.</h3>
-          </div>
-          <div class="tab-pane" id="7">
-            <h3>Gunicorn is a program that allows multiple instances of Flask to run at one given time. It also restarts instances of Flask if they fail. This is the middleware between Flask and the server. </h3>
-          </div>
-          <div class="tab-pane" id="8">
-            <h3>NGINX is a fast, lightweight server that is an alternative to Apache with even more features and a more efficient run time. Used to serve the website.</h3>
-          </div>
-          <div class="tab-pane" id="9">
-            <h3>Amazon Web Services is a hosting service we used.</h3>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">About
+        <small>Subheading</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active">About</li>
+      </ol>
+
+      <!-- Intro Content -->
+      <div class="row">
+        <div class="col-lg-6">
+          <img class="img-fluid rounded mb-4" src="https://www.ernestpackaging.com/wp-content/uploads/2012/06/Fast-Food-750x450.jpg" alt="">
+        </div>
+        <div class="col-lg-6">
+          <h2>About Calorie Killer Club</h2>
+          <p>Calorie Killer Club allows users to find recipes and calorie counts for the food that they enjoy and then find exercises that burn off that same amount of calories. We even further suggest gyms that allow you to do the type of workouts you enjoy and restaurants that serve the type of food you like. Anyone who is interested in either bulking up or losing weight can benefit from our site.</p>
+          <p>We can show you exactly how much you should be ashamed of yourself for eating a certain amount of food. :)</p>
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <!-- Team Members -->
+      <h2>Our Team</h2>
+
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 text-center">
+            <img class="card-img-top" src="https://github.com/cindyqtruong.png" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Cindy Truong</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Front End, Co-Maker of Beauty</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
           </div>
         </div>
-        <!-- TODO: have a super fancy tool card, with icons below that switch what text and image is displayed. -->
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 text-center">
+            <img class="card-img-top" src="https://github.com/BrandonHarrisonCode.png" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Brandon Harrison</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Back End, Magic</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 text-center">
+            <img class="card-img-top" src="https://github.com/hrfofut.png" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Harrison Foreman</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Front End, Code Beautician</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 text-center">
+            <img class="card-img-top" src="https://github.com/straitlaced.png" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Wesley Joe</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Front End and Back End, Resident API Guy</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 text-center">
+            <img class="card-img-top" src="https://github.com/fantomats15.png" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Bao Than</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Back End, King of Servers</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- /.row -->
+
+      <!-- Our Customers -->
+      <h2>Our Customers</h2>
+      <div class="row">
+        <div class="col-lg-2 col-sm-4 mb-4">
+          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+        </div>
       </div>
+      <!-- /.row -->
+
     </div>
-  </div> 
-</div>
-{% endblock %}
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
