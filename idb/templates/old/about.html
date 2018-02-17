@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block title %}About Us{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style>
+    .nav-item.nav-link.nav-abou {color: rgba(0, 0, 0, 0.9);}
+		</style>
+{% endblock %}
+{% block content %}
+<div class="container-fluid" style="text-align: center">
+  <!-- About -->
+  <div class="card border-light" style="width: 100%">
+    <div class="card-header" id="about">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAbout" aria-expanded="true" aria-controls="collapseAbout">
+          About
+        </button>
+      </h5>
+    </div>
+    <div id="collapseAbout" class="collapse show" aria-labelledby="about">
+      <div class="card-body">
+        <p>Calorie Killer Club allows users to find recipes and calorie counts for the food that they enjoy and then find exercises that burn off that same amount of calories. We even further suggest gyms that allow you to do the type of workouts you enjoy and restaurants that serve the type of food you like. Anyone who is interested in either bulking up or losing weight can benefit from our site.</p>
+        <p>We can show you exactly how much you should be ashamed of yourself for eating a certain amount of food. :)</p>
+        <p><a href="https://hrfofut.gitbooks.io/report/">GitBook Report</a></p>
+        <p><a href="https://github.com/hrfofut/idb">GitHub Repo</a></p>
+      </div>
+    </div>
+  </div>
+  <!-- People -->
+  <div class="card border-light" style="width: 100%">
+    <div class="card-header" id="people">
+      <h5 class="mb-0" >
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapsePeople" aria-expanded="false" aria-controls="collapsePeople">
+          People
+        </button>
+      </h5>
+    </div>
+    <div id="collapsePeople" class="collapse" aria-labelledby="people">
+      <div class="card-body">
+        <h4>name of the group</h4>
+        <!--Group members line-up-->
+        <div class="container group-members text-center justify-content-center">
+          <div class="row">
+            <div class="col-xs-12 col-sm group-member">
+              <img class="img-circle group-photos" src="https://github.com/cindyqtruong.png" alt="Group Member 1">
+              <h5>Cindy Truong</h5>
+              <p class="lead">Front End, Co-Maker of Beauty</p>
+              <p>CS major at UT Austin. Amazing.</p>
+              <ul class="list-unstyled">
+                <li>No. of Commits: {{commits['cindyqtruong']}}</li>
+                <li>No. of Issues: {{issues[0]}}</li>
+                <li>No. of Unit Tests: 0</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm group-member">
+              <img class="img group-photos" src="https://github.com/BrandonHarrisonCode.png" alt="Group Member 2">
+              <h5>Brandon Harrison</h5>
+              <p class="lead">Back end, Magic</p>
+              <p>Writes code while studying at UT Austin. </p>
+              <ul class="list-unstyled">
+                <li>No. of Commits: {{commits['BrandonHarrisonCode']}}</li>
+                <li>No. of Issues: {{issues[1]}}</li>
+                <li>No. of Unit Tests: 0</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm group-member">
+              <img class="img group-photos" src="https://github.com/hrfofut.png" alt="Group Member 3">
+              <h5>Harrison Foreman</h5>
+              <p class="lead">Front End, Code Beautician </p>
+              <p>I coded some of this stuff. Student at UT Austin.</p>
+              <ul class="list-unstyled">
+                <li>No. of Commits: {{commits['hrfofut']}}</li>
+                <li>No. of Issues: {{issues[2]}}</li>
+                <li>No. of Unit Tests: 1</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row justify-content-around">
+            <div class="col-xs-12 col-sm group-member">
+              <img class="img group-photos" src="https://github.com/straitlaced.png" alt="Group Member 4">
+              <h5>Wesley Joe</h5>
+              <p class="lead">Front and backend, Resident API guy</p>
+              <p>Student at UT Austin. Studies CS  </p>
+              <ul class="list-unstyled">
+                <li>No. of Commits: {{commits['straitlaced']}}</li>
+                <li>No. of Issues: {{issues[3]}}</li>
+                <li>No. of Unit Tests: 0</li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm group-member">
+              <img class="img group-photos" src="https://github.com/fantomats15.png" alt="Group Member 5">
+              <h5>Bao Than</h5>
+              <p class="lead">Back end, King of servers</p>
+              <p>Coder primarily, but seeking education at UT Austin.</p>
+              <ul class="list-unstyled">
+                <li>No. of Commits: {{commits['fantomats15']}}</li>
+                <li>No. of Issues: {{issues[4]}}</li>
+                <li>No. of Unit Tests: 0</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p>Total Commits: {{commits['total']}} Total Issues: {{issues[5]}} Total Tests: 1</p>
+      </div>
+    </div>
+  </div>
+  <!-- Data -->
+  <div class="card border-light" style="width: 100%">
+    <div class="card-header" id="data">
+      <h5 class="mb-0" >
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+          Data
+        </button>
+      </h5>
+    </div>
+    <div id="collapseData" class="collapse" aria-labelledby="data">
+      <div class="card-body">
+        <p><a href="https://developer.github.com/v3/">GitHub</a> | Wesley does API and JSON parsing magic.</p>
+        <p><a href="https://spoonacular.com/food-api">Spoonacular - Food API and Recipe API</a> | We use good ol' manual labor.</p>
+      </div>
+    </div>
+  </div>  
+  <!-- Tools -->
+  <div class="card border-light" style="width: 100%">
+    <div class="card-header" id="tools">
+      <h5 class="mb-0" >
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTools" aria-expanded="false" aria-controls="collapseTools">
+          Tools
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTools" class="collapse" aria-labelledby="tools">
+      <div class="card-body">
+        <div id="exTab2" class="container"> 
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a  href="#1" data-toggle="tab">
+                <img src="http://flask.pocoo.org/docs/0.12/_static/flask.png" alt="flask" class="t-img"> </a>
+            </li>
+            <li><a href="#2" data-toggle="tab">
+                <img src="https://d29fhpw069ctt2.cloudfront.net/icon/image/38839/preview.svg" alt="bootstrap" class="t-img"> </a>
+            </li>
+            <li><a href="#3" data-toggle="tab">
+                <img src="https://sass-lang.com/assets/img/styleguide/seal-color-aef0354c.png" alt="SASS" class="t-img"> </a>
+            </li>
+            <li><a href="#4" data-toggle="tab">
+                <img src="https://i.lensdump.com/i/TD3gC.md.png" alt="Github" class="t-img"> </a>
+            </li>
+            <li><a href="#5" data-toggle="tab">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png" alt="Slack" class="t-img"> </a>
+            </li>
+            <li><a href="#6" data-toggle="tab">
+                <img src="https://img.crx4chrome.com/9f/6a/e5/legbfeljfbjgfifnkmpoajgpgejojooj-logo.png" alt="PlantUML" class="t-img"> </a>
+            </li>
+            <li><a href="#7" data-toggle="tab">
+                <img src="https://cdn.worldvectorlogo.com/logos/gunicorn.svg" alt="Gunicorn" class="t-img"> </a>
+            </li>
+            <li><a href="#8" data-toggle="tab">
+                <img src="https://pbs.twimg.com/profile_images/567774844322713600/tYoVju31_400x400.png" alt="NGINX" class="t-img"> </a>
+            </li>
+            <li><a href="#9" data-toggle="tab">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/AWS_Simple_Icons_AWS_Cloud.svg/2000px-AWS_Simple_Icons_AWS_Cloud.svg.png" alt="AWS" class="t-img"> </a>
+            </li>
+            
+          </ul>
+        <div class="tab-content ">
+          <div class="tab-pane active" id="1">
+            <h3>Flask is a web framework in python</h3>
+          </div>
+          <div class="tab-pane" id="2">
+            <h3>Bootstrap is CSS, and JS.</h3>
+          </div>
+          <div class="tab-pane" id="3">
+            <h3>Sass is A CSS extension that allows more CSS code to be written in fewer lines.</h3>
+          </div>
+          <div class="tab-pane" id="4">
+            <h3>Github is Version Control.</h3>
+          </div>
+          <div class="tab-pane" id="5">
+            <h3>Slack is a platform for team communication</h3>
+          </div>
+          <div class="tab-pane" id="6">
+            <h3>PlantUML was used to create UML Diagrams.</h3>
+          </div>
+          <div class="tab-pane" id="7">
+            <h3>Gunicorn is a program that allows multiple instances of Flask to run at one given time. It also restarts instances of Flask if they fail. This is the middleware between Flask and the server. </h3>
+          </div>
+          <div class="tab-pane" id="8">
+            <h3>NGINX is a fast, lightweight server that is an alternative to Apache with even more features and a more efficient run time. Used to serve the website.</h3>
+          </div>
+          <div class="tab-pane" id="9">
+            <h3>Amazon Web Services is a hosting service we used.</h3>
+          </div>
+        </div>
+        <!-- TODO: have a super fancy tool card, with icons below that switch what text and image is displayed. -->
+      </div>
+      </div>
+    </div>
+  </div> 
+</div>
+{% endblock %}
