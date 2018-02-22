@@ -7,20 +7,20 @@
 {% block content %}
 <div class="container">
   <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">{% block gridhead %}{% endblock %}
-        <small>List</small>
-      </h1>
+  <h1 class="mt-4 mb-3">{% block gridhead %}{% endblock %}
+    <small>List</small>
+  </h1>
 
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="/">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Food</li>
-      </ol>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Food</li>
+  </ol>
 
   <div class="row">
     {% for x in range(0, items|count) %}
-    <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+    <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
       <div class="card h-100">
         <a href="./{{x}}"><img class="card-img-top" src="{{items[x][1]}}" alt=""></a>
         <div class="card-body">
