@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		{% block head %}
-		<!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">-->
+  <head>
+    {% block head %}
+    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">-->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,16 +18,14 @@
     <!-- Custom styles for this template -->
     <link href="../static/css/modern-business.css" rel="stylesheet">
 
+    <title>{% block title %} {% endblock %} </title>   
+    {% endblock %}
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    {% block content %}
+    {% endblock %}
 
-		<title>{% block title %} {% endblock %} </title>
-        
-       
-		{% endblock %}
-	</head>
-	<body>
-		{% include 'navbar.html' %}
-		{% block content %}
-		{% endblock %}
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
@@ -36,7 +34,5 @@
       <!-- /.container -->
     </footer>
     {% include 'bootstrapscripts.html' %}
-
-	</body>
-
+  </body>
 </html>
