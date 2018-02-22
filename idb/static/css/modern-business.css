@@ -43,6 +43,14 @@ body {
   padding : 5px 15px;
 }
 
+.roundedrectangle {
+    font-size: 72px;
+    border-radius: 15px;
+    background-color: #16A6C5;
+    color: #FFFFFF;
+    z-index: 100;
+}
+
 .circle-container {
     display: flex;
     align-items: center;
