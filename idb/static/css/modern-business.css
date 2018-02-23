@@ -4,14 +4,26 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   padding-top: 54px;
+  margin-bottom: 140px;
 }
 
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
   }
+}
+
+footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }
 
 .carousel-item {
@@ -37,6 +49,14 @@ body {
 #model-grid .card-img-top {
   object-fit: cover;
   height: 200px;
+}
+
+.videosize {
+    width: 560px;
+    height: 315px; 
+    top: 0; right: 0; 
+    bottom: 0; left: 0;
+    margin: auto; 
 }
 
 #exTab1 .tab-content {
