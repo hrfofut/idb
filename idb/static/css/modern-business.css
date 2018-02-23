@@ -41,9 +41,9 @@ footer {
 }
 
 .t-img {
-    width:42px;
-    height:42px;
-    border:0;
+  width:42px;
+  height:42px;
+  border:0;
 }
 
 #model-grid .card-img-top {
@@ -51,12 +51,69 @@ footer {
   height: 200px;
 }
 
+#food-grid .card-img-top {
+  object-fit: cover;
+  height: 325px;
+  border-bottom-right-radius: calc(.25rem - 1px);
+  border-bottom-left-radius: calc(.25rem - 1px);
+}
+
+#food-grid .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 85%;
+  overflow: hidden;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: black;
+}
+
+#food-grid .card-img-overlay {
+  color: white;
+  font-size: 15px;
+  text-align: left;
+  position: absolute;
+  top: auto;
+  height: 85%;
+  overflow: hidden;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+#food-grid .card-img-overlay.over-title{
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: .6rem;
+  height: 15%;
+  opacity: 1;
+  top: 0;
+  bottom: auto;
+}
+
+#food-grid .card:hover .overlay {
+  height: 85%;
+  opacity: .6;
+}
+
+#food-grid .card:hover .card-img-overlay {
+  height: 85%;
+  opacity: .9;
+}
+
+#food-grid .card:hover .card-img-overlay.over-title {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 15%;
+  opacity: 1;
+}
+
 .videosize {
-    width: 560px;
-    height: 315px; 
-    top: 0; right: 0; 
-    bottom: 0; left: 0;
-    margin: auto; 
+  width: 560px;
+  height: 315px; 
+  top: 0; right: 0; 
+  bottom: 0; left: 0;
+  margin: auto; 
 }
 
 #exTab1 .tab-content {
