@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{food['name']}}{% endblock %} <!-- TODO: Make titles dynamic -->
+{% block head %}
+    {{ super() }}
+    <style>
+    .nav-item.nav-link.nav-food {color: rgba(0, 0, 0, 0.9);}
+    </style>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="text-center">
+      <img class="detail-img" src="{{food['img']}}">
+  </div>
+  <h1 class="display-4" style="text-transform: capitalize; text-align: center">{{food['name']}}</h1>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" colspan="3">Nutritional Information</th>
+        </tr>
+        <tr>
+          <th scope="row">Amount Per 1 serving</th>
+          <th >{{food['serving']}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <th scope="row">Calories</th>
+          <td>{{food['calories']}}</td>
+        </tr>        
+        <tr>
+          <th scope="row">Sodium</th>
+          <td>{{food['sodium']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Fat</th>
+          <td>{{food['fat']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Protein</th>
+          <td>{{food['protein']}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p> <a href= "/stores">Grocery Stores</a> </p>
+    <p> <a href= "/workouts">Workouts</a> </p>
+</div>
+{% endblock %}
