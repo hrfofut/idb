@@ -1,0 +1,200 @@
+/*!
+ * Start Bootstrap - Modern Business (https://startbootstrap.com/template-overviews/modern-business)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
+ */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-top: 54px;
+  margin-bottom: 140px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.carousel-item {
+  height: 100vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.t-img {
+  width:42px;
+  height:42px;
+  border:0;
+}
+
+#model-grid .card-img-top {
+  object-fit: cover;
+  height: 200px;
+}
+
+#food-grid .card-img-top {
+  object-fit: cover;
+  height: 325px;
+  border-bottom-right-radius: calc(.25rem - 1px);
+  border-bottom-left-radius: calc(.25rem - 1px);
+}
+
+#food-grid .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 85%;
+  overflow: hidden;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: black;
+}
+
+#food-grid .card-img-overlay {
+  color: white;
+  font-size: 15px;
+  text-align: left;
+  position: absolute;
+  top: auto;
+  height: 85%;
+  overflow: hidden;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+#food-grid .card-img-overlay.over-title{
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: .6rem;
+  height: 15%;
+  opacity: 1;
+  top: 0;
+  bottom: auto;
+}
+
+#food-grid .card:hover .overlay {
+  height: 85%;
+  opacity: .6;
+}
+
+#food-grid .card:hover .card-img-overlay {
+  height: 85%;
+  opacity: .9;
+}
+
+#food-grid .card:hover .card-img-overlay.over-title {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 15%;
+  opacity: 1;
+}
+
+.detail-img {
+  object-fit: cover;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px grey;
+}
+
+.videosize {
+  width: 560px;
+  height: 315px; 
+  top: 0; right: 0; 
+  bottom: 0; left: 0;
+  margin: auto; 
+}
+
+#exTab1 .tab-content {
+  color : white;
+  padding : 5px 15px;
+}
+
+#exTab2 h3 {
+  padding : 5px 15px;
+}
+
+.roundedrectangle {
+    font-size: 72px;
+    border-radius: 15px;
+    background-color: #16A6C5;
+    color: #FFFFFF;
+    z-index: 100;
+}
+
+.circle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #EDEDED;
+}
+
+.loader {
+    max-width: 40vw;
+    width: 100%;
+    height: auto;
+    stroke-linecap: round;
+}
+
+circle {
+    fill: none;
+    stroke-width: 3.5;
+    animation-name: preloader;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    transform-origin: 400px 400px;
+    will-change: transform;
+
+    &:nth-of-type(1) {
+        stroke-dasharray: 550;
+    }
+    
+    &:nth-of-type(2) {
+        stroke-dasharray: 500;
+    }
+
+    &:nth-of-type(3) {
+        stroke-dasharray: 450;
+    }
+
+    &:nth-of-type(4) {
+        stroke-dasharray: 300;
+    }
+
+    @for $i from 1 through 4 {
+        &:nth-of-type(#{$i}) {
+            animation-delay: #{$i * 0.15}s;
+        }
+    }
+}
+
+.center {
+    height: 100vh;
+}
+
+@keyframes preloader {
+  50% {
+    transform: rotate(360deg);
+  }
+}

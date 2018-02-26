@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		{% block head %}
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">-->
-        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
-		<title>{% block title %} {% endblock %} </title>
-        
-        {% assets "scss_all" %}
-        <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
-        {% endassets %}
-		{% endblock %}
-	</head>
-	<body>
-		{% include 'navbar.html' %}
-		{% block content %}
-		{% endblock %}
-	</body>
-{% include 'bootstrapscripts.html' %}
+  <head>
+    {% block head %}
+    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">-->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/modern-business.css" rel="stylesheet">
+
+    <title>{% block title %} {% endblock %} </title>   
+    {% endblock %}
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; CKC 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+    {% include 'bootstrapscripts.html' %}
+  </body>
 </html>
