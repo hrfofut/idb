@@ -8,7 +8,7 @@ general = Blueprint('general', __name__)
 
 @general.route("/")
 def splash(name=None):
-    return render_template('splash.html')
+    return render_template('index.html')
 
 
 @general.route("/about")

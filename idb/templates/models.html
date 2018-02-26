@@ -6,14 +6,31 @@
 
 {% block content %}
 <div class="container">
-  {% block gridhead %} {% endblock %}
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">{% block gridhead %}{% endblock %}
+    <small>List</small>
+  </h1>
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Food</li>
+  </ol>
+
   <div class="row">
     {% for x in range(0, items|count) %}
-    <div class="col-sm">
-    	<h5 class=text-sm-left>{{items[x][0]}}</h5>
-    	<a href="./{{x}}"> <img src="{{items[x][1]}}" class="img-thumbnail"> </a>
-        <p>{%block atr1%} {% endblock %}: {{items[x][2]}}</p>
-        <p>{%block atr2%} {% endblock %}: {{items[x][3]}}</p>
+    <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <a href="./{{x}}"><img class="card-img-top" src="{{items[x][1]}}" alt=""></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="./{{x}}">{{items[x][0]}}</a>
+          </h4>
+          <p class="card-text">{%block atr1%} {% endblock %}: {{items[x][2]}}
+          {%block atr2%} {% endblock %}: {{items[x][3]}}</p>
+        </div>
+      </div>
     </div>
     {% endfor %}
   </div>

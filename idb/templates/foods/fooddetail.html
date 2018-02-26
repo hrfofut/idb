@@ -4,14 +4,14 @@
     {{ super() }}
     <style>
     .nav-item.nav-link.nav-food {color: rgba(0, 0, 0, 0.9);}
-		</style>
+    </style>
 {% endblock %}
 {% block content %}
 <div class="container-fluid">
-	<div class="text-center">
-  		<img class="detail-img" src="{{food['img']}}">
-	</div>
-	<h1 class="display-4" style="text-transform: capitalize; text-align: center">{{food['name']}}</h1>
+  <div class="text-center">
+      <img class="detail-img" src="{{food['img']}}">
+  </div>
+  <h1 class="display-4" style="text-transform: capitalize; text-align: center">{{food['name']}}</h1>
     <table class="table">
       <thead class="thead-light">
         <tr>
