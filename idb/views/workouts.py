@@ -51,7 +51,7 @@ def workouts_overview():
     headers = {'Authorization': 'Token 6df1fbfa2e24402b9a3e2451167d0cb4461a5b14'}
     req = requests.get(url=url, data=data, headers=headers)
 
-    global workouts_list
+    global workouts_list, first, last
     items = []
     for val in workouts_list:
         items.append([val['name'], val['img'], val['category'], val['muscle']])
@@ -60,6 +60,18 @@ def workouts_overview():
         req_exercise_json = req.json()
         for exercise in req_exercise_json['results']:
             items.append([exercise['name'], 'https://i2.wp.com/lwvnaperville.org/wp-content/uploads/2017/06/placeholder.png?w=1500', str(exercise['category']), exercise['muscles']])
+            exer_a = {
+                    'name': exercise['name'],
+                    'img': 'https://i2.wp.com/lwvnaperville.org/wp-content/uploads/2017/06/placeholder.png?w=1500',
+                    'link': 'None',
+                    'category': exercise['category'],
+                    'equipment': 'placeholder',
+                    'description': exercise['description'],
+                    'muscle': 'placeholder',
+                    'met': 0.0
+                    }
+            workouts_list.append(exer_a)
+            last += 1
 
     return render_template('workouts/workouts.html', items=items)
 
