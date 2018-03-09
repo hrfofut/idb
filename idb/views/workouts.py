@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, abort
+import requests
+import json
 
 workouts = Blueprint('workouts', __name__)
 
@@ -43,6 +45,12 @@ workouts_list = [bench_press, push_up, running]
 
 @workouts.route("/")
 def workouts_overview():
+
+    url = 'https://wger.de/api/v2/exercise/'
+    data = {'page': 1, 'language': 2}
+    headers = {'Authorization': 'Token  + app.config[WGER_KEY]'}
+    req = requests.get(url=url, data=data, headers=headers)
+
     global workouts_list
 
     items = []
