@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, g
 import requests
 import json
 
@@ -56,6 +56,15 @@ def workouts_overview():
     for val in workouts_list:
         items.append([val['name'], val['img'], val['category'], val['muscle']])
 
+    # grab images
+
+    # grab categories
+
+    # grab muscles
+
+    # grab equipment
+
+    # grab exercises
     if req.status_code == requests.codes.ok:
         req_exercise_json = req.json()
         for exercise in req_exercise_json['results']:
