@@ -24,4 +24,8 @@ instance/*
 env/
 pip-selfcheck.json
 
+# MacOS folder data
 .DS_Store
+
+# config
+config.ini
