@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, abort, g
+from flask import current_app as app
 import requests
 import json
 
@@ -49,6 +50,8 @@ def workouts_overview():
     url = 'https://wger.de/api/v2/exercise/'
     data = {'page': 1, 'language': 2}
     headers = {'Authorization': 'Token  + app.config[WGER_KEY]'}
+    headers = {'Authorization': 'Token ' + app.config['WGER_KEY']}
+    print(app.config['WGER_KEY'])
     req = requests.get(url=url, data=data, headers=headers)
 
     global workouts_list, first, last
