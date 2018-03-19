@@ -10,6 +10,10 @@ from .views.gyms import gyms
 from .views.stores import stores
 from .views.workouts import workouts
 
+#
+from flask_sqlalchemy import SQLAlchemy
+#
+
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('default_config.py')
 app.config.from_pyfile('application.py', silent=True)
@@ -28,6 +32,17 @@ app.register_blueprint(stores, url_prefix='/stores')
 app.register_blueprint(workouts, url_prefix='/workouts')
 
 import idb.views
+
+#
+app.config['SQLALCHEMY_DATABASE_URI'] = [Put the key here somehow]
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+from .models import Food
+
+db.create_all()
+#
 
 
 @app.errorhandler(404)
