@@ -125,6 +125,7 @@ def get_equipments():
 
 
 def get_exercises(items):
+    global last
     exercises = getattr(g, '_exercises', None)
     if exercises is None:
         g._exercises = {}
@@ -155,7 +156,8 @@ def get_exercises(items):
                     'met': 0.0
                     }
                 g._exercises[exercise_id] = exercise_name
-            workouts_list.append(exer_a)
+                workouts_list.append(exer_a)
+                last += 1
     return g._exercises
 
 
