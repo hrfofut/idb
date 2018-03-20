@@ -44,29 +44,46 @@ running = {
 workouts_list = [bench_press, push_up, running]
 
 
+def get_exercise_images():
+    exercise_images = getattr(g, '_exercise_images', None)
+    if exercise_images is None:
+        g._exercise_images = {}
+        url = 'https://wger.de/api/v2/exerciseimage/'
+        data = {'page': 1, 'limit': 1000}
+        headers = {'Authorization': 'Token ' + app.config['WGER_KEY']}
+        req = requests.get(url=url, data=data, headers=headers)
+        if req.status_code == requests.codes.ok:
+            req_images_json = req.json()
+            for image in req_images_json['results']:
+                g._exercise_images[image['id']] = image['image']
+    return g._exercise_images
+
+
+def get_categories():
+    ...
+
+
 @workouts.route("/")
 def workouts_overview():
-
-    url = 'https://wger.de/api/v2/exercise/'
-    data = {'page': 1, 'language': 2}
-    headers = {'Authorization': 'Token ' + app.config['WGER_KEY']}
-    print(app.config['WGER_KEY'])
-    req = requests.get(url=url, data=data, headers=headers)
-
     global workouts_list, first, last
     items = []
     for val in workouts_list:
         items.append([val['name'], val['img'], val['category'], val['muscle']])
 
     # grab images
-
+    images = get_exercise_images()
     # grab categories
-
+    # categories = get_categories()
     # grab muscles
-
+    # muscles = get_muscles()
     # grab equipment
-
+    # equipments = get_equipments()
     # grab exercises
+    url = 'https://wger.de/api/v2/exercise/'
+    data = {'page': 1, 'language': 2}
+    headers = {'Authorization': 'Token ' + app.config['WGER_KEY']}
+    print(app.config['WGER_KEY'])
+    req = requests.get(url=url, data=data, headers=headers)
     if req.status_code == requests.codes.ok:
         req_exercise_json = req.json()
         for exercise in req_exercise_json['results']:
