@@ -63,6 +63,18 @@ def get_categories():
     ...
 
 
+def get_muscles():
+    ...
+
+
+def get_equipments():
+    ...
+
+
+def get_exercises():
+    ...
+
+
 @workouts.route("/")
 def workouts_overview():
     global workouts_list, first, last
@@ -70,15 +82,12 @@ def workouts_overview():
     for val in workouts_list:
         items.append([val['name'], val['img'], val['category'], val['muscle']])
 
-    # grab images
     images = get_exercise_images()
-    # grab categories
-    # categories = get_categories()
-    # grab muscles
-    # muscles = get_muscles()
-    # grab equipment
-    # equipments = get_equipments()
-    # grab exercises
+    categories = get_categories()
+    muscles = get_muscles()
+    equipments = get_equipments()
+    exercises = get_exercises()
+
     url = 'https://wger.de/api/v2/exercise/'
     data = {'page': 1, 'language': 2}
     headers = {'Authorization': 'Token ' + app.config['WGER_KEY']}
