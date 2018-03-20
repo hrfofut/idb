@@ -60,7 +60,18 @@ def get_exercise_images():
 
 
 def get_categories():
-    ...
+    categories = getattr(g, '_categories', None)
+    if categories is None:
+        g._categories = {}
+        url = 'https://wger.de/api/v2/exercisecategory/'
+        data = {'page': 1, 'limit': 1000}
+        headers = {'Authorization': 'Token ' + app.config['WGER_KEY']}
+        req = requests.get(url=url, data=data, headers=headers)
+        if req.status_code == requests.codes.ok:
+            req_categories_json = req.json()
+            for category in req_categories_json['results']:
+                g._categories[category['id']] = category['name']
+    return g._categories
 
 
 def get_muscles():
