@@ -90,7 +90,18 @@ def get_muscles():
 
 
 def get_equipments():
-    ...
+    equipments = getattr(g, '_equipments', None)
+    if equipments is None:
+        g._equipments = {}
+        url = 'https://wger.de/api/v2/equipment/'
+        data = {'page': 1, 'limit': 1000}
+        headers = {'Authorization': 'Token ' + app.config['WGER_KEY']}
+        req = requests.get(url=url, data=data, headers=headers)
+        if req.status_code == requests.codes.ok:
+            req_equipments_json = req.json()
+            for equipment in req_equipments_json['results']:
+                g._equipments[equipment['id']] = equipment['name']
+    return g._equipments
 
 
 def get_exercises():
