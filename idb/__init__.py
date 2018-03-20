@@ -34,13 +34,13 @@ app.register_blueprint(workouts, url_prefix='/workouts')
 import idb.views
 
 #
-app.config['SQLALCHEMY_DATABASE_URI'] = [Put the key here somehow]
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://Calorieking:seargohsiEHFGUOAEHRGIOHPOSk578@ckcdbinstance.c48dginqtauy.us-west-2.rds.amazonaws.com/CKCDB'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 from .models import Food
-
+db.drop_all()
 db.create_all()
 #
 
