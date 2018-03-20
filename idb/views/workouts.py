@@ -55,7 +55,7 @@ def get_exercise_images():
         if req.status_code == requests.codes.ok:
             req_images_json = req.json()
             for image in req_images_json['results']:
-                g._exercise_images[image['id']] = image['image']
+                g._exercise_images[image['exercise']] = image['image']
     return g._exercise_images
 
 
