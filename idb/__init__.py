@@ -34,7 +34,8 @@ app.register_blueprint(workouts, url_prefix='/workouts')
 import idb.views
 
 #
-app.config['SQLALCHEMY_DATABASE_URI'] = [Insert keys here]
+DB_URL = app.config['DB_URI']
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -42,6 +43,7 @@ db = SQLAlchemy(app)
 from .models import Food
 db.drop_all()
 db.create_all()
+db.session.commit()
 #
 
 
