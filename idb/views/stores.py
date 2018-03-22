@@ -11,7 +11,6 @@ last = -1
 
 @stores.route("/")
 def stores_overview():
-    global stores_list
     img = 'https://www.colourbox.com/preview/19115718-supermarket-shop-vector-illustration.jpg'
     items = []
     # for val in stores_list:
