@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}gym-{{title}}{% endblock %} <!-- TODO: Make titles dynamic -->
+{% block title %}{{gym['name']}}{% endblock %} <!-- TODO: Make titles dynamic -->
 {% block head %}
     {{ super() }}
     <style>
