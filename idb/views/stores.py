@@ -1,5 +1,8 @@
 from flask import Blueprint, render_template, abort
-
+from flask_sqlalchemy import SQLAlchemy
+from idb.models import Stores
+# Later lets have a python thing that has all db calls
+from idb import db
 stores = Blueprint('stores', __name__)
 
 first = 0
@@ -42,8 +45,8 @@ def stores_overview():
     items = []
     for val in stores_list:
         items.append([val['name'], val['img'], val['location'], val['ratings']])
-
-    return render_template('stores/stores.html', items=items)
+    test = db.session.query(Stores).all()
+    return render_template('stores/stores.html', items=items, test=test)
 
 
 @stores.route("/<int:id>")
