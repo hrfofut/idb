@@ -17,7 +17,7 @@ def gyms_overview():
     get_gyms = db.session.query(Gyms).all()
 
     for val in get_gyms:
-        items.append([val.name, img, val.location, val.ratings])
+        items.append([val.name, img, val.location, val.ratings, val.id])
 
     return render_template('gyms/gyms.html', items=items)
 

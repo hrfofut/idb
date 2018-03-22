@@ -9,7 +9,7 @@ import json
 workouts = Blueprint('workouts', __name__)
 
 first = 0
-last = -1
+last = 100000000
 
 """
 bench_press = {
@@ -174,7 +174,7 @@ def workouts_overview():
     for val in get_workouts:
 
         if val.name != "":
-            items.append([val.name, val.img, val.category, val.muscle])
+            items.append([val.name, val.img, val.category, val.muscle, val.id])
 
     # grab data from api
     # exercises = get_exercises(items)
@@ -185,11 +185,8 @@ def workouts_overview():
 @workouts.route("/<int:id>")
 def workouts_detail(id):
     global last
-# TODO: Have the template be filled from a database in the future
-
-    if last == -1:
-        last = db.session.query(Workouts).count()
-# ID 0-2 returns certain food page, else return error
+    # TODO: Have the template be filled from a database in the future
+    # ID 0-2 returns certain food page, else return error
 
     if id < first or id > last:
         abort(404)
