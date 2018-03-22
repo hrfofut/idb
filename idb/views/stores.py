@@ -6,7 +6,7 @@ from idb import db
 stores = Blueprint('stores', __name__)
 
 first = 0
-last = 2
+last = -1
 
 store0 = {
         'img': 'https://bloximages.newyork1.vip.townnews.com/herald-dispatch.com/content/tncms/assets/v3/editorial/5/b5/5b51e47e-bbd5-5b84-915f-5bd9b67bdbe1/581bc9504452f.image.jpg',
@@ -41,21 +41,24 @@ stores_list = [store0, store1, store2]
 @stores.route("/")
 def stores_overview():
     global stores_list
-
+    img = 'https://www.colourbox.com/preview/19115718-supermarket-shop-vector-illustration.jpg'
     items = []
-    for val in stores_list:
-        items.append([val['name'], val['img'], val['location'], val['ratings']])
+    # for val in stores_list:
+    #     items.append([val['name'], val['img'], val['location'], val['ratings']])
     test = db.session.query(Stores).all()
-    return render_template('stores/stores.html', items=items, test=test)
+    for val in test:
+        items.append([val.name, img, val.location, val.ratings])
+    return render_template('stores/stores.html', items=items)
 
 
 @stores.route("/<int:id>")
 def stores_detail(id):
-    global stores_list
+    global last
     # TODO: Have the template be filled from a database in the future
-
+    if last == -1:
+        last = db.session.query(Stores).count()
     # ID 0-2 returns certain food page, else return error
     if id < first or id > last:
         abort(404)
 
-    return render_template('stores/storesdetail.html', store=stores_list[id])
+    return render_template('stores/storesdetail.html', store=db.session.query(Stores).get(id))
