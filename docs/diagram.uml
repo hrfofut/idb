@@ -1,63 +1,47 @@
 @startuml
 Object Food {
+  Int id
   String name
-  Int calories
-}
-
-Object Ingredients {
-  String name
-  Int calories
+  String img
+  String servings
+  String calorie
+  String sodium
+  String fat
+  String protein
 }
 
 Object Gyms {
+  Int id
+  String gid
   String name
-  Object location
-  String pricing
-  String equipment
-  Object reviews
+  String location
+  String price
+  Float ratings
 }
 
-Object Exercises {
+Object Workouts {
+  Int id
   String name
-  Object METS_formula
+  String img
+  String link
+  String category
   String equipment
+  String description
   String muscles
-  String description  
+  String met  
 }
 
-Object Grocery_Stores {
+Object Stores {
+  Int id
+  String gid
   String name
-  Object location
-  String description
-  Object reviews
+  String location
+  Int price_level
+  Float ratings 
 }
 
-Object Nutritional_info {
-  String name
-  String value
-}
-
-Object Location {
-  String lat
-  String long
-  String url_to_map
-}
-
-Object Reviews {
-  String description
-  Int rating
-}
-
-Food "1" - "0...1" Nutritional_info
-
-Gyms "1" - "0...*" Reviews
-Gyms "1" - "1" Location
-
-Grocery_Stores "1" - "0...*" Reviews
-
-Food - Ingredients
-Food - Exercises
-Ingredients - Grocery_Stores
-Exercises - Gyms
-Gyms - Grocery_Stores
+Food - Workouts
+Food - Stores
+Workouts - Gyms
+Gyms - Stores
 @enduml
