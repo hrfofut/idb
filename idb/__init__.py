@@ -9,37 +9,40 @@ from .views.foods import foods
 from .views.gyms import gyms
 from .views.stores import stores
 from .views.workouts import workouts
-
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('default_config.py')
-app.config.from_pyfile('application.py', silent=True)
-
-# Convert scss files to css
-assets = Environment(app)
-assets.url = app.static_url_path
-scss = Bundle('style.scss', filters='pyscss', output='style.css')
-assets.register('scss_all', scss)
-
-# Blueprints
-app.register_blueprint(general)
-app.register_blueprint(foods, url_prefix='/foods')
-app.register_blueprint(gyms, url_prefix='/gyms')
-app.register_blueprint(stores, url_prefix='/stores')
-app.register_blueprint(workouts, url_prefix='/workouts')
-
-import idb.views
+# We can probably edit the file structure to make things easier
 
 
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('errors/404.html'), 404
+def create_app(config_name):
+    app = Flask(config_name, instance_relative_config=True)
+    app.config.from_pyfile('default_config.py')
+    app.config.from_pyfile('application.py', silent=True)
 
+    # Convert scss files to css
+    assets = Environment(app)
+    assets.url = app.static_url_path
+    scss = Bundle('style.scss', filters='pyscss', output='style.css')
+    assets.register('scss_all', scss)
 
-@app.errorhandler(500)
-def internal_error(e):
-    return render_template('errors/500.html'), 500
+    # Blueprints
+    app.register_blueprint(general)
+    app.register_blueprint(foods, url_prefix='/foods')
+    app.register_blueprint(gyms, url_prefix='/gyms')
+    app.register_blueprint(stores, url_prefix='/stores')
+    app.register_blueprint(workouts, url_prefix='/workouts')
 
+    import idb.views
 
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('errors/404.html'), 404
+
+    @app.errorhandler(500)
+    def internal_error(e):
+        return render_template('errors/500.html'), 500
+
+    return app
+
+app = create_app(__name__)
 if __name__ == "__main__":
     formatter = logging.Formatter(
         "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
