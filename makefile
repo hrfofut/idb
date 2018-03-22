@@ -28,7 +28,6 @@ restart-prod:
 
 # Run all tests
 test: idb/ tests/test.py tests/guitests.py instance/
-	printenv | grep "FLASK_APP"
 	( \
 		. env/bin/activate; \
 		python3 tests/test.py; \
