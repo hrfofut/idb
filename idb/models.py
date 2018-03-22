@@ -7,10 +7,10 @@ class Food(db.Model):
     name = db.Column(db.String(50), nullable=False)
     img = db.Column(db.String(100))
     servings = db.Column(db.String(10))
-    calorie = db.Column(db.Integer)
-    sodium = db.column(db.String(10))
-    fat = db.column(db.String(10))
-    protein = db.column(db.String(10))
+    calorie = db.Column(db.String(10))
+    sodium = db.Column(db.String(10))
+    fat = db.Column(db.String(10))
+    protein = db.Column(db.String(10))
 
     def __init__(self, id, name, img, servings, calorie, sodium, fat, protein):
         self.id = id
