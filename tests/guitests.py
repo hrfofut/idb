@@ -10,7 +10,6 @@ class FirefoxTestCase(LiveServerTestCase):
 
     def create_app(self):
         app = create_app("__test__")
-        # app.config['APPLICATION_ROOT'] = '/idb'
         print(app.instance_path)
         print(app.root_path)
         print(app.template_folder)
@@ -18,30 +17,51 @@ class FirefoxTestCase(LiveServerTestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
+        self.driver.get(self.get_server_url())
 
-    def test_navbar_food_link(self):
+    def tearDown(self):
+        self.driver.close()
+
+    # Test that all navbar links are functional
+    def test_navbar_links(self):
         driver = self.driver
-        driver.implicitly_wait(3)
-        driver.get(self.get_server_url())
+        driver.implicitly_wait(5)
         self.assertIn("Let's Get Fit", driver.title)
 
         foods_link = driver.find_element_by_link_text('Foods')
         foods_link.click()
+        self.assertIn("CKC - Foods", driver.title)
 
         workouts_link = driver.find_element_by_link_text('Workouts')
         workouts_link.click()
+        self.assertIn("CKC - Workouts", driver.title)
 
         gyms_link = driver.find_element_by_link_text('Gyms')
         gyms_link.click()
+        self.assertIn("CKC - Gyms", driver.title)
 
         stores_link = driver.find_element_by_link_text('Stores')
         stores_link.click()
+        self.assertIn("CKC - Stores", driver.title)
 
         about_link = driver.find_element_by_link_text('About')
         about_link.click()
+        self.assertIn("About Us", driver.title)
 
-    def tearDown(self):
-        self.driver.close()
+    # def test_error_pages(self):
+    #     driver = self.driver
+    #     self
+
+    # Test that food grid card title links lead to the correct instance
+    def test_food_grid_links(self):
+        driver = self.driver
+        driver.implicitly_wait(5)
+        driver.find_element_by_link_text('Foods').click()
+
+        food_item = driver.find_element_by_class_name('card-title')
+        food_name = food_item.text
+        food_item.click()
+        self.assertEqual(food_name, driver.find_element_by_tag_name('h1').text)
 
 
 if __name__ == "__main__":  # pragma: no cover

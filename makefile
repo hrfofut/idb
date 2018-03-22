@@ -31,8 +31,6 @@ test: idb/ tests/test.py tests/guitests.py instance/
 	printenv | grep "FLASK_APP"
 	( \
 		. env/bin/activate; \
-		#flask run; \
-		# cd tests; \
 		python3 tests/test.py; \
 		python3 tests/guitests.py; \
 	) # Used to tell makefile to use the virtualenv shell
