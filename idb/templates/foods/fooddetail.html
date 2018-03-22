@@ -9,7 +9,7 @@
 {% block content %}
 <div class="container-fluid">
   <div class="text-center">
-      <img class="detail-img" src="{{food['img']}}">
+      <img class="detail-img" src="https://spoonacular.com/cdn/ingredients_500x500/{{food['img']}}">
   </div>
   <h1 class="display-4" style="text-transform: capitalize; text-align: center">{{food['name']}}</h1>
     <table class="table">
@@ -19,14 +19,14 @@
         </tr>
         <tr>
           <th scope="row">Amount Per 1 serving</th>
-          <th >{{food['serving']}}</th>
+          <th >{{food['servings']}}</th>
         </tr>
       </thead>
       <tbody>
         
         <tr>
           <th scope="row">Calories</th>
-          <td>{{food['calories']}}</td>
+          <td>{{food['calorie']}}</td>
         </tr>        
         <tr>
           <th scope="row">Sodium</th>

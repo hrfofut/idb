@@ -9,7 +9,7 @@
 {% block content %}
 <div class="container-fluid">
 	<div class="text-center">
-  		<img class="detail-img" src="{{store['img']}}">
+  		<img class="detail-img" src="https://www.colourbox.com/preview/19115718-supermarket-shop-vector-illustration.jpg">
 	</div>
 	<h1 class="display-4" style="text-transform: capitalize; text-align: center">{{store['name']}}</h1>
     <table class="table">
@@ -19,12 +19,8 @@
           <td>{{store['location']}}</td>
         </tr>        
         <tr>
-          <th scope="row">Description</th>
-          <td>{{store['description']}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Phone Number</th>
-          <td>{{store['phone']}}</td>
+          <th scope="row">Price Level</th>
+          <td>{{store['price_level']}}</td>
         </tr>
         <tr>
           <th scope="row">Ratings</th>
