@@ -48,11 +48,8 @@ class FirefoxTestCase(LiveServerTestCase):
         about_link.click()
         self.assertIn("About Us", driver.title)
 
-    # def test_error_pages(self):
-    #     driver = self.driver
-    #     self
-
     # Test that food grid card title links lead to the correct instance
+    # that displays the name properly
     def test_food_grid_links(self):
         driver = self.driver
         driver.implicitly_wait(5)
@@ -63,6 +60,41 @@ class FirefoxTestCase(LiveServerTestCase):
         food_item.click()
         self.assertEqual(food_name, driver.find_element_by_tag_name('h1').text)
 
+    # Test that workout grid card title links lead to the correct instance
+    # that displays the name properly
+    def test_workout_grid_links(self):
+        driver = self.driver
+        driver.implicitly_wait(5)
+        driver.find_element_by_link_text('Workouts').click()
+
+        workout_item = driver.find_element_by_class_name('card-title')
+        workout_name = workout_item.text
+        workout_item.click()
+        self.assertEqual(workout_name, driver.find_element_by_tag_name('h1').text)
+
+    # Test that gym grid card title links lead to the correct instance
+    # that displays the name properly
+    def test_gym_grid_links(self):
+        driver = self.driver
+        driver.implicitly_wait(5)
+        driver.find_element_by_link_text('Gyms').click()
+
+        gym_item = driver.find_element_by_class_name('card-title')
+        gym_name = gym_item.text
+        gym_item.click()
+        self.assertEqual(gym_name, driver.find_element_by_tag_name('h1').text)
+
+    # Test that store grid card title links lead to the correct instance
+    # that displays the name properly
+    def test_store_grid_links(self):
+        driver = self.driver
+        driver.implicitly_wait(5)
+        driver.find_element_by_link_text('Stores').click()
+
+        store_item = driver.find_element_by_class_name('card-title')
+        store_name = store_item.text
+        store_item.click()
+        self.assertEqual(store_name, driver.find_element_by_tag_name('h1').text)
 
 if __name__ == "__main__":  # pragma: no cover
     unittest.main()
