@@ -48,8 +48,7 @@ class FirefoxTestCase(LiveServerTestCase):
         about_link.click()
         self.assertIn("About Us", driver.title)
 
-    # Test that food grid card title links lead to the correct instance
-    # that displays the name properly
+    # Test that food grid card title links lead to the correct instance that displays the name properly
     def test_food_grid_links(self):
         driver = self.driver
         driver.implicitly_wait(5)
@@ -60,8 +59,7 @@ class FirefoxTestCase(LiveServerTestCase):
         food_item.click()
         self.assertEqual(food_name, driver.find_element_by_tag_name('h1').text)
 
-    # Test that workout grid card title links lead to the correct instance
-    # that displays the name properly
+    # Test that workout grid card title links lead to the correct instance that displays the name properly
     def test_workout_grid_links(self):
         driver = self.driver
         driver.implicitly_wait(5)
@@ -72,8 +70,7 @@ class FirefoxTestCase(LiveServerTestCase):
         workout_item.click()
         self.assertEqual(workout_name, driver.find_element_by_tag_name('h1').text)
 
-    # Test that gym grid card title links lead to the correct instance
-    # that displays the name properly
+    # Test that gym grid card title links lead to the correct instance that displays the name properly
     def test_gym_grid_links(self):
         driver = self.driver
         driver.implicitly_wait(5)
@@ -84,8 +81,7 @@ class FirefoxTestCase(LiveServerTestCase):
         gym_item.click()
         self.assertEqual(gym_name, driver.find_element_by_tag_name('h1').text)
 
-    # Test that store grid card title links lead to the correct instance
-    # that displays the name properly
+    # Test that store grid card title links lead to the correct instance that displays the name properly
     def test_store_grid_links(self):
         driver = self.driver
         driver.implicitly_wait(5)
@@ -95,6 +91,22 @@ class FirefoxTestCase(LiveServerTestCase):
         store_name = store_item.text
         store_item.click()
         self.assertEqual(store_name, driver.find_element_by_tag_name('h1').text)
+
+    # Test that going back and forth in the navigation history doesn't break the website
+    def test_navigation_history(self):
+        driver = self.driver
+        driver.implicitly_wait(5)
+        driver.find_element_by_link_text('About').click()
+        driver.find_element_by_link_text('Foods').click()
+        driver.find_element_by_class_name('card-title').click()
+        driver.find_element_by_link_text('Stores').click()
+        driver.back()
+        driver.forward()
+        driver.back()
+        driver.back()
+        driver.back()
+        self.assertEqual("About Calorie Killer Club", driver.find_element_by_tag_name('h2').text)
+
 
 if __name__ == "__main__":  # pragma: no cover
     unittest.main()
