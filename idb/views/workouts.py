@@ -1,13 +1,17 @@
 from flask import Blueprint, render_template, abort, g
 from flask import current_app as app
+from flask_sqlalchemy import SQLAlchemy
+from idb.models import Workouts
+from idb import db
 import requests
 import json
 
 workouts = Blueprint('workouts', __name__)
 
 first = 0
-last = 2
+last = -1
 
+"""
 bench_press = {
         'name': 'Bench Press',
         'img': 'http://cdn2.coachmag.co.uk/sites/coachmag/files/styles/insert_main_wide_image/public/2016/07/1-1-bench-press.jpg?itok=bJYGPFGO',
@@ -159,29 +163,35 @@ def get_exercises(items):
                 workouts_list.append(exer_a)
                 last += 1
     return g._exercises
+"""
 
 
 @workouts.route("/")
 def workouts_overview():
-    global workouts_list, first, last
+
     items = []
-    for val in workouts_list:
-        items.append([val['name'], val['img'], val['category'], val['muscle']])
+    get_workouts = db.session.query(Workouts).all()
+    for val in get_workouts:
+
+        if val.name != "":
+            items.append([val.name, val.img, val.category, val.muscle])
 
     # grab data from api
-    exercises = get_exercises(items)
+    # exercises = get_exercises(items)
 
     return render_template('workouts/workouts.html', items=items)
 
 
 @workouts.route("/<int:id>")
 def workouts_detail(id):
-    global workouts_list
+    global last
 # TODO: Have the template be filled from a database in the future
 
+    if last == -1:
+        last = db.session.query(Workouts).count()
 # ID 0-2 returns certain food page, else return error
 
     if id < first or id > last:
         abort(404)
 
-    return render_template('workouts/workoutsdetail.html', workout=workouts_list[id])
+    return render_template('workouts/workoutsdetail.html', workout=db.session.query(Workouts).get(id))
