@@ -19,7 +19,7 @@ from .views.workouts import workouts
 
 
 def create_app(config_name):
-    app = Flask(config_name, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=True)
     app.config.from_pyfile('default_config.py')
     app.config.from_pyfile('application.py', silent=True)
 

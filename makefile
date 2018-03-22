@@ -9,12 +9,6 @@ install: requirements.txt idb/ setup.py
 		pip3 install -r requirements.txt; \
 		pwd; \
 		pip3 install -e .; \
-		wget https://github.com/mozilla/geckodriver/releases/download/v0.20.0/geckodriver-v0.20.0-linux64.tar.gz; \
-		tar -xvzf geckodriver-v0.20.0-linux64.tar.gz; \
-		rm geckodriver-v0.20.0-linux64.tar.gz; \
-		chmod +x geckodriver; \
-		cp geckodriver env/bin/; \
-		rm geckodriver; \
 	) # Used to tell makefile to use the virtualenv shell
 
 # Run Flask
@@ -33,15 +27,13 @@ restart-prod:
 	systemctl start nginx
 
 # Run all tests
-test: idb/ tests/test.py instance/
-	printenv | grep "FLASK_APP"
+test: idb/ tests/test.py tests/guitests.py instance/
 	( \
 		. env/bin/activate; \
-		flask run; \
-		cd tests; \
-		python3 test.py; \
-		python3 guitests.py; \
+		python3 tests/test.py; \
+		python3 tests/guitests.py; \
 	) # Used to tell makefile to use the virtualenv shell
+
 
 clean:
 	- rm -rf .git/hooks/pre-commit

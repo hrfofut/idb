@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}store-{{title}}{% endblock %} <!-- TODO: Make titles dynamic -->
+{% block title %}{{store['name']}}{% endblock %} <!-- TODO: Make titles dynamic -->
 {% block head %}
     {{ super() }}
     <style>
