@@ -1,0 +1,1 @@
+../path/to/idb//tests/tests.py
