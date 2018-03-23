@@ -45,7 +45,7 @@ def stores_api(api):
 
 
 @api.route("/gyms", subdomain="<api>")
-def stores_api(api):
+def gyms_api(api):
     gyms = db.session.query(Gyms).all()
 
     gyms_json = list()
