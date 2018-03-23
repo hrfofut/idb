@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}gym-{{title}}{% endblock %} <!-- TODO: Make titles dynamic -->
+{% block title %}{{gym['name']}}{% endblock %} <!-- TODO: Make titles dynamic -->
 {% block head %}
     {{ super() }}
     <style>
@@ -9,7 +9,7 @@
 {% block content %}
 <div class="container-fluid">
 	<div class="text-center">
-  		<img class="detail-img" src="{{gym['img']}}">
+  		<img class="detail-img" src="https://vignette.wikia.nocookie.net/spongebob/images/2/2e/Bikini_Bottom_Gym.png/revision/latest?cb=20140828023711">
 	</div>
 	<h1 class="display-4" style="text-transform: capitalize; text-align: center">{{gym['name']}}</h1>
     <table class="table">
@@ -20,7 +20,7 @@
         </tr>        
         <tr>
           <th scope="row">Pricing</th>
-          <td>{{gym['pricing']}}</td>
+          <td>{{gym['price']}}</td>
         </tr>
         <tr>
           <th scope="row">Ratings</th>

@@ -27,12 +27,13 @@ restart-prod:
 	systemctl start nginx
 
 # Run all tests
-test: idb/ tests/test.py
+test: idb/ tests/test.py tests/guitests.py instance/
 	( \
 		. env/bin/activate; \
-		cd tests; \
-		python3 test.py; \
+		python3 tests/test.py; \
+		python3 tests/guitests.py; \
 	) # Used to tell makefile to use the virtualenv shell
+
 
 clean:
 	- rm -rf .git/hooks/pre-commit

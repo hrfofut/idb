@@ -29,3 +29,7 @@ pip-selfcheck.json
 
 # config
 config.ini
+
+#Add info file
+./add_info.py
+add_info.py
