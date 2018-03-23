@@ -25,7 +25,7 @@ class Food(db.Model):
 
 class Stores(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
-    gid = db.Column(db.String(50), unique=True)
+    gid = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
     price_level = db.Column(db.Integer)
@@ -47,17 +47,17 @@ class Gyms(db.Model):
     gid = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
-    price = db.Column(db.String(50))
+    price_level = db.Column(db.Integer)
     ratings = db.Column(db.Float)
     phone = db.Column(db.String(15))
     pic_id = db.Column(db.Integer)
 
-    def __init__(self, id, gid, name, location, price, ratings, phone="", pic_id=0):
+    def __init__(self, id, gid, name, location, price_level, ratings, phone="", pic_id=0):
         self.id = id
         self.gid = gid
         self.name = name
         self.location = location
-        self.price = price
+        self.price_level = price_level
         self.ratings = ratings
 
 
