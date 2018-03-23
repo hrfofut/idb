@@ -108,6 +108,11 @@ footer {
   opacity: 1;
 }
 
+#food-detail h1 {
+  text-transform: capitalize; 
+  text-align: center;
+}
+
 .detail-img {
   object-fit: cover;
   height: 300px;

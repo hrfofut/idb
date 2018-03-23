@@ -23,8 +23,28 @@
         <li class="breadcrumb-item active">Food</li>
       </ol>
 
+      <div class="row">
+        {% for x in range(0, items|count) %}
+        <div id="food-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card card-inverse ">
+            <a href="./{{x}}"><img class="card-img-top" src="{{items[x][1]}}" alt=""></a>
+            <div class="overlay"> 
+            </div>
+            <div class="card-img-overlay over-title">
+              <h4 class="card-title"><a href="./{{items[x][4]}}">{{items[x][0]}}</a></h4>
+            </div>
+            <div class="card-img-overlay">
+              <p class="card-text">Calories: {{items[x][2]}}</p>
+              <p class="card-text">Fat: {{(items[x][3])}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
       <!-- Food cards -->
-      <div id="food-grid"></div>
+      <!-- <div id="food-grid"></div> -->
 
       <!-- Pagination -->
       <ul class="pagination justify-content-center">
@@ -54,7 +74,6 @@
     </div>
     <!-- /.container -->
 
-    <!-- Your custom script here -->
-    <script type="text/babel" src="../../static/js/food.js">
-    </script>
+    <!-- <script type="text/babel" src="../../static/js/food.js"></script> -->
+    
 {% endblock %}
