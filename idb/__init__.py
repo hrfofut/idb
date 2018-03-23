@@ -41,8 +41,6 @@ def create_app(config_name):
     app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
-
-    # from .models import Food
     #
     import idb.views
 
