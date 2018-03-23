@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template, abort
 from flask_sqlalchemy import SQLAlchemy
-from idb.models import Gyms
+from idb.models import Gyms, Images
+# Later lets have a python thing that has all db calls
 from idb import db
-
+import base64
 gyms = Blueprint('gyms', __name__)
 
 first = 0
@@ -17,7 +18,11 @@ def gyms_overview():
     get_gyms = db.session.query(Gyms).all()
 
     for val in get_gyms:
-        items.append([val.name, img, val.location, val.ratings, val.id])
+        image = db.session.query(Images).get(val.pic_id).pic
+        x = str(base64.b64encode(image))
+        x = x[2:]
+        x = x[:-1]
+        items.append([val.name, img, val.location, val.ratings, val.id, x])
 
     return render_template('gyms/gyms.html', items=items)
 
@@ -33,4 +38,10 @@ def gyms_detail(id):
     if id < first or id > last:
         abort(404)
 
-    return render_template('gyms/gymsdetail.html', gym=db.session.query(Gyms).get(id))
+    gym = db.session.query(Gyms).get(id)
+
+    image = db.session.query(Images).get(gym.pic_id).pic
+    x = str(base64.b64encode(image))
+    x = x[2:]
+    x = x[:-1]
+    return render_template('gyms/gymsdetail.html', gym=gym, pic=x)
