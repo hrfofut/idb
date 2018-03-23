@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, jsonify
 from idb.models import Food
 from idb import db
 
