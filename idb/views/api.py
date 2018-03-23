@@ -39,6 +39,19 @@ def stores_api(api):
 
     for store in stores:
         store_dict = {'id': store.id, 'gid': store.gid, 'name': store.name, 'location': store.location, 'price_level': store.price_level, 'ratings': store.ratings}
-        store_json.append(store_dict)
+        stores_json.append(store_dict)
 
-    return jsonify(store_json)
+    return jsonify(stores_json)
+
+
+@api.route("/gyms", subdomain="<api>")
+def stores_api(api):
+    gyms = db.session.query(Gyms).all()
+
+    gyms_json = list()
+
+    for gym in gyms:
+        gym_dict = {'id': gym.id, 'gid': gym.gid, 'name': gym.name, 'location': gym.location, 'price': gym.price, 'ratings': gym.ratings}
+        gyms_json.append(gym_dict)
+
+    return jsonify(gyms_json)
