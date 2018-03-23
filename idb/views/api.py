@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, abort, jsonify
-from idb.models import Food
+from idb.models import Food, Workouts, Stores, Gyms
 from idb import db
 
 api = Blueprint('api', __name__)
 
 
-@api.route("/", subdomain="<api>")
+@api.route("/foods", subdomain="<api>")
 def food_api(api):
     foods = db.session.query(Food).all()
 
@@ -16,3 +16,42 @@ def food_api(api):
         food_json.append(food_dict)
 
     return jsonify(food_json)
+
+
+@api.route("/workouts", subdomain="<api>")
+def workouts_api(api):
+    workouts = db.session.query(Workouts).all()
+
+    workout_json = list()
+
+    for workout in workouts:
+        workout_dict = {'id': workout.id, 'name': workout.name, 'category': workout.category, 'equipment': workout.equipment, 'description': workout.description, 'muscle': workout.muscle}
+        workout_json.append(workout_dict)
+
+    return jsonify(workout_json)
+
+
+@api.route("/stores", subdomain="<api>")
+def stores_api(api):
+    stores = db.session.query(Stores).all()
+
+    stores_json = list()
+
+    for store in stores:
+        store_dict = {'id': store.id, 'gid': store.gid, 'name': store.name, 'location': store.location, 'price_level': store.price_level, 'ratings': store.ratings}
+        stores_json.append(store_dict)
+
+    return jsonify(stores_json)
+
+
+@api.route("/gyms", subdomain="<api>")
+def gyms_api(api):
+    gyms = db.session.query(Gyms).all()
+
+    gyms_json = list()
+
+    for gym in gyms:
+        gym_dict = {'id': gym.id, 'gid': gym.gid, 'name': gym.name, 'location': gym.location, 'price_level': gym.price_level, 'ratings': gym.ratings}
+        gyms_json.append(gym_dict)
+
+    return jsonify(gyms_json)
