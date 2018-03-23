@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, abort
-
 import requests
 import json
 

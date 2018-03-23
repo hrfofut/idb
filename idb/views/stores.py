@@ -17,7 +17,7 @@ def stores_overview():
     #     items.append([val['name'], val['img'], val['location'], val['ratings']])
     test = db.session.query(Stores).all()
     for val in test:
-        items.append([val.name, img, val.location, val.ratings])
+        items.append([val.name, img, val.location, val.ratings, val.id])
     return render_template('stores/stores.html', items=items)
 
 
