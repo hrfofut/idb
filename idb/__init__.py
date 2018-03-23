@@ -16,6 +16,7 @@ from .views.foods import foods
 from .views.gyms import gyms
 from .views.stores import stores
 from .views.workouts import workouts
+from .views.api import api
 
 
 def create_app(config_name):
@@ -35,6 +36,7 @@ def create_app(config_name):
     app.register_blueprint(gyms, url_prefix='/gyms')
     app.register_blueprint(stores, url_prefix='/stores')
     app.register_blueprint(workouts, url_prefix='/workouts')
+    app.register_blueprint(api, subdomain='api')
 
     #
     DB_URL = app.config['DB_URI']

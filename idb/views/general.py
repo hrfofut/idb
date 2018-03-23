@@ -1,10 +1,4 @@
-from flask import Blueprint, render_template, abort, jsonify
-
-
-from idb import db
-from idb.models import Food
-
-
+from flask import Blueprint, render_template, abort
 import requests
 import json
 
