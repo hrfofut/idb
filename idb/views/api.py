@@ -51,7 +51,7 @@ def gyms_api(api):
     gyms_json = list()
 
     for gym in gyms:
-        gym_dict = {'id': gym.id, 'gid': gym.gid, 'name': gym.name, 'location': gym.location, 'price': gym.price, 'ratings': gym.ratings}
+        gym_dict = {'id': gym.id, 'gid': gym.gid, 'name': gym.name, 'location': gym.location, 'price_level': gym.price_level, 'ratings': gym.ratings}
         gyms_json.append(gym_dict)
 
     return jsonify(gyms_json)
