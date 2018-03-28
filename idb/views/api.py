@@ -5,8 +5,13 @@ from idb import db
 api = Blueprint('api', __name__)
 
 
-@api.route("/foods", subdomain="<api>")
-def food_api(api):
+@api.route("/")
+def api_splash():
+    return render_template('api.html')
+
+
+@api.route("/foods")
+def food_api():
     foods = db.session.query(Food).all()
 
     food_json = list()
@@ -18,8 +23,8 @@ def food_api(api):
     return jsonify(food_json)
 
 
-@api.route("/workouts", subdomain="<api>")
-def workouts_api(api):
+@api.route("/workouts")
+def workouts_api():
     workouts = db.session.query(Workouts).all()
 
     workout_json = list()
@@ -31,8 +36,8 @@ def workouts_api(api):
     return jsonify(workout_json)
 
 
-@api.route("/stores", subdomain="<api>")
-def stores_api(api):
+@api.route("/stores")
+def stores_api():
     stores = db.session.query(Stores).all()
 
     stores_json = list()
@@ -44,8 +49,8 @@ def stores_api(api):
     return jsonify(stores_json)
 
 
-@api.route("/gyms", subdomain="<api>")
-def gyms_api(api):
+@api.route("/gyms")
+def gyms_api():
     gyms = db.session.query(Gyms).all()
 
     gyms_json = list()
