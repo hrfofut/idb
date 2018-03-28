@@ -22,7 +22,7 @@
     {% for x in range(0, items|count) %}
     <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
       <div class="card h-100">
-        <a href="./{{items[x][4]}}"><img class="card-img-top" alt="" src='data:image/jpeg;base64,{{items[x][5]}}'/></a>
+        <a href="./{{items[x][4]}}"><img class="card-img-top" alt="" src='{{items[x][1]}}'/></a>
         <div class="card-body">
           <h4 class="card-title">
             <a href="./{{items[x][4]}}">{{items[x][0]}}</a>

@@ -30,6 +30,9 @@ pip-selfcheck.json
 # config
 config.ini
 
+# testing image
+test.jpg
+
 #Add info file
 ./add_info.py
 add_info.py
