@@ -16,7 +16,22 @@ def splash(name=None):
 @general.route("/search", methods=['POST'])
 def search():
     search = request.form['search']
-    return render_template('search.html', search=search)
+    food_items = []
+    workout_items = []
+    gym_items = []
+    store_items = []
+
+    get_foods = db.session.query(Food).filter(Food.name.match("%" + search + "%")).all()
+    for val in get_foods:
+        image = 'https://spoonacular.com/cdn/ingredients_500x500/' + val.img
+        food_items.append([val.name.title(), image, val.calorie, val.fat, val.id])
+
+    get_workouts = db.session.query(Workouts).filter(Workouts.name.match("%" + search + "%")).all()
+    for val in get_workouts:
+        if val.name != "":
+            workout_items.append([val.name, val.img, val.category, val.muscle, val.id])
+
+    return render_template('search.html', search=search, food_items=food_items, workout_items=workout_items)
 
 
 @general.route("/about")
