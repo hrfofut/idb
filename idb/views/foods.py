@@ -10,7 +10,8 @@ last = 99999999999
 
 @foods.route("/")
 def foods_overview():
-    # TODO: I need to remember to describe whats going on later.
+    # Really just show the first page, but don't use reroute() because
+    # we want to keep the pretty URL
     return foods_overview_page(1)
 
 
@@ -19,11 +20,12 @@ def foods_overview_page(page):
     items_per_page = 20
     items = []
     get_foods = db.session.query(Food).limit(items_per_page).offset((page - 1) * items_per_page).all()
+    last_page = db.session.query(Food).count() / items_per_page
     for val in get_foods:
         image = 'https://spoonacular.com/cdn/ingredients_500x500/' + val.img
         items.append([val.name.title(), image, val.calorie, val.fat, val.id])
 
-    return render_template('foods/food.html', items=items)
+    return render_template('foods/food.html', items=items, current_page=page, last_page=last_page)
 
 
 @foods.route("/<int:id>")
