@@ -9,6 +9,14 @@
   <!-- Page Heading/Breadcrumbs -->
   <h1 class="mt-4 mb-3">{% block gridhead %}{% endblock %}
     <small>List</small>
+    <div class="float-right">
+      <button class="btn pull-right btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By</button>
+      <div class="dropdown-menu dropdown-menu-right" >
+        <a class="dropdown-item" href="#">Name</a>
+        <a class="dropdown-item" href="#">{%block a1%} {% endblock %}</a>
+        <a class="dropdown-item" href="#">{%block a2%} {% endblock %}</a>
+      </div>
+    </div>
   </h1>
 
   <ol class="breadcrumb">
