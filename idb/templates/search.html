@@ -21,13 +21,15 @@
           <a href="./foods/{{food_items[x][4]}}"><img class="card-img-top" alt="" src='{{food_items[x][1]}}'/></a>
           <div class="overlay"> 
           </div>
-          
-          <h4 class="card-title">
-            <a href="./foods/{{food_items[x][4]}}">{{food_items[x][0]}}</a>
-          </h4>
-          
-          <p class="card-text">Calories: {{food_items[x][2]}}</p>
-          <p class="card-text">Fat: {{food_items[x][3]}}</p>
+
+          <div class="card-body"> 
+            <h4 class="card-title">
+              <a href="./foods/{{food_items[x][4]}}">{{food_items[x][0]}}</a>
+            </h4>
+            
+            <p class="card-text">Calories: {{food_items[x][2]}}</p>
+            <p class="card-text">Fat: {{food_items[x][3]}}</p>
+          </div>
         </div>
       </div>
       {% endfor %}
@@ -44,12 +46,14 @@
           <div class="overlay"> 
           </div>
           
-          <h4 class="card-title">
-            <a href="./workouts/{{workout_items[x][4]}}">{{workout_items[x][0]}}</a>
-          </h4>
-          
-          <p class="card-text">Category: {{workout_items[x][2]}}</p>
-          <p class="card-text">Muscle Targeted: {{workout_items[x][3]}}</p>
+          <div class="card-body"> 
+            <h4 class="card-title">
+              <a href="./workouts/{{workout_items[x][4]}}">{{workout_items[x][0]}}</a>
+            </h4>
+            
+            <p class="card-text">Category: {{workout_items[x][2]}}</p>
+            <p class="card-text">Muscle Targeted: {{workout_items[x][3]}}</p>
+          </div>
         </div>
       </div>
       {% endfor %}
@@ -66,12 +70,14 @@
           <div class="overlay"> 
           </div>
           
-          <h4 class="card-title">
-            <a href="./gyms/{{gym_items[x][4]}}">{{gym_items[x][0]}}</a>
-          </h4>
-          
-          <p class="card-text">Location: {{gym_items[x][2]}}</p>
-          <p class="card-text">Rating: {{gym_items[x][3]}}</p>
+          <div class="card-body"> 
+            <h4 class="card-title">
+              <a href="./gyms/{{gym_items[x][4]}}">{{gym_items[x][0]}}</a>
+            </h4>
+            
+            <p class="card-text">Location: {{gym_items[x][2]}}</p>
+            <p class="card-text">Rating: {{gym_items[x][3]}}</p>
+          </div>
         </div>
       </div>
       {% endfor %}
@@ -88,12 +94,14 @@
           <div class="overlay"> 
           </div>
           
-          <h4 class="card-title">
-            <a href="./stores/{{store_items[x][4]}}">{{store_items[x][0]}}</a>
-          </h4>
-          
-          <p class="card-text">Location: {{store_items[x][2]}}</p>
-          <p class="card-text">Rating: {{store_items[x][3]}}</p>
+          <div class="card-body"> 
+            <h4 class="card-title">
+              <a href="./stores/{{store_items[x][4]}}">{{store_items[x][0]}}</a>
+            </h4>
+            
+            <p class="card-text">Location: {{store_items[x][2]}}</p>
+            <p class="card-text">Rating: {{store_items[x][3]}}</p>
+          </div>
         </div>
       </div>
       {% endfor %}
