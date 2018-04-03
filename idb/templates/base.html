@@ -2,8 +2,6 @@
 <html lang="en">
   <head>
     {% block head %}
-    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">-->
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -13,10 +11,10 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/modern-business.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/modern-business.css') }}" rel="stylesheet">
 
     <title>{% block title %} {% endblock %} </title>   
     {% endblock %}
