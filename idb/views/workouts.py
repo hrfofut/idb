@@ -13,14 +13,23 @@ last = 100000000  # This is bad design.
 
 @workouts.route("/")
 def overview():
+    # Really just show the first page, but don't use reroute() because
+    # we want to keep the pretty URL
+    return overview_page(1)
+
+
+@workouts.route("/page/<int:page>")
+def overview_page(page):
+    items_per_page = 20
     items = []
-    get_workouts = db.session.query(Workouts).all()
+    get_workouts = db.session.query(Workouts).limit(items_per_page).offset((page - 1) * items_per_page).all()
+    last_page = db.session.query(Workouts).count() / items_per_page
+    print(last_page)
     for val in get_workouts:
         if val.name != "":
             items.append([val.name, val.img, val.category, val.muscle, val.id])
-    # grab data from api
-    # exercises = get_exercises(items)
-    return render_template('workouts/workouts.html', items=items)
+
+    return render_template('workouts/workouts.html', items=items, current_page=page, last_page=last_page)
 
 
 @workouts.route("/<int:id>")

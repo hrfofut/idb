@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}CKC - Food{% endblock %}
 {% block head %}
-    {{ super() }}
+{{ super() }}
 {% endblock %}
 
 {% block content %}
@@ -15,25 +15,34 @@
     <li class="breadcrumb-item">
       <a href="/">Home</a>
     </li>
-    <li class="breadcrumb-item active">Food</li>
+    <li class="breadcrumb-item active">{{ self.gridhead() }}</li>
   </ol>
 
+  {% if items|count > 0 %}
   <div class="row">
     {% for x in range(0, items|count) %}
     <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
       <div class="card h-100">
         <a href="./{{items[x][4]}}"><img class="card-img-top" alt="" src='{{items[x][1]}}'/></a>
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="./{{items[x][4]}}">{{items[x][0]}}</a>
-          </h4>
-          <p class="card-text">{%block atr1%} {% endblock %}: {{items[x][2]}}
-          {%block atr2%} {% endblock %}: {{items[x][3]}}</p>
+        <div class="overlay"> 
         </div>
+        
+        <h4 class="card-title">
+          <a href="./{{items[x][4]}}">{{items[x][0]}}</a>
+        </h4>
+        
+        <p class="card-text">{%block atr1%} {% endblock %}: {{items[x][2]}}</p>
+        <p class="card-text">{%block atr2%} {% endblock %}: {{items[x][3]}}</p>
       </div>
     </div>
     {% endfor %}
   </div>
+
+  <!-- Pagination -->
+  {% include 'pagination.html' %}
+  {% else %}
+  <h3><p class="text-center"> Oops, there's nothing here...</p></h3>
+  {% endif %}
 </div>
 {% endblock %}
 

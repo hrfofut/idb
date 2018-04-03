@@ -15,13 +15,23 @@ last = -1
 
 @gyms.route("/")
 def overview():
+    # Really just show the first page, but don't use reroute() because
+    # we want to keep the pretty URL
+    return overview_page(1)
+
+
+@gyms.route("/page/<int:page>")
+def overview_page(page):
+    items_per_page = 20
     items = []
-    all_gyms = db.session.query(Gyms).all()
-    for gym in all_gyms:
+    get_gyms = db.session.query(Gyms).limit(items_per_page).offset((page - 1) * items_per_page).all()
+    last_page = db.session.query(Gyms).count() / items_per_page
+    for gym in get_gyms:
         image = db.session.query(Images).get(gym.pic_id).pic
         img = unbinary(str(base64.b64encode(image)))
+        img = None
         items.append([gym.name, img, gym.location, gym.ratings, gym.id])
-    return render_template('gyms/gyms.html', items=items)
+    return render_template('gyms/gyms.html', items=items, current_page=page, last_page=last_page)
 
 
 @gyms.route("/<int:id>")

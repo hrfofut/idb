@@ -1,61 +1,14 @@
-{% extends "base.html" %}
-{% block title %}CKC - Food{% endblock %}
+{% extends "models.html" %}
+{% block title %}CKC - Foods{% endblock %}
 {% block head %}
     {{ super() }}
     <style>
     .nav-item.nav-link.nav-food {color: rgba(255, 255, 255, 0.75);}
     </style>
 {% endblock %}
+{% block gridhead %}Foods{% endblock %}
+{%block atr1%}Calories{% endblock %}
+{%block atr2%}Fat{% endblock %}
 {% block content %}
-
-    <!-- Page Content -->
-    <div class="container">
-
-      <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">Food
-        <small>List</small>
-      </h1>
-
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="/">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Food</li>
-      </ol>
-
-      {% if items|count > 0 %}
-      <div class="row">
-        {% for x in range(0, items|count) %}
-        <div id="food-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card card-inverse ">
-            <a href="./{{x}}"><img class="card-img-top" src="{{items[x][1]}}" alt=""></a>
-            <div class="overlay"> 
-            </div>
-            <div class="card-img-overlay over-title">
-              <h4 class="card-title"><a href="./{{items[x][4]}}">{{items[x][0]}}</a></h4>
-            </div>
-            <div class="card-img-overlay">
-              <p class="card-text">Calories: {{items[x][2]}}</p>
-              <p class="card-text">Fat: {{(items[x][3])}}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-
-      </div>
-
-      <!-- Food cards -->
-      <!-- <div id="food-grid"></div> -->
-
-      <!-- Pagination -->
-      {% include 'pagination.html' %}
-      {% else %}
-      <h3><p class="text-center">Oops, there's nothing here...</p></h3>
-      {% endif %}
-
-    </div>
-    <!-- /.container -->
-
-    <!-- <script type="text/babel" src="../../static/js/food.js"></script> -->
-    
+{{ super() }}
 {% endblock %}
