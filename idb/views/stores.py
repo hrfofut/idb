@@ -29,7 +29,6 @@ def overview_page(page):
     for store in get_stores:
         image = db.session.query(Images).get(store.pic_id).pic
         img = unbinary(str(base64.b64encode(image)))
-        img = None
         items.append([store.name, img, store.location, store.ratings, store.id])
 
     return render_template('stores/stores.html', items=items, current_page=page, last_page=last_page)

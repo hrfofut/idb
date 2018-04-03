@@ -29,7 +29,6 @@ def overview_page(page):
     for gym in get_gyms:
         image = db.session.query(Images).get(gym.pic_id).pic
         img = unbinary(str(base64.b64encode(image)))
-        img = None
         items.append([gym.name, img, gym.location, gym.ratings, gym.id])
     return render_template('gyms/gyms.html', items=items, current_page=page, last_page=last_page)
 
