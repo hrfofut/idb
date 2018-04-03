@@ -14,7 +14,7 @@ last = -1
 
 
 @gyms.route("/")
-def gyms_overview():
+def overview():
     items = []
     all_gyms = db.session.query(Gyms).all()
     for gym in all_gyms:

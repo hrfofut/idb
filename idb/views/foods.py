@@ -9,14 +9,14 @@ last = 99999999999
 
 
 @foods.route("/")
-def foods_overview():
+def overview():
     # Really just show the first page, but don't use reroute() because
     # we want to keep the pretty URL
-    return foods_overview_page(1)
+    return overview_page(1)
 
 
 @foods.route("/page/<int:page>")
-def foods_overview_page(page):
+def overview_page(page):
     items_per_page = 20
     items = []
     get_foods = db.session.query(Food).limit(items_per_page).offset((page - 1) * items_per_page).all()

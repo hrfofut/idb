@@ -14,7 +14,7 @@ last = -1
 
 
 @stores.route("/")
-def stores_overview():
+def overview():
     items = []  # List of dicts that correspond to each store
     all_stores = db.session.query(Stores).all()
     for store in all_stores:

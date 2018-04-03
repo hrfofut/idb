@@ -12,7 +12,7 @@ last = 100000000  # This is bad design.
 
 
 @workouts.route("/")
-def workouts_overview():
+def overview():
     items = []
     get_workouts = db.session.query(Workouts).all()
     for val in get_workouts:
