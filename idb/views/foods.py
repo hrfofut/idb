@@ -4,9 +4,6 @@ from idb import db
 
 foods = Blueprint('foods', __name__)
 
-first = 0
-last = 99999999999
-
 
 @foods.route("/")
 def overview():
@@ -30,15 +27,8 @@ def overview_page(page):
 
 @foods.route("/<int:id>")
 def food_detail(id):
-    global last
-    """TODO: Have the template be filled from a database in the future"""
-    # However the backend will work, use id to find all the info.
+    food = db.session.query(Food).get(id)
+    if food is None:
+        abort(404)
 
-    if last == -1:
-        last = db.session.query(Food).count()
-
-    # ID 0-2 returns certain food page, else return error
-    if id < first or id > last:
-        return abort(404)
-
-    return render_template('foods/fooddetail.html', food=db.session.query(Food).get(id))
+    return render_template('foods/fooddetail.html', food=food)

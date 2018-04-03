@@ -9,9 +9,6 @@ import base64
 
 stores = Blueprint('stores', __name__)
 
-first = 0
-last = -1
-
 
 @stores.route("/")
 def overview():
@@ -36,13 +33,9 @@ def overview_page(page):
 
 @stores.route("/<int:id>")
 def stores_detail(id):
-    global last
-    if last == -1:
-        last = db.session.query(Stores).count()
-        # ID 0 to store count returns certain store page, else return error
-    if id < first or id > last:
-        abort(404)
     store = db.session.query(Stores).get(id)
+    if store is None:
+        abort(404)
     image = db.session.query(Images).get(store.pic_id).pic
     img = unbinary(str(base64.b64encode(image)))
     return render_template('stores/storesdetail.html', store=store, pic=img)

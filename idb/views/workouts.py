@@ -7,9 +7,6 @@ import json
 
 workouts = Blueprint('workouts', __name__)
 
-first = 0
-last = 100000000  # This is bad design.
-
 
 @workouts.route("/")
 def overview():
@@ -34,9 +31,8 @@ def overview_page(page):
 
 @workouts.route("/<int:id>")
 def workouts_detail(id):
-    global last
-    # Somehow we should find a better way to tell if the page doesn't exist, probably check if the get worked.
-    if id < first or id > last:
+    workout = db.session.query(Workouts).get(id)
+    if workout is None:
         abort(404)
 
-    return render_template('workouts/workoutsdetail.html', workout=db.session.query(Workouts).get(id))
+    return render_template('workouts/workoutsdetail.html', workout=workout)
