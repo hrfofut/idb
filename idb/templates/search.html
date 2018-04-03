@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}CKC - {{search}}{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">Search results for '{{search}}'
+    <small>... results found</small>
+  </h1>
+
+  <h3> Food </h3>
+  <h3> Workouts </h3>
+  <h3> Gyms </h3>
+  <h3> Stores </h3>
+
+</div>
+{% endblock %}
+

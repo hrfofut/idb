@@ -22,7 +22,7 @@
               <a class="nav-item nav-link nav-abou" href="{{ url_for('general.about')  }}">About</a>
             </li>
             <li class="nav-item">
-              <form role="search" method="get" action="/search">
+              <form role="search" method="POST" action="/search">
                 <div class="input-group ml-2">
                   <input type="text" class="form-control" name="search" placeholder="Search...">
                   <div class="input-group-append">

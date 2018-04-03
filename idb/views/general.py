@@ -1,6 +1,9 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
 import requests
 import json
+
+from idb.models import Food, Workouts, Stores, Gyms
+from idb import db
 
 general = Blueprint('general', __name__)
 
@@ -8,6 +11,12 @@ general = Blueprint('general', __name__)
 @general.route("/")
 def splash(name=None):
     return render_template('index.html')
+
+
+@general.route("/search", methods=['POST'])
+def search():
+    search = request.form['search']
+    return render_template('search.html', search=search)
 
 
 @general.route("/about")
