@@ -2,8 +2,11 @@ from flask import Blueprint, render_template, abort, request
 import requests
 import json
 
-from idb.models import Food, Workouts, Stores, Gyms
+from idb.models import Food, Workouts, Stores, Gyms, Images
 from idb import db
+
+from backend.tools import unbinary
+import base64
 
 general = Blueprint('general', __name__)
 
@@ -31,7 +34,19 @@ def search():
         if val.name != "":
             workout_items.append([val.name, val.img, val.category, val.muscle, val.id])
 
-    return render_template('search.html', search=search, food_items=food_items, workout_items=workout_items)
+    get_gyms = db.session.query(Gyms).filter(Gyms.name.match("%" + search + "%")).all()
+    for gym in get_gyms:
+        image = db.session.query(Images).get(gym.pic_id).pic
+        img = unbinary(str(base64.b64encode(image)))
+        gym_items.append([gym.name, img, gym.location, gym.ratings, gym.id])
+
+    get_stores = db.session.query(Stores).filter(Stores.name.match("%" + search + "%")).all()
+    for store in get_stores:
+        image = db.session.query(Images).get(store.pic_id).pic
+        img = unbinary(str(base64.b64encode(image)))
+        store_items.append([store.name, img, store.location, store.ratings, store.id])
+
+    return render_template('search.html', search=search, food_items=food_items, workout_items=workout_items, gym_items=gym_items, store_items=store_items)
 
 
 @general.route("/about")

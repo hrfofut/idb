@@ -8,10 +8,10 @@
 <div class="container">
   <!-- Page Heading/Breadcrumbs -->
   <h1 class="mt-4 mb-3">Search results for '{{search}}'
-    <small>{{food_items|count + workout_items|count}} results found</small>
+    <small>{{food_items|count + workout_items|count + gym_items|count + store_items|count}} results found</small>
   </h1>
 
-  {% if (food_items|count > 0 or workout_items|count > 0) %}
+  {% if (food_items|count > 0 or workout_items|count > 0 or gym_items|count > 0 or store_items|count > 0) %}
     {% if food_items|count > 0 %}
     <h3> Food </h3>
     <div class="row">
@@ -50,6 +50,50 @@
           
           <p class="card-text">Category: {{workout_items[x][2]}}</p>
           <p class="card-text">Muscle Targeted: {{workout_items[x][3]}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if gym_items|count > 0 %}
+    <h3> Gyms </h3>
+    <div class="row">
+      {% for x in range(0, gym_items|count) %}
+      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="./gyms/{{gym_items[x][4]}}"><img class="card-img-top" alt="" src='{{gym_items[x][1]}}'/></a>
+          <div class="overlay"> 
+          </div>
+          
+          <h4 class="card-title">
+            <a href="./gyms/{{gym_items[x][4]}}">{{gym_items[x][0]}}</a>
+          </h4>
+          
+          <p class="card-text">Location: {{gym_items[x][2]}}</p>
+          <p class="card-text">Rating: {{gym_items[x][3]}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if store_items|count > 0 %}
+    <h3> Stores </h3>
+    <div class="row">
+      {% for x in range(0, store_items|count) %}
+      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="./stores/{{store_items[x][4]}}"><img class="card-img-top" alt="" src='{{store_items[x][1]}}'/></a>
+          <div class="overlay"> 
+          </div>
+          
+          <h4 class="card-title">
+            <a href="./stores/{{store_items[x][4]}}">{{store_items[x][0]}}</a>
+          </h4>
+          
+          <p class="card-text">Location: {{store_items[x][2]}}</p>
+          <p class="card-text">Rating: {{store_items[x][3]}}</p>
         </div>
       </div>
       {% endfor %}
