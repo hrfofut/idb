@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
 from flask_sqlalchemy import SQLAlchemy
 from idb.models import Workouts
 from idb import db
@@ -10,14 +10,24 @@ import json
 workouts = Blueprint('workouts', __name__)
 
 
-@workouts.route("/", defaults={'page': 1, 'sort': 'name'})
-@workouts.route("/page/<int:page>")
-@workouts.route("/sort/<string:sort>", defaults={'page': 1})
-@workouts.route("/sort/<string:sort>/<int:page>")
-def overview(page, sort):
+@workouts.route("/")
+def overview():
+    page = request.args.get('page', default=1, type=int)
+    sort = request.args.get('sort', default='name', type=str)
+    order = request.args.get('order', default='asc', type=str)
+
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    get_workouts = db.session.query(Workouts).order_by(getattr(Workouts, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
+    query = db.session.query(Workouts)
+    if order == 'desc':
+        query = query.order_by(getattr(Workouts, sort).desc())
+    else:
+        query = query.order_by(getattr(Workouts, sort))
+    query = (query
+             .limit(items_per_page)
+             .offset((page - 1) * items_per_page))
+
+    get_workouts = query.all()
     last_page = db.session.query(Workouts).count() / items_per_page
     for workout in get_workouts:
         if workout.name != "":
