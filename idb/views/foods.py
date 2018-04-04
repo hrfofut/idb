@@ -32,3 +32,23 @@ def food_detail(id):
         abort(404)
 
     return render_template('foods/fooddetail.html', food=food)
+
+
+@foods.route("/sort/<string:sort>/<int:page>")
+def food_sort(sort, page):
+    items_per_page = 20
+    items = []
+    if(sort == 'name'):
+        get_foods = db.session.query(Food).order_by(Food.name).limit(items_per_page).offset((page - 1) * items_per_page).all()
+        last_page = db.session.query(Food).count() / items_per_page
+    elif(sort == 'calories'):
+        get_foods = db.session.query(Food).order_by(Food.calorie.desc()).limit(items_per_page).offset((page - 1) * items_per_page).all()
+        last_page = db.session.query(Food).count() / items_per_page
+    elif(sort == 'fat'):
+        get_foods = db.session.query(Food).order_by(Food.fat.desc()).limit(items_per_page).offset((page - 1) * items_per_page).all()
+        last_page = db.session.query(Food).count() / items_per_page
+
+    for val in get_foods:
+        image = 'https://spoonacular.com/cdn/ingredients_500x500/' + val.img
+        items.append([val.name.title(), image, val.calorie, val.fat, val.id])
+    return render_template('foods/food.html', items=items, current_page=page, last_page=last_page)
