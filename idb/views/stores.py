@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from idb.models import Stores, Images
 # Later lets have a python thing that has all db calls
 from idb import db
+from string import capwords
 
 from backend.tools import unbinary
 import base64
@@ -23,7 +24,7 @@ def overview(page, sort):
     for store in get_stores:
         items.append(create_item(store))
 
-    return render_template('stores/stores.html', items=items, current_page=page, last_page=last_page)
+    return render_template('stores/stores.html', items=items, sort=sort, current_page=page, last_page=last_page)
 
 
 @stores.route("/<int:id>")
@@ -42,7 +43,7 @@ def create_item(raw):
 
     # get a dict of all attributes and remove ones we don't care about
     item = vars(raw)
-    item['name'] = item['name'].title()
+    item['name'] = capwords(item['name'])
     item['image'] = img
     item.pop('_sa_instance_state', None)
     item.pop('phone', None)
