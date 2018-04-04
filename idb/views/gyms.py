@@ -22,7 +22,7 @@ def overview(page, sort):
     last_page = db.session.query(Gyms).count() / items_per_page
     for gym in get_gyms:
         items.append(create_item(gym))
-    return render_template('gyms/gyms.html', items=items, current_page=page, last_page=last_page)
+    return render_template('gyms/gyms.html', items=items, sort=sort, current_page=page, last_page=last_page)
 
 
 @gyms.route("/<int:id>")
