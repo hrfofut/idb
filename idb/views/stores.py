@@ -10,6 +10,7 @@ from backend.tools import unbinary
 import base64
 
 stores = Blueprint('stores', __name__)
+asc = True
 
 
 @stores.route("/", defaults={'page': 1, 'sort': 'name'})
@@ -17,9 +18,16 @@ stores = Blueprint('stores', __name__)
 @stores.route("/sort/<string:sort>", defaults={'page': 1})
 @stores.route("/sort/<string:sort>/<int:page>")
 def overview(page, sort):
+    global asc
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    get_stores = db.session.query(Stores).order_by(getattr(Stores, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
+    if asc:
+        get_stores = db.session.query(Stores).order_by(getattr(Stores, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
+        asc = False
+    else:
+        get_stores = db.session.query(Stores).order_by(getattr(Stores, sort).desc()).limit(items_per_page).offset((page - 1) * items_per_page).all()
+        asc = True
+
     last_page = db.session.query(Stores).count() / items_per_page
     for store in get_stores:
         items.append(create_item(store))

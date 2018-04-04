@@ -5,7 +5,6 @@ from idb import db
 from string import capwords
 
 foods = Blueprint('foods', __name__)
-
 asc = True
 
 
