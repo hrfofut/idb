@@ -5,15 +5,24 @@ from idb import db
 
 foods = Blueprint('foods', __name__)
 
+asc = True
+
 
 @foods.route("/", defaults={'page': 1, 'sort': 'name'})
 @foods.route("/page/<int:page>")
 @foods.route("/sort/<string:sort>", defaults={'page': 1})
 @foods.route("/sort/<string:sort>/<int:page>")
 def overview(page, sort):
+    global asc
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    get_foods = db.session.query(Food).order_by(getattr(Food, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
+    if(asc):
+        get_foods = db.session.query(Food).order_by(getattr(Food, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
+        asc = False
+    else:
+        get_foods = db.session.query(Food).order_by(getattr(Food, sort).desc()).limit(items_per_page).offset((page - 1) * items_per_page).all()
+        asc = True
+
     last_page = db.session.query(Food).count() / items_per_page
     for food in get_foods:
         items.append(create_item(food))
