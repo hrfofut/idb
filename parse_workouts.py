@@ -99,18 +99,18 @@ if __name__ == '__main__':
                 else:
                     link = ''
             if link == '':
-                print("no valid img found for ID: " + str(workout['id'])) + ", invalidating."
+                print("no valid img found for ID: " + str(workout['id']) + ", invalidating.")
                 workout['id'] = -1
         else:
             # print(json.dumps(search_response, indent=4, sort_keys=True))
-            print("img not found for ID: " + str(workout['id'])) + ", invalidating."
+            print(workout)
+            print("img not found for ID: " + str(workout['id']) + ", invalidating.")
             workout['id'] = -1
 
         if workout['id'] != -1:  # if valid we add to db
             # print(workout)
             # def __init__(self, id, name, img, link, category, equipment, description, muscle, met, cid):
             workout_row = Workouts(**workout)  # unpack the dict and init.
-            print('adding')
             # db.session.add(workout_row)
             # db.session.commit()#probably don't need to commit after every add.
 
