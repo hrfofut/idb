@@ -36,6 +36,10 @@ footer {
   background-size: cover;
 }
 
+.carousel-caption {
+  top: 45%;
+}
+
 .portfolio-item {
   margin-bottom: 30px;
 }
@@ -44,6 +48,18 @@ footer {
   width:42px;
   height:42px;
   border:0;
+}
+
+.search-bar input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 0px 0 0 #4dd0e1;
+}
+.search-bar input[type=text] {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  border: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1px;
 }
 
 #model-grid .card-img-top {
