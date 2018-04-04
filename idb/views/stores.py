@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
 from flask_sqlalchemy import SQLAlchemy
 from idb.models import Stores, Images
 # Later lets have a python thing that has all db calls
@@ -12,14 +12,25 @@ import base64
 stores = Blueprint('stores', __name__)
 
 
-@stores.route("/", defaults={'page': 1, 'sort': 'name'})
-@stores.route("/page/<int:page>")
-@stores.route("/sort/<string:sort>", defaults={'page': 1})
-@stores.route("/sort/<string:sort>/<int:page>")
-def overview(page, sort):
+@stores.route("/")
+def overview():
+    page = request.args.get('page', default=1, type=int)
+    sort = request.args.get('sort', default='name', type=str)
+    order = request.args.get('order', default='asc', type=str)
+
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    get_stores = db.session.query(Stores).order_by(getattr(Stores, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
+    query = db.session.query(Stores)
+    query = db.session.query(Stores)
+    if order == 'desc':
+        query = query.order_by(getattr(Stores, sort).desc())
+    else:
+        query = query.order_by(getattr(Stores, sort))
+    query = (query
+             .limit(items_per_page)
+             .offset((page - 1) * items_per_page))
+
+    get_stores = query.all()
     last_page = db.session.query(Stores).count() / items_per_page
     for store in get_stores:
         items.append(create_item(store))

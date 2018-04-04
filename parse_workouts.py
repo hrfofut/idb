@@ -3,7 +3,7 @@ import requests
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import exists
+from sqlalchemy.sql import exists, update, and_
 from idb.models import Workouts, Images
 # Next three lines create the app and then load config from the instance folder.
 
@@ -58,25 +58,8 @@ def parse_file(num):
     return results
 
 
-if __name__ == '__main__':
-    # cat_set = set()
-    # init the app
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_pyfile('default_config.py')
-    app.config.from_pyfile('application.py', silent=True)
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DB_URI']
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-    # init the database
-    db = SQLAlchemy(app)
+def add_entries(lidi, db):
     cid_match = {'miscellaneous': 0, 'dancing': 1, 'conditioning exercise': 2, 'home repair': 3, 'home activities': 4, 'walking': 5, 'fishing and hunting': 6, 'bicycling': 7, 'running': 8, 'lawn and garden': 9, 'winter activities': 10, 'music playing': 11, 'sports': 12, 'water activities': 13, 'occupation': 14}
-
-    # begin parsing
-    lidi = parse_file(1)
-    lidi += parse_file(2)
-    lidi += parse_file(3)
-
     # form search request
     CSE_URI = 'https://www.googleapis.com/customsearch/v1'
     params = {'q': 'INVALID', 'num': 3, 'start': 1, 'imgSize': 'medium', 'searchType': 'image', 'filetype': 'jpg', 'key': app.config['PLACE_KEY'], 'cx': app.config['CSE_ID']}
@@ -131,6 +114,46 @@ if __name__ == '__main__':
     if(additions > 0):
         print("Adding " + str(additions) + " rows to the database.")
         db.session.commit()  # Commit the changes.
+
+
+def add_pids(lidi, db):
+    print("Attempting to assign PID's")
+    parent_dict = dict()
+    for workout in lidi:  # Iterate over each workout inside.
+        does_exist = db.session.query(exists().where(Workouts.id == workout['id'])).scalar()  # make sure ID is in
+        if does_exist:
+            if workout['name'] in parent_dict:
+                continue
+            # print("setting parent: "+ str(workout['id']))
+            parent_dict[workout['name']] = workout['id']
+            db.session.query(Workouts).filter(and_(Workouts.name == workout['name'], Workouts.id != workout['id'])).update({Workouts.parent: workout['id']})
+    db.session.commit()
+
+
+if __name__ == '__main__':
+    # cat_set = set()
+    # init the app
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_pyfile('default_config.py')
+    app.config.from_pyfile('application.py', silent=True)
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DB_URI']
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    # init the database
+    db = SQLAlchemy(app)
+
+    # begin parsing
+    lidi = parse_file(1)
+    lidi += parse_file(2)
+    lidi += parse_file(3)
+
+    # Add parsed information to the DB
+    # add_entries(lidi, db)
+
+    # Set Parent IDs
+    add_pids(lidi, db)
+
     db.session.close()
 
     # For now, lets just hotlink. We have the image url in link, so we can change this later.
