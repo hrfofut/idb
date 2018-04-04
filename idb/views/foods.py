@@ -1,3 +1,4 @@
+from flask import current_app as app
 from flask import Blueprint, render_template, abort, jsonify
 from idb.models import Food
 from idb import db
@@ -5,28 +6,23 @@ from idb import db
 foods = Blueprint('foods', __name__)
 
 
-@foods.route("/")
-def overview():
-    # Really just show the first page, but don't use reroute() because
-    # we want to keep the pretty URL
-    return overview_page(1)
-
-
+@foods.route("/", defaults={'page': 1, 'sort': 'name'})
 @foods.route("/page/<int:page>")
-def overview_page(page):
-    items_per_page = 20
+@foods.route("/sort/<string:sort>", defaults={'page': 1})
+@foods.route("/sort/<string:sort>/<int:page>")
+def overview(page, sort):
+    items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    get_foods = db.session.query(Food).limit(items_per_page).offset((page - 1) * items_per_page).all()
+    get_foods = db.session.query(Food).order_by(getattr(Food, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
     last_page = db.session.query(Food).count() / items_per_page
     for val in get_foods:
-        image = 'https://spoonacular.com/cdn/ingredients_500x500/' + val.img
-        items.append([val.name.title(), image, val.calorie, val.fat, val.id])
+        items.append(create_item(val))
 
-    return render_template('foods/food.html', items=items, current_page=page, last_page=last_page)
+    return render_template('foods/food.html', items=items, sort=sort, current_page=page, last_page=last_page)
 
 
 @foods.route("/<int:id>")
-def food_detail(id):
+def detail(id):
     food = db.session.query(Food).get(id)
     if food is None:
         abort(404)
@@ -34,21 +30,15 @@ def food_detail(id):
     return render_template('foods/fooddetail.html', food=food)
 
 
-@foods.route("/sort/<string:sort>/<int:page>")
-def food_sort(sort, page):
-    items_per_page = 20
-    items = []
-    if(sort == 'name'):
-        get_foods = db.session.query(Food).order_by(Food.name).limit(items_per_page).offset((page - 1) * items_per_page).all()
-        last_page = db.session.query(Food).count() / items_per_page
-    elif(sort == 'calories'):
-        get_foods = db.session.query(Food).order_by(Food.calorie.desc()).limit(items_per_page).offset((page - 1) * items_per_page).all()
-        last_page = db.session.query(Food).count() / items_per_page
-    elif(sort == 'fat'):
-        get_foods = db.session.query(Food).order_by(Food.fat.desc()).limit(items_per_page).offset((page - 1) * items_per_page).all()
-        last_page = db.session.query(Food).count() / items_per_page
+def create_item(raw):
+    image = 'https://spoonacular.com/cdn/ingredients_500x500/' + raw.img
 
-    for val in get_foods:
-        image = 'https://spoonacular.com/cdn/ingredients_500x500/' + val.img
-        items.append([val.name.title(), image, val.calorie, val.fat, val.id])
-    return render_template('foods/food.html', items=items, current_page=page, last_page=last_page)
+    # get a dict of all attributes and remove ones we don't care about
+    item = vars(raw)
+    item['name'] = item['name'].title()
+    item['image'] = image
+    item.pop('_sa_instance_state', None)
+    item.pop('img', None)
+    item.pop('servings', None)
+
+    return item

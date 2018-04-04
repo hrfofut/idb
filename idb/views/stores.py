@@ -1,3 +1,4 @@
+from flask import current_app as app
 from flask import Blueprint, render_template, abort
 from flask_sqlalchemy import SQLAlchemy
 from idb.models import Stores, Images
@@ -19,7 +20,7 @@ def overview():
 
 @stores.route("/page/<int:page>")
 def overview_page(page):
-    items_per_page = 20
+    items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
     get_stores = db.session.query(Stores).limit(items_per_page).offset((page - 1) * items_per_page).all()
     last_page = db.session.query(Stores).count() / items_per_page
