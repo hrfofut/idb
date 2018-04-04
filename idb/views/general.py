@@ -26,25 +26,26 @@ def search():
     store_items = []
 
     for search in tokens:
-        get_foods = db.session.query(Food).filter(Food.name.match("%" + search + "%")).all()
+        print("search: {}".format(search))
+        get_foods = db.session.query(Food).filter(Food.name.like("%" + search + "%")).all()
         for val in get_foods:
             image = 'https://spoonacular.com/cdn/ingredients_500x500/' + val.img
             if ([val.name.title(), image, val.calorie, val.fat, val.id]) not in food_items:
                 food_items.append([val.name.title(), image, val.calorie, val.fat, val.id])
 
-        get_workouts = db.session.query(Workouts).filter(Workouts.name.match("%" + search + "%")).all()
+        get_workouts = db.session.query(Workouts).filter(Workouts.name.like("%" + search + "%")).all()
         for val in get_workouts:
             if val.name != "" and ([val.name, val.img, val.category, val.muscle, val.id]) not in workout_items:
                 workout_items.append([val.name, val.img, val.category, val.muscle, val.id])
 
-        get_gyms = db.session.query(Gyms).filter(Gyms.name.match("%" + search + "%")).all()
+        get_gyms = db.session.query(Gyms).filter(Gyms.name.like("%" + search + "%")).all()
         for gym in get_gyms:
             image = db.session.query(Images).get(gym.pic_id).pic
             img = unbinary(str(base64.b64encode(image)))
             if ([gym.name, img, gym.location, gym.ratings, gym.id]) not in gym_items:
                 gym_items.append([gym.name, img, gym.location, gym.ratings, gym.id])
 
-        get_stores = db.session.query(Stores).filter(Stores.name.match("%" + search + "%")).all()
+        get_stores = db.session.query(Stores).filter(Stores.name.like("%" + search + "%")).all()
         for store in get_stores:
             image = db.session.query(Images).get(store.pic_id).pic
             img = unbinary(str(base64.b64encode(image)))
