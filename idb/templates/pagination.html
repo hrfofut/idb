@@ -16,7 +16,7 @@
   </li>
 
   {% if current_page < last_page %}
-  <li class="page-item">
+                       <li class="page-item">
                          <a class="page-link" href="{{ url_for('.overview', sort=sort, page=(current_page + 1)) }}">{{ current_page + 1 }}</a>
                        </li>
   <li class="page-item">

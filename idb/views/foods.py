@@ -15,8 +15,8 @@ def overview(page, sort):
     items = []
     get_foods = db.session.query(Food).order_by(getattr(Food, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
     last_page = db.session.query(Food).count() / items_per_page
-    for val in get_foods:
-        items.append(create_item(val))
+    for food in get_foods:
+        items.append(create_item(food))
 
     return render_template('foods/food.html', items=items, sort=sort, current_page=page, last_page=last_page)
 
