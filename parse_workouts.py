@@ -83,13 +83,17 @@ if __name__ == '__main__':
     params['safe'] = 'high'  # Safe search is important.
     # the search params are all prepared except for query.
     additions = 0
+    existing = 0
+    search_fail = 0
+    print("Working")
     for workout in lidi:  # Iterate over each workout inside.
         params['q'] = workout['name'] + ' ' + workout['description']  # Make the search query be the name and description.
 
         does_exist = db.session.query(exists().where(Workouts.id == workout['id'])).scalar()  # check if the workout ID already exists in the DB
 
         if does_exist:
-            print(str(workout['id']) + " exists, skipping.")
+            existing += 1
+            # print(str(workout['id']) + " exists, skipping.")
             continue  # if it does exist, announce that, and skip parsing it.
 
         search_response = requests.get(url=CSE_URI, params=params).json()  # Makes the image request
@@ -109,11 +113,12 @@ if __name__ == '__main__':
                 else:
                     link = ''
             if link == '':  # There was no good image
-                print("no valid img found for ID: " + str(workout['id']) + ", skipping.")
+                # print("no valid img found for ID: " + str(workout['id']) + ", skipping.")
                 continue
         else:  # The search didnt find a single image, should only really happen if there was an error.
+            search_fail += 1
             # print(json.dumps(search_response, indent=4, sort_keys=True))
-            print("img not found for ID: " + str(workout['id']) + ", skipping.")
+            # print("img not found for ID: " + str(workout['id']) + ", skipping.")
             continue
 
         # If we get here we should have correctly found an image.
@@ -122,6 +127,7 @@ if __name__ == '__main__':
         db.session.add(workout_row)
         additions += 1
 
+    print("Adds: " + str(additions) + " Existed: " + str(existing) + " Failures:" + str(search_fail))
     if(additions > 0):
         print("Adding " + str(additions) + " rows to the database.")
         db.session.commit()  # Commit the changes.
