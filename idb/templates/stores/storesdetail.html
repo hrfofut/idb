@@ -7,7 +7,7 @@
 		</style>
 {% endblock %}
 {% block content %}
-<div class="container-fluid">
+<div id="places-detail" class="container mt-3">
 	<div class="text-center">
   		<img class="detail-img" src='{{pic}}'/>
 	</div>
@@ -20,11 +20,19 @@
         </tr>        
         <tr>
           <th scope="row">Price Level</th>
-          <td>{{store['price_level']}}</td>
+          {% if store['price_level'] > 0 %}
+          <td>{% for i in range(0, store['price_level']) %}${% endfor %}</td>
+          {% else %}
+          <td>N/A</td>
+          {% endif %}
         </tr>
         <tr>
           <th scope="row">Ratings</th>
           <td>{{store['ratings']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Phone Number</th>
+          <td>{{store['phone']}}</td>
         </tr>
       </tbody>
     </table>

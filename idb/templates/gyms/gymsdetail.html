@@ -7,7 +7,7 @@
 		</style>
 {% endblock %}
 {% block content %}
-<div class="container-fluid">
+<div id="places-detail" class="container mt-3">
 	<div class="text-center">
   		<img class="detail-img" src="{{pic}}">
 	</div>
@@ -20,11 +20,19 @@
         </tr>        
         <tr>
           <th scope="row">Pricing</th>
-          <td>{{gym['price']}}</td>
+          {% if gym['price_level'] > 0 %}
+          <td>{% for i in range(0, gym['price_level'] + 1) %}${% endfor %}</td>
+          {% else %}
+          <td>N/A</td>
+          {% endif %}
         </tr>
         <tr>
           <th scope="row">Ratings</th>
           <td>{{gym['ratings']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Phone Number</th>
+          <td>{{gym['phone']}}</td>
         </tr>
       </tbody>
     </table>

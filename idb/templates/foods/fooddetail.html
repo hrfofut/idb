@@ -7,15 +7,16 @@
     </style>
 {% endblock %}
 {% block content %}
-<div class="container-fluid">
+<div class="container mt-3">
   <div class="text-center">
       <img class="detail-img" src="https://spoonacular.com/cdn/ingredients_500x500/{{food['img']}}">
   </div>
 
-  <div id="food-detail" name="{{food['name']}}" servings="{{food['servings']}}" calorie="{{food['calorie']}}" sodium="{{food['sodium']}}" fat="{{food['fat']}}" protein="{{food['protein']}}"></div></div>
+  <div id="food-detail" name="{{food['name']}}" servings="{{food['servings']}}" calorie="{{food['calorie']}}" sodium="{{food['sodium']}}" fat="{{food['fat']}}" protein="{{food['protein']}}"></div>
 
   <p> <a href= "/stores">Grocery Stores</a> </p>
   <p> <a href= "/workouts">Workouts</a> </p>
+</div>
 
 <script type="text/babel" src="../../static/js/fooddetail.js"></script>
 {% endblock %}

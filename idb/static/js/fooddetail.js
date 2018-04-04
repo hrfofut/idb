@@ -16,19 +16,19 @@ class FoodDetail extends React.Component {
           <tbody>
             <tr>
               <th scope="row">Calories</th>
-              <td>{this.props.calorie}</td>
+              <td>{this.props.calorie} kCal</td>
             </tr>        
             <tr>
               <th scope="row">Sodium</th>
-              <td>{this.props.sodium}</td>
+              <td>{this.props.sodium} mg</td>
             </tr>
             <tr>
               <th scope="row">Fat</th>
-              <td>{this.props.fat}</td>
+              <td>{this.props.fat} g</td>
             </tr>
             <tr>
               <th scope="row">Protein</th>
-              <td>{this.props.protein}</td>
+              <td>{this.props.protein} g</td>
             </tr>
           </tbody>
         </table>
