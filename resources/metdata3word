@@ -1,0 +1,85 @@
+04001 3.5 fishing and hunting fishing, general
+04005 4.5 fishing and hunting fishing, crab fishing
+04007 4.0 fishing and hunting fishing, catching fish with hands
+04010 4.3 fishing and hunting fishing related, digging worms, with shovel
+04020 4.0 fishing and hunting fishing from river bank and walking
+04030 2.0 fishing and hunting fishing from boat or canoe, sitting
+04040 3.5 fishing and hunting fishing from river bank, standing (Taylor Code 660)
+04050 6.0 fishing and hunting fishing in stream, in waders (Taylor Code 670)
+04060 2.0 fishing and hunting fishing, ice, sitting
+04061 1.8 fishing and hunting fishing, jog or line, standing, general
+04062 3.5 fishing and hunting fishing, dip net, setting net and retrieving fish, general
+04063 3.8 fishing and hunting fishing, set net, setting net and retrieving fish, general
+04064 3.0 fishing and hunting fishing, fishing wheel, setting net and retrieving fish, general
+04065 2.3 fishing and hunting fishing with a spear, standing
+04070 2.5 fishing and hunting hunting, bow and arrow, or crossbow
+04080 6.0 fishing and hunting hunting, deer, elk, large game (Taylor Code 170)
+04081 11.3 fishing and hunting hunting large game, dragging carcass
+04083 4.0 fishing and hunting hunting large marine animals
+04085 2.5 fishing and hunting hunting large game, from a hunting stand, limited walking
+04086 2.0 fishing and hunting hunting large game from a car, plane, or boat
+04090 2.5 fishing and hunting hunting, duck, wading
+04095 3.0 fishing and hunting hunting, flying fox, squirrel
+04100 5.0 fishing and hunting hunting, general
+04110 6.0 fishing and hunting hunting, pheasants or grouse (Taylor Code 680)
+04115 3.3 fishing and hunting hunting, birds
+04120 5.0 fishing and hunting hunting, rabbit, squirrel, prairie chick, raccoon, small game (Taylor Code 690)
+04123 3.3 fishing and hunting hunting, pigs, wild
+04124 2.0 fishing and hunting trapping game, general
+04125 9.5 fishing and hunting hunting, hiking with hunting gear
+04130 2.5 fishing and hunting pistol shooting or trap shooting, standing
+04140 2.3 fishing and hunting rifle exercises, shooting, lying down
+04145 2.5 fishing and hunting rifle exercises, shooting, kneeling or standing
+08009 3.3 lawn and garden carrying, loading or stacking wood, loading/unloading or carrying lumber, light-to-moderate effort
+08010 5.5 lawn and garden carrying, loading or stacking wood, loading/unloading or carrying lumber
+08019 4.5 lawn and garden chopping wood, splitting logs, moderate effort
+08020 6.3 lawn and garden chopping wood, splitting logs, vigorous effort
+08025 3.5 lawn and garden clearing light brush, thinning garden, moderate effort
+08030 6.3 lawn and garden clearing brush/land, undergrowth, or ground, hauling branches, wheelbarrow chores, vigorous effort
+08040 5.0 lawn and garden digging sandbox, shoveling sand
+08045 3.5 lawn and garden digging, spading, filling garden, composting, light-to-moderate effort
+08050 5.0 lawn and garden digging, spading, filling garden, compositing, (Taylor Code 590)
+08052 7.8 lawn and garden digging, spading, filling garden, composting, vigorous effort
+08055 2.8 lawn and garden driving tractor
+08057 8.3 lawn and garden felling trees, large size
+08058 5.3 lawn and garden felling trees, small-medium size
+08060 5.8 lawn and garden gardening with heavy power tools, tilling a garden, chain saw
+08065 2.3 lawn and garden gardening, using containers, older adults > 60 years
+08070 4.0 lawn and garden irrigation channels, opening and closing ports
+08080 6.3 lawn and garden laying crushed rock
+08090 5.0 lawn and garden laying sod
+08095 5.5 lawn and garden mowing lawn, general
+08100 2.5 lawn and garden mowing lawn, riding mower (Taylor Code 550)
+08110 6.0 lawn and garden mowing lawn, walk, hand mower (Taylor Code 570)
+08120 5.0 lawn and garden mowing lawn, walk, power mower, moderate or vigorous effort
+08125 4.5 lawn and garden mowing lawn, power mower, light or moderate effort (Taylor Code 590)
+08130 2.5 lawn and garden operating snow blower, walking
+08135 2.0 lawn and garden planting, potting, transplanting seedlings or plants, light effort
+08140 4.3 lawn and garden planting seedlings, shrub, stooping, moderate effort
+08145 4.3 lawn and garden planting crops or garden, stooping, moderate effort
+08150 4.5 lawn and garden planting trees
+08160 3.8 lawn and garden raking lawn or leaves, moderate effort
+08165 4.0 lawn and garden raking lawn (Taylor Code 600)
+08170 4.0 lawn and garden raking roof with snow rake
+08180 3.0 lawn and garden riding snow blower
+08190 4.0 lawn and garden sacking grass, leaves
+08192 5.5 lawn and garden shoveling dirt or mud
+08195 5.3 lawn and garden shoveling snow, by hand, moderate effort
+08200 6.0 lawn and garden shovelling snow, by hand (Taylor Code 610)
+08202 7.5 lawn and garden shoveling snow, by hand, vigorous effort
+08210 4.0 lawn and garden trimming shrubs or trees, manual cutter
+08215 3.5 lawn and garden trimming shrubs or trees, power cutter, using leaf blower, edge, moderate effort
+08220 3.0 lawn and garden walking, applying fertilizer or seeding a lawn, push applicator
+08230 1.5 lawn and garden watering lawn or garden, standing or walking
+08239 3.5 lawn and garden weeding, cultivating garden, light-to-moderate effort
+08240 4.5 lawn and garden weeding, cultivating garden (Taylor Code 580)
+08241 5.0 lawn and garden weeding, cultivating garden, using a hoe, moderate-to-vigorous effort
+08245 3.8 lawn and garden gardening, general, moderate effort
+08246 3.5 lawn and garden picking fruit off trees, picking fruits/vegetables, moderate effort
+08248 4.5 lawn and garden picking fruit off trees, gleaning fruits, picking fruits/vegetables, climbing ladder to pick fruit, vigorous effort
+08250 3.3 lawn and garden implied walking/standing - picking up yard, light, picking flowers or vegetables
+08251 3.0 lawn and garden walking, gathering gardening tools
+08255 5.5 lawn and garden wheelbarrow, pushing garden cart or wheelbarrow
+08260 3.0 lawn and garden yard work, general, light effort
+08261 4.0 lawn and garden yard work, general, moderate effort
+08262 6.0 lawn and garden yard work, general, vigorous effort
