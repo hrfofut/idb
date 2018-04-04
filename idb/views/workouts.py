@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, abort
 from flask_sqlalchemy import SQLAlchemy
 from idb.models import Workouts
 from idb import db
+from string import capwords
 import requests
 import json
 
@@ -37,7 +38,7 @@ def detail(id):
 def create_item(raw):
     # get a dict of all attributes and remove ones we don't care about
     item = vars(raw)
-    item['name'] = item['name'].title()
+    item['name'] = capwords(item['name'])
     item['image'] = item['img']
     item.pop('_sa_instance_state', None)
     item.pop('img', None)

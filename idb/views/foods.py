@@ -2,6 +2,7 @@ from flask import current_app as app
 from flask import Blueprint, render_template, abort, jsonify
 from idb.models import Food
 from idb import db
+from string import capwords
 
 foods = Blueprint('foods', __name__)
 
@@ -35,7 +36,7 @@ def create_item(raw):
 
     # get a dict of all attributes and remove ones we don't care about
     item = vars(raw)
-    item['name'] = item['name'].title()
+    item['name'] = capwords(item['name'])
     item['image'] = image
     item.pop('_sa_instance_state', None)
     item.pop('img', None)

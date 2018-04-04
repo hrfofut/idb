@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from idb.models import Gyms, Images
 # Later lets have a python thing that has all db calls
 from idb import db
+from string import capwords
 
 from backend.tools import unbinary
 import base64
@@ -41,7 +42,7 @@ def create_item(raw):
 
     # get a dict of all attributes and remove ones we don't care about
     item = vars(raw)
-    item['name'] = item['name'].title()
+    item['name'] = capwords(item['name'])
     item['image'] = img
     item.pop('_sa_instance_state', None)
     item.pop('phone', None)
