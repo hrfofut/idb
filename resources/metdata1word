@@ -1,0 +1,387 @@
+01003 14.0 bicycling bicycling, mountain, uphill, vigorous
+01004 16.0 bicycling bicycling, mountain, competitive, racing
+01008 8.5 bicycling bicycling, BMX
+01009 8.5 bicycling bicycling, mountain, general
+01010 4.0 bicycling bicycling, <10 mph, leisure, to work or for pleasure (Taylor Code 115)
+01011 6.8 bicycling bicycling, to/from work, self selected pace
+01013 5.8 bicycling bicycling, on dirt or farm road, moderate pace
+01015 7.5 bicycling bicycling, general
+01018 3.5 bicycling bicycling, leisure, 5.5 mph
+01019 5.8 bicycling bicycling, leisure, 9.4 mph
+01020 6.8 bicycling bicycling, 10-11.9 mph, leisure, slow, light effort
+01030 8.0 bicycling bicycling, 12-13.9 mph, leisure, moderate effort
+01040 10.0 bicycling bicycling, 14-15.9 mph, racing or leisure, fast, vigorous effort
+01050 12.0 bicycling bicycling, 16-19 mph, racing/not drafting or > 19 mph drafting, very fast, racing general
+01060 15.8 bicycling bicycling, > 20 mph, racing, not drafting
+01065 8.5 bicycling bicycling, 12 mph, seated, hands on brake hoods or bar drops, 80 rpm
+01066 9.0 bicycling bicycling, 12 mph, standing, hands on brake hoods, 60 rpm
+01070 5.0 bicycling unicycling
+03010 5.0 dancing ballet, modern, or jazz, general, rehearsal or class
+03012 6.8 dancing ballet, modern, or jazz, performance, vigorous effort
+03014 4.8 dancing tap
+03015 7.3 dancing aerobic, general
+03016 7.5 dancing aerobic, step, with 6 - 8 inch step
+03017 9.5 dancing aerobic, step, with 10 - 12 inch step
+03018 5.5 dancing aerobic, step, with 4-inch step
+03019 8.5 dancing bench step class, general
+03020 5.0 dancing aerobic, low impact
+03021 7.3 dancing aerobic, high impact
+03022 10.0 dancing aerobic dance wearing 10-15 lb weights
+03025 4.5 dancing ethnic or cultural dancing (e.g., Greek, Middle Eastern, hula, salsa, merengue, bamba y plena, flamenco, belly, and swing)
+03030 5.5 dancing ballroom, fast (Taylor Code 125)
+03031 7.8 dancing general dancing (e.g., disco, folk, Irish step dancing, line dancing, polka, contra, country)
+03038 11.3 dancing ballroom dancing, competitive, general
+03040 3.0 dancing ballroom, slow (e.g., waltz, foxtrot, slow dancing, samba, tango, 19th century dance, mambo, cha cha)
+03050 5.5 dancing Anishinaabe Jingle Dancing
+03060 3.5 dancing Caribbean dance (Abakua, Beguine, Bellair, Bongo, Brukin's, Caribbean Quadrills, Dinki Mini, Gere, Gumbay, Ibo, Jonkonnu, Kumina, Oreisha, Jambu)
+09000 1.5 miscellaneous board game playing, sitting
+09005 2.5 miscellaneous casino gambling, standing
+09010 1.5 miscellaneous card playing, sitting
+09013 1.5 miscellaneous chess game, sitting
+09015 1.5 miscellaneous copying documents, standing
+09020 1.8 miscellaneous drawing, writing, painting, standing
+09025 1.0 miscellaneous laughing, sitting
+09030 1.3 miscellaneous sitting, reading, book, newspaper, etc.
+09040 1.3 miscellaneous sitting, writing, desk work, typing
+09045 1.0 miscellaneous sitting, playing traditional video game, computer game
+09050 1.8 miscellaneous standing, talking in person, on the phone, computer, or text messaging, light effort
+09055 1.5 miscellaneous sitting, talking in person, on the phone, computer, or text messaging, light effort
+09060 1.3 miscellaneous sitting, studying, general, including reading and/or writing, light effort
+09065 1.8 miscellaneous sitting, in class, general, including note-taking or class discussion
+09070 1.8 miscellaneous standing, reading
+09071 2.5 miscellaneous standing, miscellaneous
+09075 1.8 miscellaneous sitting, arts and crafts, carving wood, weaving, spinning wool, light effort
+09080 3.0 miscellaneous sitting, arts and crafts, carving wood, weaving, spinning wool, moderate effort
+09085 2.5 miscellaneous standing, arts and crafts, sand painting, carving, weaving, light effort
+09090 3.3 miscellaneous standing, arts and crafts, sand painting, carving, weaving, moderate effort
+09095 3.5 miscellaneous standing, arts and crafts, sand painting, carving, weaving, vigorous effort
+09100 1.8 miscellaneous retreat/family reunion activities involving sitting, relaxing, talking, eating
+09101 3.0 miscellaneous retreat/family reunion activities involving playing games with children
+09105 2.0 miscellaneous touring/traveling/vacation involving riding in a vehicle
+09106 3.5 miscellaneous touring/traveling/vacation involving walking
+09110 2.5 miscellaneous camping involving standing, walking, sitting, light-to-moderate effort
+09115 1.5 miscellaneous sitting at a sporting event, spectator
+11003 2.3 occupation active workstation, treadmill desk, walking
+11006 3.0 occupation airline flight attendant
+11010 4.0 occupation bakery, general, moderate effort
+11015 2.0 occupation bakery, light effort
+11020 2.3 occupation bookbinding
+11030 6.0 occupation building road, driving heavy machinery
+11035 2.0 occupation building road, directing traffic, standing
+11038 2.5 occupation carpentry, general, light effort
+11040 4.3 occupation carpentry, general, moderate effort
+11042 7.0 occupation carpentry, general, heavy or vigorous effort
+11050 8.0 occupation carrying heavy loads (e.g., bricks, tools)
+11060 8.0 occupation carrying moderate loads up stairs, moving boxes 25-49 lbs
+11070 4.0 occupation chambermaid, hotel housekeeper, making bed, cleaning bathroom, pushing cart
+11080 5.3 occupation coal mining, drilling coal, rock
+11090 5.0 occupation coal mining, erecting supports
+11100 5.5 occupation coal mining, general
+11110 6.3 occupation coal mining, shoveling coal
+11115 2.5 occupation cook, chef
+11120 4.0 occupation construction, outside, remodeling, new structures (e.g., roof repair, miscellaneous)
+11125 2.3 occupation custodial work, light effort (e.g., cleaning sink and toilet, dusting, vacuuming, light cleaning)
+11126 3.8 occupation custodial work, moderate effort (e.g., electric buffer, feathering arena floors, mopping, taking out trash, vacuuming)
+11128 2.0 occupation driving delivery truck, taxi, shuttle bus, school bus
+11130 3.3 occupation electrical work (e.g., hook up wire, tapping-splicing)
+11135 1.8 occupation engineer (e.g., mechanical or electrical)
+11145 7.8 occupation farming, vigorous effort (e.g., baling hay, cleaning barn)
+11146 4.8 occupation farming, moderate effort (e.g., feeding animals, chasing cattle by walking and/or horseback, spreading manure, harvesting crops)
+11147 2.0 occupation farming, light effort (e.g., cleaning animal sheds, preparing animal feed)
+11170 2.8 occupation farming, driving tasks (e.g., driving tractor or harvester)
+11180 3.5 occupation farming, feeding small animals
+11190 4.3 occupation farming, feeding cattle, horses
+11191 4.3 occupation farming, hauling water for animals, general hauling water,farming, general hauling water
+11192 4.5 occupation farming, taking care of animals (e.g., grooming, brushing, shearing sheep, assisting with birthing, medical care, branding), general
+11195 3.8 occupation farming, rice, planting, grain milling activities
+11210 3.5 occupation farming, milking by hand, cleaning pails, moderate effort
+11220 1.3 occupation farming, milking by machine, light effort
+11240 8.0 occupation fire fighter, general
+11244 6.8 occupation fire fighter, rescue victim, automobile accident, using pike pole
+11245 8.0 occupation fire fighter, raising and climbing ladder with full gear, simulated fire supression
+11246 9.0 occupation fire fighter, hauling hoses on ground, carrying/hoisting equipment, breaking down walls etc., wearing full gear
+11247 3.5 occupation fishing, commercial, light effort
+11248 5.0 occupation fishing, commercial, moderate effort
+11249 7.0 occupation fishing, commercial, vigorous effort
+11250 17.5 occupation forestry, ax chopping, very fast, 1.25 kg axe, 51 blows/min, extremely vigorous effort
+11260 5.0 occupation forestry, ax chopping, slow, 1.25 kg axe, 19 blows/min, moderate effort
+11262 8.0 occupation forestry, ax chopping, fast, 1.25 kg axe, 35 blows/min, vigorous effort
+11264 4.5 occupation forestry, moderate effort (e.g., sawing wood with power saw, weeding, hoeing)
+11266 8.0 occupation forestry, vigorous effort (e.g., barking, felling, or trimming trees, carrying or stacking logs, planting seeds, sawing lumber by hand)
+11370 4.5 occupation furriery
+11375 4.0 occupation garbage collector, walking, dumping bins into truck
+11378 1.8 occupation hairstylist (e.g., plaiting hair, manicure, make-up artist)
+11380 7.3 occupation horse grooming, including feeding, cleaning stalls, bathing, brushing, clipping, longeing and exercising horses
+11381 4.3 occupation horse, feeding, watering, cleaning stalls, implied walking and lifting loads
+11390 7.3 occupation horse racing, galloping
+11400 5.8 occupation horse racing, trotting
+11410 3.8 occupation horse racing, walking
+11413 3.0 occupation kitchen maid
+11415 4.0 occupation lawn keeper, yard work, general
+11418 3.3 occupation laundry worker
+11420 3.0 occupation locksmith
+11430 3.0 occupation machine tooling (e.g., machining, working sheet metal, machine fitter, operating lathe, welding) light-to-moderate effort
+11450 5.0 occupation Machine tooling, operating punch press, moderate effort
+11472 1.8 occupation manager, property
+11475 2.8 occupation manual or unskilled labor, general, light effort
+11476 4.5 occupation manual or unskilled labor, general, moderate effort
+11477 6.5 occupation manual or unskilled labor, general, vigorous effort
+11480 4.3 occupation masonry, concrete, moderate effort
+11482 2.5 occupation masonry, concrete, light effort
+11485 4.0 occupation massage therapist, standing
+11490 7.5 occupation moving, carrying or pushing heavy objects, 75 lbs or more, only active time (e.g., desks, moving van work)
+11495 12.0 occupation skindiving or SCUBA diving as a frogman, Navy Seal
+11500 2.5 occupation operating heavy duty equipment, automated, not driving
+11510 4.5 occupation orange grove work, picking fruit
+11514 3.3 occupation painting,house, furniture, moderate effort
+11516 3.0 occupation plumbing activities
+11520 2.0 occupation printing, paper industry worker, standing
+11525 2.5 occupation police, directing traffic, standing
+11526 2.5 occupation police, driving a squad car, sitting
+11527 1.3 occupation police, riding in a squad car, sitting
+11528 4.0 occupation police, making an arrest, standing
+11529 2.3 occupation postal carrier, walking to deliver mail
+11530 2.0 occupation shoe repair, general
+11540 7.8 occupation shoveling, digging ditches
+11550 8.8 occupation shoveling, more than 16 lbs/minute, deep digging, vigorous effort
+11560 5.0 occupation shoveling, less than 10 lbs/minute, moderate effort
+11570 6.5 occupation shoveling, 10 to 15 lbs/minute, vigorous effort
+11580 1.5 occupation sitting tasks, light effort (e.g., office work, chemistry lab work, computer work, light assembly repair, watch repair, reading, desk work)
+11585 1.5 occupation sitting meetings, light effort, general, and/or with talking involved (e.g., eating at a business meeting)
+11590 2.5 occupation sitting tasks, moderate effort (e.g., pushing heavy levers, riding mower/forklift, crane operation)
+11593 2.8 occupation sitting, teaching stretching or yoga, or light effort exercise class
+11600 3.0 occupation standing tasks, light effort (e.g., bartending, store clerk, assembling, filing, duplicating, librarian, putting up a Christmas tree, standing and talking at work,
+11610 3.0 occupation standing, light/moderate effort (e.g., assemble/repair heavy parts, welding,stocking parts,auto repair,standing, packing boxes, nursing patient care)
+11615 4.5 occupation standing, moderate effort, lifting items continuously, 10 – 20 lbs, with limited walking or resting
+11620 3.5 occupation standing, moderate effort, intermittent lifting 50 lbs, hitch/twisting ropes
+11630 4.5 occupation standing, moderate/heavy tasks (e.g., lifting more than 50 lbs, masonry, painting, paper hanging)
+11708 5.3 occupation steel mill, moderate effort (e.g., fettling, forging, tipping molds)
+11710 8.3 occupation steel mill, vigorous effort (e.g., hand rolling, merchant mill rolling, removing slag, tending furnace)
+11720 2.3 occupation tailoring, cutting fabric
+11730 2.5 occupation tailoring, general
+11740 1.8 occupation tailoring, hand sewing
+11750 2.5 occupation tailoring, machine sewing
+11760 3.5 occupation tailoring, pressing
+11763 2.0 occupation tailoring, weaving, light effort (e.g., finishing operations, washing, dyeing, inspecting cloth, counting yards, paperwork)
+11765 4.0 occupation tailoring, weaving, moderate effort (e.g., spinning and weaving operations, delivering boxes of yam to spinners, loading of warp bean, pinwinding,conewinding, warping, cloth cutting)
+11766 6.5 occupation truck driving, loading and unloading truck, tying down load, standing, walking and carrying heavy loads
+11767 2.0 occupation Truch, driving delivery truck, taxi, shuttlebus, school bus
+11770 1.3 occupation typing, electric, manual or computer
+11780 6.3 occupation using heavy power tools such as pneumatic tools (e.g., jackhammers, drills)
+11790 8.0 occupation using heavy tools (not power) such as shovel, pick, tunnel bar, spade
+11791 2.0 occupation walking on job, less than 2.0 mph, very slow speed, in office or lab area
+11792 3.5 occupation walking on job, 3.0 mph, in office, moderate speed, not carrying anything
+11793 4.3 occupation walking on job, 3.5 mph, in office, brisk speed, not carrying anything
+11795 3.5 occupation walking on job, 2.5 mph, slow speed and carrying light objects less than 25 lbs
+11796 3.0 occupation walking, gathering things at work, ready to leave
+11797 3.8 occupation walking, 2.5 mph, slow speed, carrying heavy objects more than 25 lbs
+11800 4.5 occupation walking, 3.0 mph, moderately and carrying light objects less than 25 lbs
+11805 3.5 occupation walking, pushing a wheelchair
+11810 4.8 occupation walking, 3.5 mph, briskly and carrying objects less than 25 lbs
+11820 5.0 occupation walking or walk downstairs or standing, carrying objects about 25 to 49 lbs
+11830 6.5 occupation walking or walk downstairs or standing, carrying objects about 50 to 74 lbs
+11840 7.5 occupation walking or walk downstairs or standing, carrying objects about 75 to 99 lbs
+11850 8.5 occupation walking or walk downstairs or standing, carrying objects about 100 lbs or more
+11870 3.0 occupation working in scene shop, theater actor, backstage employee
+12010 6.0 running jog/walk combination (jogging component of less than 10 minutes) (Taylor Code 180)
+12020 7.0 running jogging, general
+12025 8.0 running jogging, in place
+12027 4.5 running jogging, on a mini-tramp
+12029 6.0 running Running, 4 mph (13 min/mile)
+12030 8.3 running running, 5 mph (12 min/mile)
+12040 9.0 running running, 5.2 mph (11.5 min/mile)
+12050 9.8 running running, 6 mph (10 min/mile)
+12060 10.5 running running, 6.7 mph (9 min/mile)
+12070 11.0 running running, 7 mph (8.5 min/mile)
+12080 11.5 running running, 7.5 mph (8 min/mile)
+12090 11.8 running running, 8 mph (7.5 min/mile)
+12100 12.3 running running, 8.6 mph (7 min/mile)
+12110 12.8 running running, 9 mph (6.5 min/mile)
+12120 14.5 running running, 10 mph (6 min/mile)
+12130 16.0 running running, 11 mph (5.5 min/mile)
+12132 19.0 running running, 12 mph (5 min/mile)
+12134 19.8 running running, 13 mph (4.6 min/mile)
+12135 23.0 running running, 14 mph (4.3 min/mile)
+12140 9.0 running running, cross country
+12150 8.0 running running, (Taylor code 200)
+12170 15.0 running running, stairs, up
+12180 10.0 running running, on a track, team practice
+12190 8.0 running running, training, pushing a wheelchair or baby carrier
+12200 13.3 running running, marathon
+15000 5.5 sports Alaska Native Games, Eskimo Olympics, general
+15010 4.3 sports archery, non-hunting
+15020 7.0 sports badminton, competitive (Taylor Code 450)
+15030 5.5 sports badminton, social singles and doubles, general
+15040 8.0 sports basketball, game (Taylor Code 490)
+15050 6.0 sports basketball, non-game, general (Taylor Code 480)
+15055 6.5 sports basketball, general
+15060 7.0 sports basketball, officiating (Taylor Code 500)
+15070 4.5 sports basketball, shooting baskets
+15072 9.3 sports basketball, drills, practice
+15075 7.8 sports basketball, wheelchair
+15080 2.5 sports billiards
+15090 3.0 sports bowling (Taylor Code 390)
+15092 3.8 sports bowling, indoor, bowling alley
+15100 12.8 sports boxing, in ring, general
+15110 5.5 sports boxing, punching bag
+15120 7.8 sports boxing, sparring
+15130 7.0 sports broomball
+15135 5.8 sports children’s games, adults playing (e.g., hopscotch, 4-square, dodgeball, playground apparatus, t-ball, tetherball, marbles, arcade games), moderate effort
+15138 6.0 sports cheerleading, gymnastic moves, competitive
+15140 4.0 sports coaching, football, soccer, basketball, baseball, swimming, etc.
+15142 8.0 sports coaching, actively playing sport with players
+15150 4.8 sports cricket, batting, bowling, fielding
+15160 3.3 sports croquet
+15170 4.0 sports curling
+15180 2.5 sports darts, wall or lawn
+15190 6.0 sports drag racing, pushing or driving a car
+15192 8.5 sports auto racing, open wheel
+15200 6.0 sports fencing
+15210 8.0 sports football, competitive
+15230 8.0 sports football, touch, flag, general (Taylor Code 510)
+15232 4.0 sports football, touch, flag, light effort
+15235 2.5 sports football or baseball, playing catch
+15240 3.0 sports frisbee playing, general
+15250 8.0 sports frisbee, ultimate
+15255 4.8 sports golf, general
+15265 4.3 sports golf, walking, carrying clubs
+15270 3.0 sports golf, miniature, driving range
+15285 5.3 sports golf, walking, pulling clubs
+15290 3.5 sports golf, using power cart (Taylor Code 070)
+15300 3.8 sports gymnastics, general
+15310 4.0 sports hacky sack
+15320 12.0 sports handball, general (Taylor Code 520)
+15330 8.0 sports handball, team
+15335 4.0 sports high ropes course, multiple elements
+15340 3.5 sports hang gliding
+15350 7.8 sports hockey, field
+15360 8.0 sports hockey, ice, general
+15362 10.0 sports hockey, ice, competitive
+15370 5.5 sports horseback riding, general
+15375 4.3 sports horse chores, feeding, watering, cleaning stalls, implied walking and lifting loads
+15380 4.5 sports saddling, cleaning, grooming, harnessing and unharnessing horse
+15390 5.8 sports horseback riding, trotting
+15395 7.3 sports horseback riding, canter or gallop
+15400 3.8 sports horseback riding,walking
+15402 9.0 sports horseback riding, jumping
+15408 1.8 sports horse cart, driving, standing or sitting
+15410 3.0 sports horseshoe pitching, quoits
+15420 12.0 sports jai alai
+15425 5.3 sports martial arts, different types, slower pace, novice performers, practice
+15430 10.3 sports martial arts, different types, moderate pace (e.g., judo, jujitsu, karate, kick boxing, tae kwan do, tai-bo, Muay Thai boxing)
+15440 4.0 sports juggling
+15450 7.0 sports kickball
+15460 8.0 sports lacrosse
+15465 3.3 sports lawn bowling, bocce ball, outdoor
+15470 4.0 sports moto-cross, off-road motor sports, all-terrain vehicle, general
+15480 9.0 sports orienteering
+15490 10.0 sports paddleball, competitive
+15500 6.0 sports paddleball, casual, general (Taylor Code 460)
+15510 8.0 sports polo, on horseback
+15520 10.0 sports racquetball, competitive
+15530 7.0 sports racquetball, general (Taylor Code 470)
+15533 8.0 sports rock or mountain climbing (Taylor Code 470) (Formerly code = 17120)
+15535 7.5 sports rock climbing, ascending rock, high difficulty
+15537 5.8 sports rock climbing, ascending or traversing rock, low-to-moderate difficulty
+15540 5.0 sports rock climbing, rappelling
+15542 4.0 sports rodeo sports, general, light effort
+15544 5.5 sports rodeo sports, general, moderate effort
+15546 7.0 sports rodeo sports, general, vigorous effort
+15550 12.3 sports rope jumping, fast pace, 120-160 skips/min
+15551 11.8 sports rope jumping, moderate pace, 100-120 skips/min, general, 2 foot skip, plain bounce
+15552 8.8 sports rope jumping, slow pace, < 100 skips/min, 2 foot skip, rhythm bounce
+15560 8.3 sports rugby, union, team, competitive
+15562 6.3 sports rugby, touch, non-competitive
+15570 3.0 sports shuffleboard
+15580 5.0 sports skateboarding, general, moderate effort
+15582 6.0 sports skateboarding, competitive, vigorous effort
+15590 7.0 sports skating, roller (Taylor Code 360)
+15591 7.5 sports rollerblading, in-line skating, 14.4 km/h (9.0 mph), recreational pace
+15592 9.8 sports rollerblading, in-line skating, 17.7 km/h (11.0 mph), moderate pace, exercise training
+15593 12.3 sports rollerblading, in-line skating, 21.0 to 21.7 km/h (13.0 to 13.6 mph), fast pace, exercise training
+15594 14.0 sports rollerblading, in-line skating, 24.0 km/h (15.0 mph), maximal effort
+15600 3.5 sports skydiving, base jumping, bungee jumping
+15605 10.0 sports soccer, competitive
+15610 7.0 sports soccer, casual, general (Taylor Code 540)
+15620 5.0 sports softball or baseball, fast or slow pitch, general (Taylor Code 440)
+15625 4.0 sports softball, practice
+15630 4.0 sports softball, officiating
+15640 6.0 sports softball,pitching
+15645 3.3 sports sports spectator, very excited, emotional, physically moving
+15650 12.0 sports squash (Taylor Code 530)
+15652 7.3 sports squash, general
+15660 4.0 sports table tennis, ping pong (Taylor Code 410)
+15670 3.0 sports tai chi, qi gong, general
+15672 1.5 sports tai chi, qi gong, sitting, light effort
+15675 7.3 sports tennis, general
+15680 6.0 sports tennis, doubles (Taylor Code 430)
+15685 4.5 sports tennis, doubles
+15690 8.0 sports tennis, singles (Taylor Code 420)
+15695 5.0 sports tennis, hitting balls, non-game play, moderate effort
+15700 3.5 sports trampoline, recreational
+15702 4.5 sports trampoline, competitive
+15710 4.0 sports volleyball (Taylor Code 400)
+15711 6.0 sports volleyball, competitive, in gymnasium
+15720 3.0 sports volleyball, non-competitive, 6 - 9 member team, general
+15725 8.0 sports volleyball, beach, in sand
+15730 6.0 sports wrestling (one match = 5 minutes)
+15731 7.0 sports wallyball, general
+15732 4.0 sports track and field (e.g., shot, discus, hammer throw)
+15733 6.0 sports track and field (e.g., high jump, long jump, triple jump, javelin, pole vault)
+15734 10.0 sports track and field (e.g., steeplechase, hurdles)
+17010 7.0 walking backpacking (Taylor Code 050)
+17012 7.8 walking backpacking, hiking or organized walking with a daypack
+17020 5.0 walking carrying 15 pound load (e.g. suitcase), level ground or downstairs
+17021 2.3 walking carrying 15 lb child, slow walking
+17025 8.3 walking carrying load upstairs, general
+17026 5.0 walking carrying 1 to 15 lb load, upstairs
+17027 6.0 walking carrying 16 to 24 lb load, upstairs
+17028 8.0 walking carrying 25 to 49 lb load, upstairs
+17029 10.0 walking carrying 50 to 74 lb load, upstairs
+17030 12.0 walking carrying > 74 lb load, upstairs
+17031 3.5 walking loading /unloading a car, implied walking
+17033 6.3 walking climbing hills, no load
+17035 6.5 walking climbing hills with 0 to 9 lb load
+17040 7.3 walking climbing hills with 10 to 20 lb load
+17050 8.3 walking climbing hills with 21 to 42 lb load
+17060 9.0 walking climbing hills with 42+ lb load
+17070 3.5 walking descending stairs
+17080 6.0 walking hiking, cross country (Taylor Code 040)
+17082 5.3 walking hiking or walking at a normal pace through fields and hillsides
+17085 2.5 walking bird watching, slow walk
+17088 4.5 walking marching, moderate speed, military, no pack
+17090 8.0 walking marching rapidly, military, no pack
+17100 4.0 walking pushing or pulling stroller with child or walking with children, 2.5 to 3.1 mph
+17105 3.8 walking pushing a wheelchair, non-occupational
+17110 6.5 walking race walking
+17130 8.0 walking stair climbing, using or climbing up ladder (Taylor Code 030)
+17133 4.0 walking stair climbing, slow pace
+17134 8.8 walking stair climbing, fast pace
+17140 5.0 walking using crutches
+17150 2.0 walking walking, household
+17151 2.0 walking walking, less than 2.0 mph, level, strolling, very slow
+17152 2.8 walking walking, 2.0 mph, level, slow pace, firm surface
+17160 3.5 walking walking for pleasure (Taylor Code 010)
+17161 2.5 walking walking from house to car or bus, from car or bus to go places, from car or bus to and from the worksite
+17162 2.5 walking walking to neighbor’s house or family’s house for social reasons
+17165 3.0 walking walking the dog
+17170 3.0 walking walking, 2.5 mph, level, firm surface
+17180 3.3 walking walking, 2.5 mph, downhill
+17190 3.5 walking walking, 2.8 to 3.2 mph, level, moderate pace, firm surface
+17200 4.3 walking walking, 3.5 mph, level, brisk, firm surface, walking for exercise
+17210 5.3 walking walking, 2.9 to 3.5 mph, uphill, 1 to 5% grade
+17211 8.0 walking walking, 2.9 to 3.5 mph, uphill, 6% to 15% grade
+17220 5.0 walking walking, 4.0 mph, level, firm surface, very brisk pace
+17230 7.0 walking walking, 4.5 mph, level, firm surface, very, very brisk
+17231 8.3 walking walking, 5.0 mph, level, firm surface
+17235 9.8 walking walking, 5.0 mph, uphill, 3% grade
+17250 3.5 walking walking, for pleasure, work break
+17260 4.8 walking walking, grass track
+17262 4.5 walking walking, normal pace, plowed field or sand
+17270 4.0 walking walking, to work or class (Taylor Code 015)
+17280 2.5 walking walking, to and from an outhouse
+17302 4.8 walking walking, for exercise, 3.5 to 4 mph, with ski poles, Nordic walking, level, moderate pace
+17305 9.5 walking walking, for exercise, 5.0 mph, with ski poles, Nordic walking, level, fast pace
+17310 6.8 walking walking, for exercise, with ski poles, Nordic walking, uphill
+17320 6.0 walking walking, backwards, 3.5 mph, level
+17325 8.0 walking walking, backwards, 3.5 mph, uphill, 5% grade
