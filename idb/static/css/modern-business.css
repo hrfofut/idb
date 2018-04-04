@@ -172,15 +172,13 @@ footer {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #EDEDED;
-}
+    background-color: #EDEDED; }
 
 .loader {
     max-width: 40vw;
     width: 100%;
     height: auto;
-    stroke-linecap: round;
-}
+    stroke-linecap: round; }
 
 circle {
     fill: none;
@@ -190,37 +188,28 @@ circle {
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     transform-origin: 400px 400px;
-    will-change: transform;
-
-    &:nth-of-type(1) {
-        stroke-dasharray: 550;
-    }
-    
-    &:nth-of-type(2) {
-        stroke-dasharray: 500;
-    }
-
-    &:nth-of-type(3) {
-        stroke-dasharray: 450;
-    }
-
-    &:nth-of-type(4) {
-        stroke-dasharray: 300;
-    }
-
-    @for $i from 1 through 4 {
-        &:nth-of-type(#{$i}) {
-            animation-delay: #{$i * 0.15}s;
-        }
-    }
-}
+    will-change: transform; }
+circle:nth-of-type(1) {
+    stroke-dasharray: 550; }
+circle:nth-of-type(2) {
+    stroke-dasharray: 500; }
+circle:nth-of-type(3) {
+    stroke-dasharray: 450; }
+circle:nth-of-type(4) {
+    stroke-dasharray: 300; }
+circle:nth-of-type(1) {
+    animation-delay: 0.15s; }
+circle:nth-of-type(2) {
+    animation-delay: 0.3s; }
+circle:nth-of-type(3) {
+    animation-delay: 0.45s; }
+circle:nth-of-type(4) {
+    animation-delay: 0.6s; }
 
 .center {
-    height: 100vh;
-}
+    height: 100vh; }
 
 @keyframes preloader {
-  50% {
-    transform: rotate(360deg);
-  }
+    50% {
+        transform: rotate(360deg);   }
 }
