@@ -22,7 +22,7 @@ def overview(page, sort):
         if workout.name != "":
             items.append(create_item(workout))
 
-    return render_template('workouts/workouts.html', items=items, current_page=page, last_page=last_page)
+    return render_template('workouts/workouts.html', items=items, sort=sort, current_page=page, last_page=last_page)
 
 
 @workouts.route("/<int:id>")

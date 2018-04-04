@@ -23,7 +23,7 @@ def overview(page, sort):
     for store in get_stores:
         items.append(create_item(store))
 
-    return render_template('stores/stores.html', items=items, current_page=page, last_page=last_page)
+    return render_template('stores/stores.html', items=items, sort=sort, current_page=page, last_page=last_page)
 
 
 @stores.route("/<int:id>")
