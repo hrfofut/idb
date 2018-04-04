@@ -3,6 +3,7 @@ import requests
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import exists
 from idb.models import Workouts, Images
 # Next three lines create the app and then load config from the instance folder.
 
@@ -70,51 +71,63 @@ if __name__ == '__main__':
     # init the database
     db = SQLAlchemy(app)
     cid_match = {'miscellaneous': 0, 'dancing': 1, 'conditioning exercise': 2, 'home repair': 3, 'home activities': 4, 'walking': 5, 'fishing and hunting': 6, 'bicycling': 7, 'running': 8, 'lawn and garden': 9, 'winter activities': 10, 'music playing': 11, 'sports': 12, 'water activities': 13, 'occupation': 14}
+
     # begin parsing
     lidi = parse_file(1)
     lidi += parse_file(2)
     lidi += parse_file(3)
+
     # form search request
     CSE_URI = 'https://www.googleapis.com/customsearch/v1'
     params = {'q': 'INVALID', 'num': 3, 'start': 1, 'imgSize': 'medium', 'searchType': 'image', 'filetype': 'jpg', 'key': app.config['PLACE_KEY'], 'cx': app.config['CSE_ID']}
     params['safe'] = 'high'  # Safe search is important.
     # the search params are all prepared except for query.
-
+    additions = 0
     for workout in lidi:  # Iterate over each workout inside.
-        params['q'] = workout['name'] + ' ' + workout['description']
-        search_response = requests.get(url=CSE_URI, params=params).json()
+        params['q'] = workout['name'] + ' ' + workout['description']  # Make the search query be the name and description.
+
+        does_exist = db.session.query(exists().where(Workouts.id == workout['id'])).scalar()  # check if the workout ID already exists in the DB
+
+        if does_exist:
+            print(str(workout['id']) + " exists, skipping.")
+            continue  # if it does exist, announce that, and skip parsing it.
+
+        search_response = requests.get(url=CSE_URI, params=params).json()  # Makes the image request
+
         # print(json.dumps(search_response, indent=4, sort_keys=True)) #Neatly prints the json for viewing pleasure.
 
         # Check our results.
-        print(params['q'])
-        link = ''
         if 'items' in search_response:
+            link = ''
             for item in search_response['items']:
                 link = item['link']
-                print(link)
-                if len(link) < 255:
+                # print(link)
+                if len(link) < 255:  # Try to find an image link that fits in our db
                     workout['img'] = link
                     workout['cid'] = cid_match[workout['category']]
                     break
                 else:
                     link = ''
-            if link == '':
-                print("no valid img found for ID: " + str(workout['id']) + ", invalidating.")
-                workout['id'] = -1
-        else:
+            if link == '':  # There was no good image
+                print("no valid img found for ID: " + str(workout['id']) + ", skipping.")
+                continue
+        else:  # The search didnt find a single image, should only really happen if there was an error.
             # print(json.dumps(search_response, indent=4, sort_keys=True))
-            print(workout)
-            print("img not found for ID: " + str(workout['id']) + ", invalidating.")
-            workout['id'] = -1
+            print("img not found for ID: " + str(workout['id']) + ", skipping.")
+            continue
 
-        if workout['id'] != -1:  # if valid we add to db
-            # print(workout)
-            # def __init__(self, id, name, img, link, category, equipment, description, muscle, met, cid):
-            workout_row = Workouts(**workout)  # unpack the dict and init.
-            # db.session.add(workout_row)
-            # db.session.commit()#probably don't need to commit after every add.
+        # If we get here we should have correctly found an image.
+        workout_row = Workouts(**workout)  # unpack the dict and init.
+        print("Adding ID: " + str(workout['id']))
+        db.session.add(workout_row)
+        additions += 1
 
-        # For now, lets just hotlink. We have the image url in link, so we can change this later.
+    if(additions > 0):
+        print("Adding " + str(additions) + " rows to the database.")
+        db.session.commit()  # Commit the changes.
+    db.session.close()
+
+    # For now, lets just hotlink. We have the image url in link, so we can change this later.
 
     # not dynamic, but lets do it anyways. First prints a dict for the categories, second prints sql insert.
     # print("{")
