@@ -121,6 +121,11 @@ footer {
   box-shadow: 1px 1px 2px grey;
 }
 
+#places-detail .detail-img {
+  width: 400px;
+  border-radius: 1%;
+}
+
 .videosize {
   width: 560px;
   height: 315px; 
