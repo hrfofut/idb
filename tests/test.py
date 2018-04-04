@@ -16,6 +16,7 @@
 
 from io import StringIO
 from unittest import main, TestCase
+from general import splash, search, about
 
 # -------
 # TestWeb
