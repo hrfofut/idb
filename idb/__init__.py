@@ -75,7 +75,7 @@ mode = app.config.get('MODE', 'DEV')
 if mode == 'PRODUCTION':
     app.logger.setLevel(app.config.get('LOG_LEVEL', logging.WARNING))
     assert app.config['SERVER_NAME']
-    app.run()
+    # app.run()
 elif mode == 'DEV':
     app.logger.setLevel(app.config.get('LOG_LEVEL', logging.DEBUG))
-    app.run(host='0.0.0.0', port=5000)
+    # app.run(host='0.0.0.0', port=5000)
