@@ -5,6 +5,7 @@ from idb.models import Gyms, Images
 # Later lets have a python thing that has all db calls
 from idb import db
 from string import capwords
+from math import ceil
 
 from backend.tools import unbinary
 import base64
@@ -31,7 +32,7 @@ def overview():
              .offset((page - 1) * items_per_page))
 
     get_gyms = query.all()
-    last_page = db.session.query(Gyms).count() / items_per_page
+    last_page = ceil(db.session.query(Gyms).count() / items_per_page)
     for gym in get_gyms:
         items.append(create_item(gym))
     return render_template('gyms/gyms.html', items=items, sort=sort, current_page=page, last_page=last_page)

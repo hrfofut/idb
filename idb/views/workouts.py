@@ -6,6 +6,7 @@ from idb import db
 from string import capwords
 import requests
 import json
+from math import ceil
 
 workouts = Blueprint('workouts', __name__)
 
@@ -28,7 +29,7 @@ def overview():
              .offset((page - 1) * items_per_page))
 
     get_workouts = query.all()
-    last_page = db.session.query(Workouts).count() / items_per_page
+    last_page = ceil(db.session.query(Workouts).count() / items_per_page)
     for workout in get_workouts:
         if workout.name != "":
             items.append(create_item(workout))
