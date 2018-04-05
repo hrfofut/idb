@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_assets import Environment, Bundle
 
 import logging
+from os import environ
 from logging.handlers import RotatingFileHandler
 
 
@@ -23,6 +24,13 @@ def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_pyfile('default_config.py')
     app.config.from_pyfile('application.py', silent=True)
+
+    # Travis setup
+    if "TRAVIS" in environ:
+        app.config['WGER_KEY'] = environ.get('WGER_KEY')
+        app.config['DB_URI'] = environ.get('DB_URI')
+        app.config['PLACE_KEY'] = environ.get('PLACE_KEY')
+        app.config['CSE_ID'] = environ.get('CSE_ID')
 
     # Convert scss files to css
     assets = Environment(app)
