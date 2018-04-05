@@ -21,6 +21,7 @@ class FirefoxTestCase(LiveServerTestCase):
     def setUp(self):
 
         options = Options()
+        options.add_argument('--port=5000')
         options.log.level = 'trace'
         self.driver = Firefox(options=options)
         self.driver.get(self.get_server_url())
