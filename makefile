@@ -40,9 +40,11 @@ gecko:
 	- tar -xvzf geckodriver-v0.20.0-linux64.tar.gz 
 	- rm geckodriver-v0.20.0-linux64.tar.gz 
 	- chmod +x geckodriver 
-	- cp geckodriver ./env/bin/
-	- rm geckodriver 
-
+	- mv geckodriver ./env/bin/geckodriver2
+	- echo "#!/bin/bashpath/to/geckodriver \"\$\@\" --marionette-port 2828" >> geckodriver 
+	- cp gs ./env/bin/geckodriver
+	- chmod +x env/bin/geckodriver 
+	
 clean:
 	- rm -rf .git/hooks/pre-commit
 	- rm -rf *.egg*
