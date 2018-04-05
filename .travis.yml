@@ -28,7 +28,8 @@ before_script:
     - ls -al
     - cat makefile
     - export XDG_RUNTIME_DIR=/run/user/$(id -u)
-    - export DISPLAY=:0.0
+    - Xvfb :99 &
+    - export DISPLAY=:99
 
 script:
     - make travis
