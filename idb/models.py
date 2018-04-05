@@ -3,16 +3,17 @@ from idb import db
 
 # Need to figure out what to put in here
 class Food(db.Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     img = db.Column(db.String(100))
     servings = db.Column(db.String(10))
-    calorie = db.Column(db.String(10))
-    sodium = db.Column(db.String(10))
-    fat = db.Column(db.String(10))
-    protein = db.Column(db.String(10))
+    calorie = db.Column(db.Float)
+    sodium = db.Column(db.Float)
+    fat = db.Column(db.Float)
+    protein = db.Column(db.Float)
+    aisle = db.Column(db.String(40))
 
-    def __init__(self, id, name, img, servings, calorie, sodium, fat, protein):
+    def __init__(self, id, name, img, servings, calorie, sodium, fat, protein, aisle):
         self.id = id
         self.name = name
         self.img = img
@@ -21,10 +22,11 @@ class Food(db.Model):
         self.sodium = sodium
         self.fat = fat
         self.protein = protein
+        self.aisle = aisle
 
 
 class Stores(db.Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True)
     gid = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
@@ -43,7 +45,7 @@ class Stores(db.Model):
 
 
 class Gyms(db.Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True)
     gid = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
@@ -70,7 +72,7 @@ class Images(db.Model):
 
 
 class Workouts(db.Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     img = db.Column(db.String(255))
     link = db.Column(db.String(255))
