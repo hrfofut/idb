@@ -131,11 +131,9 @@ class FirefoxTestCase(LiveServerTestCase):
         driver.find_element_by_link_text('Foods').click()
         element = wait.until(EC.title_is(('CKC - Foods')))
 
-        driver.find_element_by_class_name('card-title').click()
         driver.find_element_by_link_text('Stores').click()
         driver.back()
         driver.forward()
-        driver.back()
         driver.back()
         driver.back()
 
