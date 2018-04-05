@@ -31,6 +31,7 @@ before_script:
 script:
     - export DISPLAY=127.0.0.1:5000
     - make travis
+    - cat geckodriver.log
 
 notifications:
     slack: cs373-group10:wW0GSRNiXUC2f6VfRnM6DXsJ
