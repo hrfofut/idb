@@ -27,9 +27,10 @@ before_script:
     - python3.6 --version
     - ls -al
     - cat makefile
+    - export XDG_RUNTIME_DIR=/run/user/$(id -u)
+    - export DISPLAY=127.0.0.1:5000
 
 script:
-    - export DISPLAY=127.0.0.1:5000
     - make travis
     - cat geckodriver.log
 
