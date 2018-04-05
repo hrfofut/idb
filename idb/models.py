@@ -82,6 +82,7 @@ class Workouts(db.Model):
     muscle = db.Column(db.String(512))
     met = db.Column(db.Float)
     cid = db.Column(db.Integer)
+    parent = db.Column(db.Integer)
 
     def __init__(self, id, name, img, category, description, met, cid, link='', equipment='', muscle=''):
         self.id = id

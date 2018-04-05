@@ -1,28 +1,30 @@
 from flask import current_app as app
-from flask import Blueprint, render_template, abort, jsonify
+from flask import Blueprint, render_template, abort, jsonify, request
 from idb.models import Food
 from idb import db
 from string import capwords
 
 foods = Blueprint('foods', __name__)
-asc = True
 
 
-@foods.route("/", defaults={'page': 1, 'sort': 'name'})
-@foods.route("/page/<int:page>")
-@foods.route("/sort/<string:sort>", defaults={'page': 1})
-@foods.route("/sort/<string:sort>/<int:page>")
-def overview(page, sort):
-    global asc
+@foods.route("/")
+def overview():
+    page = request.args.get('page', default=1, type=int)
+    sort = request.args.get('sort', default='name', type=str)
+    order = request.args.get('order', default='asc', type=str)
+
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    if(asc):
-        get_foods = db.session.query(Food).order_by(getattr(Food, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
-        asc = False
+    query = db.session.query(Food)
+    if order == 'desc':
+        query = query.order_by(getattr(Food, sort).desc())
     else:
-        get_foods = db.session.query(Food).order_by(getattr(Food, sort).desc()).limit(items_per_page).offset((page - 1) * items_per_page).all()
-        asc = True
+        query = query.order_by(getattr(Food, sort))
+    query = (query
+             .limit(items_per_page)
+             .offset((page - 1) * items_per_page))
 
+    get_foods = query.all()
     last_page = db.session.query(Food).count() / items_per_page
     for food in get_foods:
         items.append(create_item(food))
@@ -35,7 +37,7 @@ def detail(id):
     food = db.session.query(Food).get(id)
     if food is None:
         abort(404)
-
+    food.name = capwords(food.name)
     return render_template('foods/fooddetail.html', food=food)
 
 

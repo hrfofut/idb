@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
 from flask_sqlalchemy import SQLAlchemy
 from idb.models import Gyms, Images
 # Later lets have a python thing that has all db calls
@@ -10,24 +10,27 @@ from backend.tools import unbinary
 import base64
 
 gyms = Blueprint('gyms', __name__)
-asc = True
 
 
-@gyms.route("/", defaults={'page': 1, 'sort': 'name'})
-@gyms.route("/page/<int:page>")
-@gyms.route("/sort/<string:sort>", defaults={'page': 1})
-@gyms.route("/sort/<string:sort>/<int:page>")
-def overview(page, sort):
-    global asc
+@gyms.route("/")
+def overview():
+    page = request.args.get('page', default=1, type=int)
+    sort = request.args.get('sort', default='name', type=str)
+    order = request.args.get('order', default='asc', type=str)
+
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    if asc:
-        get_gyms = db.session.query(Gyms).order_by(getattr(Gyms, sort)).limit(items_per_page).offset((page - 1) * items_per_page).all()
-        asc = False
-    else:
-        get_gyms = db.session.query(Gyms).order_by(getattr(Gyms, sort).desc()).limit(items_per_page).offset((page - 1) * items_per_page).all()
-        asc = True
 
+    query = db.session.query(Gyms)
+    if order == 'desc':
+        query = query.order_by(getattr(Gyms, sort).desc())
+    else:
+        query = query.order_by(getattr(Gyms, sort))
+    query = (query
+             .limit(items_per_page)
+             .offset((page - 1) * items_per_page))
+
+    get_gyms = query.all()
     last_page = db.session.query(Gyms).count() / items_per_page
     for gym in get_gyms:
         items.append(create_item(gym))
@@ -40,6 +43,7 @@ def detail(id):
     if gym is None:
         abort(404)
     image = db.session.query(Images).get(gym.pic_id).pic
+    gym.name = capwords(gym.name)
     img = unbinary(str(base64.b64encode(image)))
     return render_template('gyms/gymsdetail.html', gym=gym, pic=img)
 

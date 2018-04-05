@@ -2,6 +2,9 @@ sudo: false
 
 language: python
 
+addons:
+  firefox: latest-nightly
+
 python:
    - "3.6"
 
@@ -24,9 +27,13 @@ before_script:
     - python3.6 --version
     - ls -al
     - cat makefile
+    - export XDG_RUNTIME_DIR=/run/user/$(id -u)
+    - Xvfb :99 &
+    - export DISPLAY=:99
 
 script:
     - make travis
+    - cat geckodriver.log
 
 notifications:
     slack: cs373-group10:wW0GSRNiXUC2f6VfRnM6DXsJ

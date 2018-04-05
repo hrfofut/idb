@@ -79,4 +79,4 @@ if(req_gyms.status_code == requests.codes.ok):
             # gym.pic_id = pid2
 
             # db.session.add(gym)
-            # db.session.commit()
+    # db.session.commit()

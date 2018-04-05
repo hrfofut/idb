@@ -10,6 +10,7 @@ install: requirements.txt idb/ setup.py
 		pwd; \
 		pip3 install -e .; \
 	) # Used to tell makefile to use the virtualenv shell
+	make gecko
 
 # Run Flask
 run: idb/ instance/
@@ -34,7 +35,16 @@ test: idb/ tests/test.py tests/guitests.py instance/
 		python3 tests/guitests.py; \
 	) # Used to tell makefile to use the virtualenv shell
 
-
+gecko:
+	- wget https://github.com/mozilla/geckodriver/releases/download/v0.20.0/geckodriver-v0.20.0-linux64.tar.gz 
+	- tar -xvzf geckodriver-v0.20.0-linux64.tar.gz 
+	- rm geckodriver-v0.20.0-linux64.tar.gz 
+	- chmod +x geckodriver 
+	- mv geckodriver ./env/bin/geckodriver2
+	- echo "#!/bin/bashpath/to/geckodriver \"\$\@\" --marionette-port 2828" >> geckodriver 
+	- cp gs ./env/bin/geckodriver
+	- chmod +x env/bin/geckodriver 
+	
 clean:
 	- rm -rf .git/hooks/pre-commit
 	- rm -rf *.egg*
