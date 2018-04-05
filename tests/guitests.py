@@ -5,6 +5,9 @@ from selenium import webdriver
 
 from idb import create_app
 
+from selenium.webdriver import Firefox
+from selenium.webdriver.firefox.options import Options
+
 
 class FirefoxTestCase(LiveServerTestCase):
 
@@ -16,7 +19,10 @@ class FirefoxTestCase(LiveServerTestCase):
         return app
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
+
+        options = Options()
+        options.log.level = 'trace'
+        self.driver = Firefox(options=options)
         self.driver.get(self.get_server_url())
 
     def tearDown(self):
