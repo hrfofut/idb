@@ -5,6 +5,7 @@ from idb.models import Stores, Images
 # Later lets have a python thing that has all db calls
 from idb import db
 from string import capwords
+from math import ceil
 
 from backend.tools import unbinary
 import base64
@@ -31,7 +32,7 @@ def overview():
              .offset((page - 1) * items_per_page))
 
     get_stores = query.all()
-    last_page = db.session.query(Stores).count() / items_per_page
+    last_page = ceil(db.session.query(Stores).count() / items_per_page)
     for store in get_stores:
         items.append(create_item(store))
 

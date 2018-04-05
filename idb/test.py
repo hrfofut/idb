@@ -16,8 +16,10 @@
 
 from io import StringIO
 from unittest import main, TestCase
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import exists, update, and_
+from .. import idb
 from views.general import splash, search, about
-
 # -------
 # TestWeb
 # -------
@@ -34,4 +36,11 @@ class TestWeb (TestCase):
 
 
 if __name__ == "__main__":  # pragma: no cover
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_pyfile('default_config.py')
+    app.config.from_pyfile('application.py', silent=True)
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DB_URI']
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    print("DB created?")
     main()

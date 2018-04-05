@@ -27,7 +27,7 @@ class FirefoxTestCase(LiveServerTestCase):
 
         options = Options()
         options.add_argument('--port=5000')
-        options.log.level = 'trace'
+        options.log.level = 'debug'
         self.driver = Firefox(options=options)
         self.driver.implicitly_wait(10)
         self.driver.get(self.get_server_url())
@@ -68,6 +68,8 @@ class FirefoxTestCase(LiveServerTestCase):
         driver = self.driver
         driver.find_element_by_link_text('Foods').click()
 
+        self.assertIn("CKC - Foods", driver.title)  # Adding to make it wait
+
         food_item = driver.find_element_by_class_name('card-title')
         food_name = food_item.text
         food_item.click()
@@ -81,6 +83,7 @@ class FirefoxTestCase(LiveServerTestCase):
         driver = self.driver
         driver.find_element_by_link_text('Workouts').click()
 
+        self.assertIn("CKC - Workouts", driver.title)
         workout_item = driver.find_element_by_class_name('card-title')
         workout_name = workout_item.text
         workout_item.click()
@@ -94,6 +97,7 @@ class FirefoxTestCase(LiveServerTestCase):
         driver = self.driver
         driver.find_element_by_link_text('Gyms').click()
 
+        self.assertIn("CKC - Gyms", driver.title)
         gym_item = driver.find_element_by_class_name('card-title')
         gym_name = gym_item.text
         gym_item.click()
@@ -107,6 +111,7 @@ class FirefoxTestCase(LiveServerTestCase):
         driver = self.driver
         driver.find_element_by_link_text('Stores').click()
 
+        self.assertIn("CKC - Stores", driver.title)
         store_item = driver.find_element_by_class_name('card-title')
         store_name = store_item.text
         store_item.click()
@@ -118,8 +123,14 @@ class FirefoxTestCase(LiveServerTestCase):
     # Test that going back and forth in the navigation history doesn't break the website
     def test_navigation_history(self):
         driver = self.driver
+        wait = WebDriverWait(driver, 10)
+
         driver.find_element_by_link_text('About').click()
+        element = wait.until(EC.title_is(('About Us')))
+
         driver.find_element_by_link_text('Foods').click()
+        element = wait.until(EC.title_is(('CKC - Foods')))
+
         driver.find_element_by_class_name('card-title').click()
         driver.find_element_by_link_text('Stores').click()
         driver.back()
