@@ -75,23 +75,17 @@ class Workouts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     img = db.Column(db.String(255))
-    link = db.Column(db.String(255))
     category = db.Column(db.String(64))
-    equipment = db.Column(db.String(100))
     description = db.Column(db.String(1024))
-    muscle = db.Column(db.String(512))
     met = db.Column(db.Float)
     cid = db.Column(db.Integer)
     parent = db.Column(db.Integer)
 
-    def __init__(self, id, name, img, category, description, met, cid, link='', equipment='', muscle=''):
+    def __init__(self, id, name, img, category, description, met, cid):
         self.id = id
         self.name = name
         self.img = img
-        self.link = link
         self.category = category
-        self.equipment = equipment
         self.description = description
-        self.muscle = muscle
         self.met = met
         self.cid = cid
