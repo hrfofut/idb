@@ -43,6 +43,7 @@ def detail(id):
     if gym is None:
         abort(404)
     image = db.session.query(Images).get(gym.pic_id).pic
+    gym.name = capwords(gym.name)
     img = unbinary(str(base64.b64encode(image)))
     return render_template('gyms/gymsdetail.html', gym=gym, pic=img)
 

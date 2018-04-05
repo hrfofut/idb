@@ -37,7 +37,7 @@ def detail(id):
     food = db.session.query(Food).get(id)
     if food is None:
         abort(404)
-
+    food.name = capwords(food.name)
     return render_template('foods/fooddetail.html', food=food)
 
 

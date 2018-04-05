@@ -41,7 +41,7 @@ def detail(id):
     workout = db.session.query(Workouts).get(id)
     if workout is None:
         abort(404)
-
+    workout.name = capwords(workout.name)
     return render_template('workouts/workoutsdetail.html', workout=workout)
 
 

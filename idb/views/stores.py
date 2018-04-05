@@ -43,6 +43,7 @@ def detail(id):
     store = db.session.query(Stores).get(id)
     if store is None:
         abort(404)
+    store.name = capwords(store.name)
     image = db.session.query(Images).get(store.pic_id).pic
     img = unbinary(str(base64.b64encode(image)))
     return render_template('stores/storesdetail.html', store=store, pic=img)
