@@ -3,7 +3,7 @@ sudo: false
 language: python
 
 addons:
-  firefox: latest-esr
+  firefox: latest-nightly
 
 python:
    - "3.6"
