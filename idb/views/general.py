@@ -18,7 +18,11 @@ def splash(name=None):
 
 @general.route("/search", methods=['POST'])
 def search():
+    page = request.args.get('page', default=1, type=int)
+    sort = request.args.get('sort', default='name', type=str)
+    order = request.args.get('order', default='asc', type=str)
     query = request.form['search']
+
     tokens = query.split(" ")
     food_items = []
     workout_items = []
@@ -57,7 +61,6 @@ def search():
 
 @general.route("/about")
 def about():
-
     # get commits
     commit_count = {'total': 0, 'cindyqtruong': 0, 'BrandonHarrisonCode': 0, 'hrfofut': 0, 'straitlaced': 0, 'fantomats15': 0}
     req_commit = requests.get('https://api.github.com/repos/hrfofut/idb/stats/contributors')
@@ -84,4 +87,15 @@ def about():
     iss_count.append(iss_total)
     return render_template('about.html', commits=commit_count, issues=iss_count)
 
-# Error handling
+
+def gen_query(relation, items_per_page, page, sort, order, filter=""):
+    query = db.session.query(relation)
+    if order == 'desc':
+        query = query.order_by(getattr(relation, sort).desc())
+    else:
+        query = query.order_by(getattr(relation, sort))
+    query = query.filter(relation.name.ilike("%" + filter + "%"))
+    query = (query
+             .limit(items_per_page)
+             .offset((page - 1) * items_per_page))
+    return query

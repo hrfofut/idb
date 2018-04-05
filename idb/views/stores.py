@@ -6,6 +6,7 @@ from idb.models import Stores, Images
 from idb import db
 from string import capwords
 from math import ceil
+from .general import gen_query
 
 from backend.tools import unbinary
 import base64
@@ -21,17 +22,10 @@ def overview():
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    query = db.session.query(Stores)
-    query = db.session.query(Stores)
-    if order == 'desc':
-        query = query.order_by(getattr(Stores, sort).desc())
-    else:
-        query = query.order_by(getattr(Stores, sort))
-    query = (query
-             .limit(items_per_page)
-             .offset((page - 1) * items_per_page))
 
+    query = gen_query(Stores, items_per_page, page, sort, order)
     get_stores = query.all()
+
     last_page = ceil(db.session.query(Stores).count() / items_per_page)
     for store in get_stores:
         items.append(create_item(store))

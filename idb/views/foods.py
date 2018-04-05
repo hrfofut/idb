@@ -4,6 +4,7 @@ from idb.models import Food
 from idb import db
 from string import capwords
 from math import ceil
+from .general import gen_query
 
 foods = Blueprint('foods', __name__)
 
@@ -16,16 +17,10 @@ def overview():
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    query = db.session.query(Food)
-    if order == 'desc':
-        query = query.order_by(getattr(Food, sort).desc())
-    else:
-        query = query.order_by(getattr(Food, sort))
-    query = (query
-             .limit(items_per_page)
-             .offset((page - 1) * items_per_page))
 
+    query = gen_query(Food, items_per_page, page, sort, order)
     get_foods = query.all()
+
     last_page = ceil(db.session.query(Food).count() / items_per_page)
     for food in get_foods:
         items.append(create_item(food))

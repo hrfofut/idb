@@ -7,6 +7,7 @@ from string import capwords
 import requests
 import json
 from math import ceil
+from .general import gen_query
 
 workouts = Blueprint('workouts', __name__)
 
@@ -19,16 +20,10 @@ def overview():
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    query = db.session.query(Workouts)
-    if order == 'desc':
-        query = query.order_by(getattr(Workouts, sort).desc())
-    else:
-        query = query.order_by(getattr(Workouts, sort))
-    query = (query
-             .limit(items_per_page)
-             .offset((page - 1) * items_per_page))
 
+    query = gen_query(Workouts, items_per_page, page, sort, order)
     get_workouts = query.all()
+
     last_page = ceil(db.session.query(Workouts).count() / items_per_page)
     for workout in get_workouts:
         if workout.name != "":

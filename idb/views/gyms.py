@@ -6,6 +6,7 @@ from idb.models import Gyms, Images
 from idb import db
 from string import capwords
 from math import ceil
+from .general import gen_query
 
 from backend.tools import unbinary
 import base64
@@ -22,16 +23,9 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    query = db.session.query(Gyms)
-    if order == 'desc':
-        query = query.order_by(getattr(Gyms, sort).desc())
-    else:
-        query = query.order_by(getattr(Gyms, sort))
-    query = (query
-             .limit(items_per_page)
-             .offset((page - 1) * items_per_page))
-
+    query = gen_query(Gyms, items_per_page, page, sort, order)
     get_gyms = query.all()
+
     last_page = ceil(db.session.query(Gyms).count() / items_per_page)
     for gym in get_gyms:
         items.append(create_item(gym))
