@@ -44,7 +44,7 @@
             <a href="{{ url_for('.detail', id=items[x]['id']) }}">{{ items[x]['name'] }}</a>
           </h4>
           {% for attr in items[x]|sort %}
-          {% if attr != 'name' and attr != 'image' and attr != 'id' %}
+          {% if attr != 'name' and attr != 'image' and attr != 'id'%}
           <p class="card-text">{{ attr.title() }}: {{ items[x][attr] }}</p>
           {% endif %}
           {% endfor %}

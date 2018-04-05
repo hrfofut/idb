@@ -30,7 +30,7 @@ def workouts_api():
     workout_json = list()
 
     for workout in workouts:
-        workout_dict = {'id': workout.id, 'name': workout.name, 'img': workout.img, 'category': workout.category, 'equipment': workout.equipment, 'description': workout.description, 'muscle': workout.muscle, 'cid': workout.cid}
+        workout_dict = {'id': workout.id, 'name': workout.name, 'img': workout.img, 'category': workout.category, 'description': workout.description, 'met': workout.met, 'cid': workout.cid}
         workout_json.append(workout_dict)
 
     return jsonify(workout_json)
