@@ -29,6 +29,7 @@ before_script:
     - cat makefile
 
 script:
+    - export DISPLAY=127.0.0.1:5000
     - make travis
 
 notifications:
