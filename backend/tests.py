@@ -36,7 +36,13 @@ class TestWeb (TestCase):
         self.assertEqual(1, 1)
 
     def test_general_splash(self):
-        splash()
+        assert(splash() is not None)
+
+    def test_general_search(self):
+        assert (search() is not None)
+
+    def test_general_about(self):
+        assert (about() is not None)
 
 # ----
 # main
