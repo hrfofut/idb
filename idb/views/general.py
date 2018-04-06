@@ -39,29 +39,28 @@ def search():
     sort = request.args.get('sort', default='name', type=str)
     order = request.args.get('order', default='asc', type=str)
     query = request.form.get('search', request.args.get('search'))
-    print(query)
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
     tokens = query.split(" ")
     for search in tokens:
-        food_query = gen_query(Food, items_per_page, page, 'name', order, search)
+        food_query = gen_query(Food, items_per_page, page, 'name', order, filter_string=search)
         get_foods = food_query.all()
         for food in get_foods:
             items.append(foods_create_item(food))
 
-        workouts_query = gen_query(Workouts, items_per_page, page, 'name', order, search)
+        workouts_query = gen_query(Workouts, items_per_page, page, 'name', order, filter_string=search)
         get_workouts = workouts_query.all()
         for workout in get_workouts:
             items.append(workouts_create_item(workout))
 
-        gyms_query = gen_query(Gyms, items_per_page, page, 'name', order, search)
+        gyms_query = gen_query(Gyms, items_per_page, page, 'name', order, filter_string=search)
         get_gyms = gyms_query.all()
         for gym in get_gyms:
             items.append(gyms_create_item(gym))
 
-        stores_query = gen_query(Stores, items_per_page, page, 'name', order, search)
+        stores_query = gen_query(Stores, items_per_page, page, 'name', order, filter_string=search)
         get_stores = stores_query.all()
         for store in get_stores:
             items.append(stores_create_item(store))
