@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import Blueprint, render_template, abort, request
+from flask import Blueprint, render_template, abort, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from idb.models import Workouts
 from idb import db
@@ -7,7 +7,7 @@ from string import capwords
 import requests
 import json
 from math import ceil
-from .general import gen_query
+from .db_functions import gen_query
 
 workouts = Blueprint('workouts', __name__)
 
@@ -46,6 +46,7 @@ def create_item(raw):
     item = vars(raw)
     item['name'] = capwords(item['name'])
     item['image'] = item['img']
+    item['detail_url'] = url_for('workouts.detail', id=item['id'])
     item.pop('_sa_instance_state', None)
     item.pop('img', None)
     item.pop('description', None)

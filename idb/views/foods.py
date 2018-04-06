@@ -1,10 +1,10 @@
 from flask import current_app as app
-from flask import Blueprint, render_template, abort, jsonify, request
+from flask import Blueprint, render_template, abort, jsonify, request, url_for
 from idb.models import Food
 from idb import db
 from string import capwords
 from math import ceil
-from .general import gen_query
+from .db_functions import gen_query
 
 foods = Blueprint('foods', __name__)
 
@@ -44,6 +44,7 @@ def create_item(raw):
     item = vars(raw)
     item['name'] = capwords(item['name'])
     item['image'] = image
+    item['detail_url'] = url_for('foods.detail', id=item['id'])
     item.pop('_sa_instance_state', None)
     item.pop('img', None)
     item.pop('servings', None)

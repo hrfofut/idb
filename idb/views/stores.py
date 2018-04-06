@@ -1,12 +1,12 @@
 from flask import current_app as app
-from flask import Blueprint, render_template, abort, request
+from flask import Blueprint, render_template, abort, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from idb.models import Stores, Images
 # Later lets have a python thing that has all db calls
 from idb import db
 from string import capwords
 from math import ceil
-from .general import gen_query
+from .db_functions import gen_query
 
 from backend.tools import unbinary
 import base64
@@ -52,6 +52,7 @@ def create_item(raw):
     item = vars(raw)
     item['name'] = capwords(item['name'])
     item['image'] = img
+    item['detail_url'] = url_for('stores.detail', id=item['id'])
     item.pop('_sa_instance_state', None)
     item.pop('phone', None)
     item.pop('pic_id', None)
