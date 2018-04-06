@@ -5,6 +5,8 @@ from idb import db
 from string import capwords
 from math import ceil
 
+from .db_functions import gen_query
+
 foods = Blueprint('foods', __name__)
 
 
@@ -13,7 +15,7 @@ def overview():
     page = request.args.get('page', default=1, type=int)
     sort = request.args.get('sort', default='name', type=str)
     order = request.args.get('order', default='asc', type=str)
-    filters = request.args.get('filters', default='none', type=str)
+    filters = request.args.get('filters', default="", type=str)
 
     attribute = Food.aisle
 
@@ -25,7 +27,7 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    query = gen_query(Food, items_per_page, page, sort, order, attribute, filter)
+    query = gen_query(Food, items_per_page, page, sort, order, attribute, filters)
 
     get_foods = query.all()
     last_page = ceil(db.session.query(Food).count() / items_per_page)

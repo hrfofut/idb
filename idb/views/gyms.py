@@ -7,6 +7,8 @@ from idb import db
 from string import capwords
 from math import ceil
 
+from .db_functions import gen_query
+
 from backend.tools import unbinary
 import base64
 
@@ -18,7 +20,7 @@ def overview():
     page = request.args.get('page', default=1, type=int)
     sort = request.args.get('sort', default='name', type=str)
     order = request.args.get('order', default='asc', type=str)
-    filters = request.args.get('filters', default='none', type=str)
+    filters = request.args.get('filters', default='', type=str)
 
     attribute = Gyms.price_level
 
@@ -30,7 +32,7 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    query = gen_query(Gyms, items_per_page, page, sort, order, attribute, filter)
+    query = gen_query(Gyms, items_per_page, page, sort, order, attribute, filters)
 
     get_gyms = query.all()
     last_page = ceil(db.session.query(Gyms).count() / items_per_page)
