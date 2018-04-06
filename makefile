@@ -31,8 +31,8 @@ restart-prod:
 test: idb/ tests/test.py tests/guitests.py instance/
 	( \
 		. env/bin/activate; \
-		python3 backend/tests.py; \
-		python3 tests/guitests.py; \
+		python3 backend/tests.py; \ )
+	#	python3 tests/guitests.py; \
 	) # Used to tell makefile to use the virtualenv shell
 
 gecko:

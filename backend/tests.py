@@ -21,7 +21,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import exists, update, and_
 from idb.views.general import splash, search, about
-
+from idb.views.foods import overview, detail, create_item
+from idb.views.gyms import overview, detail, create_item
+from idb.views.stores import overview, detail, create_item
+from idb.views.workouts import overview, detail, create_item
 # -------
 # TestWeb
 # -------
