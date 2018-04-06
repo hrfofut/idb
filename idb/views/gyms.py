@@ -1,12 +1,11 @@
 from flask import current_app as app
-from flask import Blueprint, render_template, abort, request, url_for
+from flask import Blueprint, render_template, abort, request
 from flask_sqlalchemy import SQLAlchemy
 from idb.models import Gyms, Images
 # Later lets have a python thing that has all db calls
 from idb import db
 from string import capwords
 from math import ceil
-from .db_functions import gen_query
 
 from backend.tools import unbinary
 import base64
@@ -19,17 +18,34 @@ def overview():
     page = request.args.get('page', default=1, type=int)
     sort = request.args.get('sort', default='name', type=str)
     order = request.args.get('order', default='asc', type=str)
+    filters = request.args.get('filters', default='none', type=str)
+
+    cat = db.session.query(Gyms).distinct(Gyms.price_level)
+    f_crit = set()  # filter criteria
+    for c in cat:
+        f_crit.add(c.price_level)
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    query = gen_query(Gyms, items_per_page, page, sort, order)
-    get_gyms = query.all()
+    if filters == 'none':
+        query = db.session.query(Gyms)
+    else:
+        query = db.session.query(Gyms).filter(Gyms.price_level == filters)
 
+    if order == 'desc':
+        query = query.order_by(getattr(Gyms, sort).desc())
+    else:
+        query = query.order_by(getattr(Gyms, sort))
+    query = (query
+             .limit(items_per_page)
+             .offset((page - 1) * items_per_page))
+
+    get_gyms = query.all()
     last_page = ceil(db.session.query(Gyms).count() / items_per_page)
     for gym in get_gyms:
         items.append(create_item(gym))
-    return render_template('gyms/gyms.html', items=items, sort=sort, current_page=page, last_page=last_page)
+    return render_template('gyms/gyms.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 
 
 @gyms.route("/<int:id>")
@@ -51,7 +67,6 @@ def create_item(raw):
     item = vars(raw)
     item['name'] = capwords(item['name'])
     item['image'] = img
-    item['detail_url'] = url_for('gyms.detail', id=item['id'])
     item.pop('_sa_instance_state', None)
     item.pop('phone', None)
     item.pop('pic_id', None)
