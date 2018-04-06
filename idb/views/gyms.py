@@ -35,9 +35,9 @@ def overview():
     query = gen_query(Gyms, items_per_page, page, sort, order, attribute, filters)
 
     get_gyms = query.all()
-    last_page = ceil(db.session.query(Gyms).count() / items_per_page)
     for gym in get_gyms:
         items.append(create_item(gym))
+    last_page = ceil(len(items) / items_per_page)
     return render_template('gyms/gyms.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 
 

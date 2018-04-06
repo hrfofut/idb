@@ -35,9 +35,9 @@ def overview():
     query = gen_query(Stores, items_per_page, page, sort, order, attribute, filters)
 
     get_stores = query.all()
-    last_page = ceil(db.session.query(Stores).count() / items_per_page)
     for store in get_stores:
         items.append(create_item(store))
+    last_page = ceil(len(items) / items_per_page)
 
     return render_template('stores/stores.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 
