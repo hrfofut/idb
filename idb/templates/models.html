@@ -39,20 +39,12 @@
         <div class="overlay"> 
         </div>
 
-        <div class="card-body">           
-<<<<<<< HEAD
-          <h4 class="card-title">
+        <div class="card-body">
+          <h4 class="card-title" id="title-{{x}}">
             <a href="{{ items[x][detail_url] }}">{{ items[x]['name'] }}</a>
           </h4>
           {% for attr in items[x]|sort %}
           {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
-=======
-          <h4 class="card-title" id="title-{{x}}">
-            <a href="{{ url_for('.detail', id=items[x]['id']) }}">{{ items[x]['name'] }}</a>
-          </h4>
-          {% for attr in items[x]|sort %}
-          {% if attr != 'name' and attr != 'image' and attr != 'id'%}
->>>>>>> 74043de1b9dbd7b9d2daa41f3289577a8b29442f
           <p class="card-text">{{ attr.title() }}: {{ items[x][attr] }}</p>
           {% endif %}
           {% endfor %}
@@ -63,7 +55,7 @@
   </div>
 
   <!-- Pagination
-  {% include 'pagination.html' %}-->
+       {% include 'pagination.html' %}-->
   {% else %}
   <h3><p class="text-center"> Oops, there's nothing here...</p></h3>
   {% endif %}
