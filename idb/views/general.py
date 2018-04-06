@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, abort, request
+from flask import current_app as app
+from flask import Blueprint, render_template, abort, request, redirect, url_for
 import requests
 import json
 
@@ -7,6 +8,15 @@ from idb import db
 
 from backend.tools import unbinary
 import base64
+
+from math import ceil
+
+from .foods import create_item as foods_create_item
+from .workouts import create_item as workouts_create_item
+from .gyms import create_item as gyms_create_item
+from .stores import create_item as stores_create_item
+
+from .db_functions import gen_query
 
 general = Blueprint('general', __name__)
 
@@ -22,48 +32,46 @@ def splash(name=None):
     return render_template('index.html')
 
 
-@general.route("/search", methods=['POST'])
+@general.route("/search", methods=['POST', 'GET'])
 def search():
-    query = request.form['search']
+    page = request.args.get('page', default=1, type=int)
+    sort = request.args.get('sort', default='name', type=str)
+    order = request.args.get('order', default='asc', type=str)
+    query = request.form.get('search', request.args.get('search'))
+    print(query)
+
+    items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
+    items = []
+
     tokens = query.split(" ")
-    food_items = []
-    workout_items = []
-    gym_items = []
-    store_items = []
-
     for search in tokens:
-        print("search: {}".format(search))
-        get_foods = db.session.query(Food).filter(Food.name.ilike("%" + search + "%")).all()
-        for val in get_foods:
-            image = 'https://spoonacular.com/cdn/ingredients_500x500/' + val.img
-            if ([val.name.title(), image, val.calorie, val.fat, val.id]) not in food_items:
-                food_items.append([val.name.title(), image, val.calorie, val.fat, val.id])
+        food_query = gen_query(Food, items_per_page, page, 'name', order, search)
+        get_foods = food_query.all()
+        for food in get_foods:
+            items.append(foods_create_item(food))
 
-        get_workouts = db.session.query(Workouts).filter(Workouts.name.ilike("%" + search + "%")).all()
-        for val in get_workouts:
-            if val.name != "" and ([val.name, val.img, val.category, val.muscle, val.id]) not in workout_items:
-                workout_items.append([val.name, val.img, val.category, val.muscle, val.id])
+        workouts_query = gen_query(Workouts, items_per_page, page, 'name', order, search)
+        get_workouts = workouts_query.all()
+        for workout in get_workouts:
+            items.append(workouts_create_item(workout))
 
-        get_gyms = db.session.query(Gyms).filter(Gyms.name.ilike("%" + search + "%")).all()
+        gyms_query = gen_query(Gyms, items_per_page, page, 'name', order, search)
+        get_gyms = gyms_query.all()
         for gym in get_gyms:
-            image = db.session.query(Images).get(gym.pic_id).pic
-            img = unbinary(str(base64.b64encode(image)))
-            if ([gym.name, img, gym.location, gym.ratings, gym.id]) not in gym_items:
-                gym_items.append([gym.name, img, gym.location, gym.ratings, gym.id])
+            items.append(gyms_create_item(gym))
 
-        get_stores = db.session.query(Stores).filter(Stores.name.ilike("%" + search + "%")).all()
+        stores_query = gen_query(Stores, items_per_page, page, 'name', order, search)
+        get_stores = stores_query.all()
         for store in get_stores:
-            image = db.session.query(Images).get(store.pic_id).pic
-            img = unbinary(str(base64.b64encode(image)))
-            if ([store.name, img, store.location, store.ratings, store.id]) not in store_items:
-                store_items.append([store.name, img, store.location, store.ratings, store.id])
+            items.append(stores_create_item(store))
 
-    return render_template('search.html', search=query, food_items=food_items, workout_items=workout_items, gym_items=gym_items, store_items=store_items)
+    last_page = ceil(len(items) / items_per_page)
+    attributes = ['name']
+    return render_template('search.html', attributes=attributes, query=query, items=items, sort=sort, current_page=page, last_page=last_page)
 
 
 @general.route("/about")
 def about():
-
     # get commits
     commit_count = {'total': 0, 'cindyqtruong': 0, 'BrandonHarrisonCode': 0, 'hrfofut': 0, 'straitlaced': 0, 'fantomats15': 0}
     req_commit = requests.get('https://api.github.com/repos/hrfofut/idb/stats/contributors')
@@ -89,5 +97,3 @@ def about():
         req_issues = requests.get('https://api.github.com/repos/hrfofut/idb/issues?state=all&page=' + str(i) + '&per_page=500')
     iss_count.append(iss_total)
     return render_template('about.html', commits=commit_count, issues=iss_count)
-
-# Error handling

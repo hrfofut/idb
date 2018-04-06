@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}CKC - Search for "{{search}}"{% endblock %}
+{% block title %}CKC - Food{% endblock %}
 {% block head %}
 {{ super() }}
 {% endblock %}
@@ -7,110 +7,104 @@
 {% block content %}
 <div class="container">
   <!-- Page Heading/Breadcrumbs -->
-  <h1 class="mt-4 mb-3">Search results for '{{search}}'
-    <small>{{food_items|count + workout_items|count + gym_items|count + store_items|count}} results found</small>
+  <h1 class="mt-4 mb-3">Search Results
+    <small>List</small>
+    {% if items|count > 0 %}
+    <div class="float-right">
+      <button class="btn pull-right btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By</button>
+      <div class="dropdown-menu dropdown-menu-right">
+        {% for attr in items[0]|sort %}
+        {% if (attr != 'image' and attr != 'id' and attr != 'detail_url') %} 
+        <a class="dropdown-item" href="{{ url_for('.search', search=query, sort=attr) }}">{{ attr }}</a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
   </h1>
 
-  {% if (food_items|count > 0 or workout_items|count > 0 or gym_items|count > 0 or store_items|count > 0) %}
-    {% if food_items|count > 0 %}
-    <h3> Food </h3>
-    <div class="row">
-      {% for x in range(0, food_items|count) %}
-      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="./foods/{{food_items[x][4]}}"><img class="card-img-top" alt="" src='{{food_items[x][1]}}'/></a>
-          <div class="overlay"> 
-          </div>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Search Results</li>
+  </ol>
 
-          <div class="card-body"> 
-            <h4 class="card-title">
-              <a href="./foods/{{food_items[x][4]}}">{{food_items[x][0]}}</a>
-            </h4>
-            
-            <p class="card-text">Calories: {{food_items[x][2]}}</p>
-            <p class="card-text">Fat: {{food_items[x][3]}}</p>
-          </div>
+  {% if items|count > 0 %}
+  <div class="row">
+    {% for x in range(0, items|count) %}
+    <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <a href="{{ items[x][detail_url] }}">
+          <img class="card-img-top" alt="" src="{{ items[x]['image'] }}"/>
+        </a>
+        <div class="overlay"> 
+        </div>
+
+        <div class="card-body">
+          <h4 class="card-title" id="title-{{x}}">
+            <a href="{{ items[x][detail_url] }}">{{ items[x]['name'] }}</a>
+          </h4>
+          {% for attr in items[x]|sort %}
+          {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
+          <p class="card-text">{{ attr.title() }}: {{ items[x][attr] }}</p>
+          {% endif %}
+          {% endfor %}
         </div>
       </div>
-      {% endfor %}
     </div>
-    {% endif %}
+    {% endfor %}
+  </div>
 
-    {% if workout_items|count > 0 %}
-    <h3> Workouts </h3>
-    <div class="row">
-      {% for x in range(0, workout_items|count) %}
-      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="./workouts/{{workout_items[x][4]}}"><img class="card-img-top" alt="" src='{{workout_items[x][1]}}'/></a>
-          <div class="overlay"> 
-          </div>
-          
-          <div class="card-body"> 
-            <h4 class="card-title">
-              <a href="./workouts/{{workout_items[x][4]}}">{{workout_items[x][0]}}</a>
-            </h4>
-            
-            <p class="card-text">Category: {{workout_items[x][2]}}</p>
-            <p class="card-text">Muscle Targeted: {{workout_items[x][3]}}</p>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
+  <!-- Pagination -->
+  <ul class="pagination justify-content-center">
+    {% if current_page > 1 %}
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=1) }}">First</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page - 1))}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+      {% if current_page > 2 %}
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page - 2)) }}"> {{ current_page - 2 }}</a>
+    </li>
     {% endif %}
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page - 1)) }}"> {{ current_page - 1 }}</a>
+    </li>
+    {% endif %}
+    
+    <li class="page-item active">
+      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=current_page) }}">{{ current_page }}</a>
+    </li>
 
-    {% if gym_items|count > 0 %}
-    <h3> Gyms </h3>
-    <div class="row">
-      {% for x in range(0, gym_items|count) %}
-      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="./gyms/{{gym_items[x][4]}}"><img class="card-img-top" alt="" src='{{gym_items[x][1]}}'/></a>
-          <div class="overlay"> 
-          </div>
-          
-          <div class="card-body"> 
-            <h4 class="card-title">
-              <a href="./gyms/{{gym_items[x][4]}}">{{gym_items[x][0]}}</a>
-            </h4>
-            
-            <p class="card-text">Location: {{gym_items[x][2]}}</p>
-            <p class="card-text">Rating: {{gym_items[x][3]}}</p>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
+    {% if current_page < last_page %}
+                         <li class="page-item">
+                           <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page + 1)) }}">{{ current_page + 1 }}</a>
+                         </li>
+                         {% if current_page + 1 < last_page %}
+                                                  <li class="page-item">
+                                                    <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page + 2)) }}">{{ current_page + 2 }}</a>
+                                                  </li>
+                                                  {% endif %}
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page + 1)) }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=last_page) }}">Last</a>
+    </li>
     {% endif %}
-
-    {% if store_items|count > 0 %}
-    <h3> Stores </h3>
-    <div class="row">
-      {% for x in range(0, store_items|count) %}
-      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="./stores/{{store_items[x][4]}}"><img class="card-img-top" alt="" src='{{store_items[x][1]}}'/></a>
-          <div class="overlay"> 
-          </div>
-          
-          <div class="card-body"> 
-            <h4 class="card-title">
-              <a href="./stores/{{store_items[x][4]}}">{{store_items[x][0]}}</a>
-            </h4>
-            
-            <p class="card-text">Location: {{store_items[x][2]}}</p>
-            <p class="card-text">Rating: {{store_items[x][3]}}</p>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    {% endif %}
+  </ul>
 
   {% else %}
   <h3><p class="text-center"> Oops, there's nothing here...</p></h3>
   {% endif %}
 </div>
 {% endblock %}
-

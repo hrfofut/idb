@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}CKC - Food{% endblock %}
+{% block title %}CKC - Model{% endblock %}
 {% block head %}
 {{ super() }}
 {% endblock %}
@@ -14,7 +14,7 @@
       <button class="btn pull-right btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By</button>
       <div class="dropdown-menu dropdown-menu-right">
         {% for attr in items[0]|sort %}
-        {% if (attr != 'image' and attr != 'id') %} 
+        {% if (attr != 'image' and attr != 'id' and attr != 'detail_url') %} 
         <a class="dropdown-item" href="{{ url_for('.overview', sort=attr) }}">{{ attr }}</a>
         {% endif %}
         {% endfor %}
@@ -35,16 +35,16 @@
     {% for x in range(0, items|count) %}
     <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
       <div class="card h-100">
-        <a href="{{ url_for('.detail', id=items[x]['id']) }}"><img class="card-img-top" alt="" src='{{ items[x]['image'] }}'/></a>
+        <a href="{{ items[x][detail_url] }}"><img class="card-img-top" alt="" src='{{ items[x]['image'] }}'/></a>
         <div class="overlay"> 
         </div>
 
-        <div class="card-body">           
+        <div class="card-body">
           <h4 class="card-title" id="title-{{x}}">
-            <a href="{{ url_for('.detail', id=items[x]['id']) }}">{{ items[x]['name'] }}</a>
+            <a href="{{ items[x][detail_url] }}">{{ items[x]['name'] }}</a>
           </h4>
           {% for attr in items[x]|sort %}
-          {% if attr != 'name' and attr != 'image' and attr != 'id'%}
+          {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
           <p class="card-text">{{ attr.title() }}: {{ items[x][attr] }}</p>
           {% endif %}
           {% endfor %}
@@ -54,8 +54,8 @@
     {% endfor %}
   </div>
 
-  <!-- Pagination -->
-  {% include 'pagination.html' %}
+  <!-- Pagination
+       {% include 'pagination.html' %}-->
   {% else %}
   <h3><p class="text-center"> Oops, there's nothing here...</p></h3>
   {% endif %}
