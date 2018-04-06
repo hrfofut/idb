@@ -15,7 +15,9 @@ def overview():
     order = request.args.get('order', default='asc', type=str)
     filters = request.args.get('filters', default='none', type=str)
 
-    cat = db.session.query(Food).distinct(Food.name)
+    attribute = Food.aisle
+
+    cat = db.session.query(Food).distinct(attribute)
     f_crit = set()  # filter criteria
     for c in cat:
         f_crit.add(c.aisle)
@@ -23,7 +25,7 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    query = gen_query(Food, items_per_page, page, filters, order)
+    query = gen_query(Food, items_per_page, page, sort, order, attribute, filter)
 
     get_foods = query.all()
     last_page = ceil(db.session.query(Food).count() / items_per_page)

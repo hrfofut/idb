@@ -20,7 +20,9 @@ def overview():
     order = request.args.get('order', default='asc', type=str)
     filters = request.args.get('filters', default='none', type=str)
 
-    cat = db.session.query(Gyms).distinct(Gyms.price_level)
+    attribute = Gyms.price_level
+
+    cat = db.session.query(Gyms).distinct(attribute)
     f_crit = set()  # filter criteria
     for c in cat:
         f_crit.add(c.price_level)
@@ -28,18 +30,7 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    if filters == 'none':
-        query = db.session.query(Gyms)
-    else:
-        query = db.session.query(Gyms).filter(Gyms.price_level == filters)
-
-    if order == 'desc':
-        query = query.order_by(getattr(Gyms, sort).desc())
-    else:
-        query = query.order_by(getattr(Gyms, sort))
-    query = (query
-             .limit(items_per_page)
-             .offset((page - 1) * items_per_page))
+    query = gen_query(Gyms, items_per_page, page, sort, order, attribute, filter)
 
     get_gyms = query.all()
     last_page = ceil(db.session.query(Gyms).count() / items_per_page)

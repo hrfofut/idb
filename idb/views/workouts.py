@@ -18,25 +18,17 @@ def overview():
     order = request.args.get('order', default='asc', type=str)
     filters = request.args.get('filters', default='none', type=str)
 
-    cat = db.session.query(Workouts).distinct(Workouts.category)
+    attribute = Workouts.category
+
+    cat = db.session.query(Workouts).distinct(attribute)
     f_crit = set()  # filter criteria
     for c in cat:
         f_crit.add(c.category)
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
-    if filters == 'none':
-        query = db.session.query(Workouts)
-    else:
-        query = db.session.query(Workouts).filter(Workouts.category == filters)
 
-    if order == 'desc':
-        query = query.order_by(getattr(Workouts, sort).desc())
-    else:
-        query = query.order_by(getattr(Workouts, sort))
-    query = (query
-             .limit(items_per_page)
-             .offset((page - 1) * items_per_page))
+    query = gen_query(Workouts, items_per_page, page, sort, order, attribute, filter)
 
     get_workouts = query.all()
     last_page = ceil(db.session.query(Workouts).count() / items_per_page)

@@ -20,7 +20,9 @@ def overview():
     order = request.args.get('order', default='asc', type=str)
     filters = request.args.get('filters', default='none', type=str)
 
-    cat = db.session.query(Stores).distinct(Stores.price_level)
+    attribute = Stores.price_level
+
+    cat = db.session.query(Stores).distinct(attribute)
     f_crit = set()  # filter criteria
     for c in cat:
         f_crit.add(c.price_level)
@@ -28,18 +30,7 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    if filters == 'none':
-        query = db.session.query(Stores)
-    else:
-        query = db.session.query(Stores).filter(Stores.price_level == filters)
-
-    if order == 'desc':
-        query = query.order_by(getattr(Stores, sort).desc())
-    else:
-        query = query.order_by(getattr(Stores, sort))
-    query = (query
-             .limit(items_per_page)
-             .offset((page - 1) * items_per_page))
+    query = gen_query(Food, items_per_page, page, sort, order, attribute, filter)
 
     get_stores = query.all()
     last_page = ceil(db.session.query(Stores).count() / items_per_page)
