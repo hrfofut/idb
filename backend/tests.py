@@ -35,6 +35,9 @@ class TestWeb (TestCase):
     def test_test(self):
         self.assertEqual(1, 1)
 
+    def test_general_splash(self):
+        splash()
+
 # ----
 # main
 # ----
