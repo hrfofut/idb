@@ -11,6 +11,12 @@ import base64
 general = Blueprint('general', __name__)
 
 
+@general.route("/calc")
+def test():
+    # if app.config['MODE'] != 'DEV': abort(404) #Figure out how to not include this in production later
+    return render_template('test.html')
+
+
 @general.route("/")
 def splash(name=None):
     return render_template('index.html')
