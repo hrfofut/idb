@@ -50,8 +50,7 @@ def create_item(raw):
     item.pop('_sa_instance_state', None)
     item.pop('img', None)
     item.pop('description', None)
-    item.pop('link', None)
-    item.pop('equipment', None)
-    item.pop('muscles', None)
+    item.pop('cid', None)
+    item.pop('parent', None)
 
     return item

@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "45c4ae24-b1b4-4426-9872-f14a97515ff6",
+		"name": "CKC API TESTS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test foods",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36025046-f423-4857-8e25-3934645e658e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"quick cooking oats\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"1049003\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"1.83\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"italian beans\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api.caloriekiller.club/foods",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						"foods"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Wrong page request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "179b20a8-132c-4563-9015-08f9187f7188",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"http://caloriekiller.club/static/favicon.png\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.caloriekiller.club/foods/1",
+					"protocol": "http",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						"foods",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gyms request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6504121c-98bc-4299-8c14-501519cfbd31",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"1100 West Cesar Chavez Street, Austin\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"24 Hour Fitness\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"ChIJ57G_BQ61RIYR2W1XO34l6ok\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"CrossFit Central Downtown\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 150ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(150);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.caloriekiller.club/gyms",
+					"protocol": "http",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						"gyms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stores request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ae53511-962a-493a-8d4e-32e186a762ed",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"2805 Bee Caves Road, Austin\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Family Dollar\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"ChIJm4_R2BG1RIYRQcnsPEmzGQY\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"4.1\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 150ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(150);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.caloriekiller.club/stores",
+					"protocol": "http",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Workouts request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "089d8662-021c-4ebe-af11-1339650672b6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"bicycling\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"met\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"board game playing\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"http://www.dancesportclub.com/images/Gumbo-Dancesport-2016-Alex-Diana.jpg\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"9106\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"ballroom\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.caloriekiller.club/workouts",
+					"protocol": "http",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
