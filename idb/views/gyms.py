@@ -33,11 +33,13 @@ def overview():
     items = []
 
     query = gen_query(Gyms, items_per_page, page, sort, order, attribute, filters)
+    total_count = gen_query(Gyms, 10000000, page, sort, order, attribute, filters).count()
 
     get_gyms = query.all()
     for gym in get_gyms:
         items.append(create_item(gym))
-    last_page = ceil(len(items) / items_per_page)
+    last_page = ceil(total_count / items_per_page)
+
     return render_template('gyms/gyms.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 
 

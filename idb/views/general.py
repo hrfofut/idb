@@ -78,6 +78,7 @@ def search():
         items = sorted(items, key=lambda k: k.get(sort, 0))[::-1]
 
     attributes = {'name'}
+    f_crit = set()  # filter criteria
     for item in items:
         for key in item:
             attributes.add(key)

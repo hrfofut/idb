@@ -28,11 +28,12 @@ def overview():
     items = []
 
     query = gen_query(Food, items_per_page, page, sort, order, attribute, filters)
+    total_count = gen_query(Food, 10000000, page, sort, order, attribute, filters).count()
 
     get_foods = query.all()
     for food in get_foods:
         items.append(create_item(food))
-    last_page = ceil(len(items) / items_per_page)
+    last_page = ceil(total_count / items_per_page)
 
     return render_template('foods/food.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 

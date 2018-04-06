@@ -31,13 +31,14 @@ def overview():
     items = []
 
     query = gen_query(Workouts, items_per_page, page, sort, order, attribute, filters)
+    total_count = gen_query(Workouts, 10000000, page, sort, order, attribute, filters).count()
 
     get_workouts = query.all()
     for workout in get_workouts:
         if workout.name != "":
             item = create_item(workout)
             items.append(item)
-    last_page = ceil(len(items) / items_per_page)
+    last_page = ceil(total_count / items_per_page)
 
     return render_template('workouts/workouts.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 
