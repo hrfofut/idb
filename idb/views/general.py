@@ -60,7 +60,21 @@ def search():
             items.append(stores_create_item(store))
 
     last_page = ceil(len(items) / items_per_page)
-    attributes = ['name']
+
+    for item in items:
+        t = item.get(sort, None)
+        if t is not None:
+            t = type(t)
+            break
+    if t is str:
+        items = sorted(items, key=lambda k: k.get(sort, ""))[::-1]
+    else:
+        items = sorted(items, key=lambda k: k.get(sort, 0))[::-1]
+
+    attributes = {'name'}
+    for item in items:
+        for key in item:
+            attributes.add(key)
     return render_template('search.html', attributes=attributes, query=query, items=items, sort=sort, current_page=page, last_page=last_page)
 
 
