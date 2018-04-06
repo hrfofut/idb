@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import Blueprint, render_template, abort, request
+from flask import Blueprint, render_template, abort, request, redirect, url_for
 import requests
 import json
 
@@ -26,46 +26,42 @@ def splash(name=None):
     return render_template('index.html')
 
 
-@general.route("/overview")
-def overview():
-    return search()
-
-
-@general.route("/search", methods=['POST'])
+@general.route("/search", methods=['POST', 'GET'])
 def search():
     page = request.args.get('page', default=1, type=int)
     sort = request.args.get('sort', default='name', type=str)
     order = request.args.get('order', default='asc', type=str)
-    query = request.form['search']
+    query = request.form.get('search', request.args.get('search'))
+    print(query)
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
     tokens = query.split(" ")
     for search in tokens:
-        food_query = gen_query(Food, items_per_page, page, sort, order, search)
+        food_query = gen_query(Food, items_per_page, page, 'name', order, search)
         get_foods = food_query.all()
         for food in get_foods:
             items.append(foods_create_item(food))
 
-        workouts_query = gen_query(Workouts, items_per_page, page, sort, order, search)
+        workouts_query = gen_query(Workouts, items_per_page, page, 'name', order, search)
         get_workouts = workouts_query.all()
         for workout in get_workouts:
             items.append(workouts_create_item(workout))
 
-        gyms_query = gen_query(Gyms, items_per_page, page, sort, order, search)
+        gyms_query = gen_query(Gyms, items_per_page, page, 'name', order, search)
         get_gyms = gyms_query.all()
         for gym in get_gyms:
             items.append(gyms_create_item(gym))
 
-        stores_query = gen_query(Stores, items_per_page, page, sort, order, search)
+        stores_query = gen_query(Stores, items_per_page, page, 'name', order, search)
         get_stores = stores_query.all()
         for store in get_stores:
             items.append(stores_create_item(store))
 
     last_page = ceil(len(items) / items_per_page)
     attributes = ['name']
-    return render_template('stores/stores.html', attributes=attributes, items=items, sort=sort, current_page=page, last_page=last_page)
+    return render_template('search.html', attributes=attributes, query=query, items=items, sort=sort, current_page=page, last_page=last_page)
 
 
 @general.route("/about")
