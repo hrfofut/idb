@@ -106,8 +106,9 @@ def about():
     while (req_issues.status_code == requests.codes.ok) and (len(req_issues.json()) != 0):
         req_issues_json = req_issues.json()
         for issue in req_issues_json:
-            iss_total += 1
-            iss_count[logins[issue['user']['login']]] += 1
+            if issue['user']['login'] in logins:
+                iss_total += 1
+                iss_count[logins[issue['user']['login']]] += 1
         i += 1
         req_issues = requests.get('https://api.github.com/repos/hrfofut/idb/issues?state=all&page=' + str(i) + '&per_page=500')
     iss_count.append(iss_total)
