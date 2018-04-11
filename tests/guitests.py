@@ -70,7 +70,7 @@ class FirefoxTestCase(LiveServerTestCase):
 
         self.assertIn("CKC - Foods", driver.title)  # Adding to make it wait
 
-        food_item = driver.find_element_by_id('title-0')
+        food_item = driver.find_element_by_class_name('card-title')
         food_name = food_item.text
         food_item.click()
 
@@ -84,7 +84,7 @@ class FirefoxTestCase(LiveServerTestCase):
         driver.find_element_by_link_text('Workouts').click()
 
         self.assertIn("CKC - Workouts", driver.title)
-        workout_item = driver.find_element_by_id('title-0')
+        workout_item = driver.find_element_by_class_name('card-title')
         workout_name = workout_item.text
         workout_item.click()
 
@@ -98,7 +98,7 @@ class FirefoxTestCase(LiveServerTestCase):
         driver.find_element_by_link_text('Gyms').click()
 
         self.assertIn("CKC - Gyms", driver.title)
-        gym_item = driver.find_element_by_id('title-0')
+        gym_item = driver.find_element_by_class_name('card-title')
         gym_name = gym_item.text
         gym_item.click()
 
@@ -112,7 +112,7 @@ class FirefoxTestCase(LiveServerTestCase):
         driver.find_element_by_link_text('Stores').click()
 
         self.assertIn("CKC - Stores", driver.title)
-        store_item = driver.find_element_by_id('title-0')
+        store_item = driver.find_element_by_class_name('card-title')
         store_name = store_item.text
         store_item.click()
 
