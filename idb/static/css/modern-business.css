@@ -62,6 +62,12 @@ footer {
   border-radius: 1px;
 }
 
+.dropdown-menu {
+  height: auto;
+  max-height: 250px;
+  overflow-x: hidden;
+}
+
 #model-grid .card-img-top {
   object-fit: cover;
   height: 200px;
