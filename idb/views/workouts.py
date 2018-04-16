@@ -35,9 +35,9 @@ def overview():
 
     get_workouts = query.all()
     for workout in get_workouts:
-        if workout.name != "":
-            item = create_item(workout)
-            items.append(item)
+        # if workout.parent is None: #Only include excercises that are the original. This doesn't actually work because gen_query only every returns 20 objects.
+        item = create_item(workout)
+        items.append(item)
     last_page = ceil(total_count / items_per_page)
 
     return render_template('workouts/workouts.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
