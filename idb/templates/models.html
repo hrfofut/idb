@@ -40,15 +40,13 @@
     <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
       <div class="card h-100">
         <a href="{{ url_for('.detail', id=items[x]['id']) }}"><img class="card-img-top" alt="" src='{{ items[x]['image'] }}'/></a>
-        <div class="overlay"> 
-        </div>
 
         <div class="card-body">           
           <h4 class="card-title">
             <a href="{{ url_for('.detail', id=items[x]['id']) }}">{{ items[x]['name'] }}</a>
           </h4>
           {% for attr in items[x]|sort %}
-          {% if attr != 'name' and attr != 'image' and attr != 'id'%}
+          {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
           <p class="card-text">{{ attr.title() }}: {{ items[x][attr] }}</p>
           {% endif %}
           {% endfor %}

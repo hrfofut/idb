@@ -12,15 +12,18 @@
     {% for x in range(0, items|count) %}
     <div id="food-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
       <div class="card h-100 card-inverse ">
-          <a href="{{ url_for('.detail', id=items[x]['id']) }}"><img class="card-img-top" alt="" src='{{ items[x]['image'] }}'/></a>
-        <div class="overlay"> 
-        </div>
-        <div class="card-img-overlay over-title">
+        <a href="{{ url_for('.detail', id=items[x]['id']) }}"><img class="card-img-top" alt="" src='{{ items[x]['image'] }}'/></a>
+
+        <h4 class="card-title">
           <a href="{{ url_for('.detail', id=items[x]['id']) }}">{{ items[x]['name'] }}</a>
-        </div>
+        </h4>
         <div class="card-img-overlay">
+          <h4 class="card-title title-overlay">
+            <a href="{{ url_for('.detail', id=items[x]['id']) }}">{{ items[x]['name'] }}</a>
+          </h4>
+
           {% for attr in items[x]|sort %}
-          {% if attr != 'name' and attr != 'image' and attr != 'id'%}
+          {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url'%}
           <p class="card-text">{{ attr.title() }}: {{ items[x][attr] }}</p>
           {% endif %}
           {% endfor %}
