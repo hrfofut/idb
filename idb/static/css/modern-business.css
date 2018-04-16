@@ -74,6 +74,11 @@ footer {
   height: 200px;
 }
 
+#food-grid a:link, #food-grid a:visited, 
+#food-grid a:hover, #food-grid a:active {
+  /*color: white;*/
+}
+
 #food-grid .card-img-top {
   object-fit: cover;
   height: 325px;
@@ -94,9 +99,38 @@ footer {
   background-color: black;
 }
 
+#food-grid .title-overlay {
+  position: absolute;
+  height: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
 #food-grid .card-img-overlay {
   color: white;
-  font-size: 15px;
+  text-align: left;
+  /*position: absolute;*/
+  top: auto;
+  overflow: hidden;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+#food-grid .card:hover .card-img-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: .9;
+}
+
+/*#food-grid .card-img-overlay {
+  color: white;
   text-align: left;
   position: absolute;
   top: auto;
@@ -129,6 +163,11 @@ footer {
   background-color: rgba(0, 0, 0, 0.6);
   height: 15%;
   opacity: 1;
+}*/
+
+#model-links a:link, #model-links a:visited, 
+#model-links a:hover, #model-links a:active {
+  color: white;
 }
 
 #model-links .card-img-top {
@@ -150,11 +189,6 @@ footer {
   background-color: rgba(0, 0, 0, 0.6);
   text-align: right;
   padding-top: 0.25rem;
-}
-
-#model-links a:link, #model-links a:visited, 
-#model-links a:hover, #model-links a:active {
-  color: white;
 }
 
 
