@@ -72,10 +72,12 @@ def search():
         if t is not None:
             t = type(t)
             break
-    if t is str:
-        items = sorted(items, key=lambda k: k.get(sort, ""))[::-1]
-    else:
-        items = sorted(items, key=lambda k: k.get(sort, 0))[::-1]
+
+    if items:
+        if t is str:
+            items = sorted(items, key=lambda k: k.get(sort, ""))[::-1]
+        else:
+            items = sorted(items, key=lambda k: k.get(sort, 0))[::-1]
 
     attributes = {'name'}
     f_crit = set()  # filter criteria
