@@ -57,6 +57,7 @@ def create_item(raw):
     item = vars(raw)
     item['name'] = capwords(item['name'])
     item['image'] = item['img']
+    item['detail_url'] = "workouts/" + str(item['id'])
     item.pop('_sa_instance_state', None)
     item.pop('img', None)
     item.pop('description', None)

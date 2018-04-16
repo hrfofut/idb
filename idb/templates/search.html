@@ -35,7 +35,7 @@
     {% for x in range(0, items|count) %}
     <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
       <div class="card h-100">
-        <a href="{{ items[x][detail_url] }}">
+        <a href="{{ items[x]['detail_url'] }}">
           <img class="card-img-top" alt="" src="{{ items[x]['image'] }}"/>
         </a>
         <div class="overlay"> 
@@ -43,7 +43,7 @@
 
         <div class="card-body">
           <h4 class="card-title" id="title-{{x}}">
-            <a href="{{ items[x][detail_url] }}">{{ items[x]['name'] }}</a>
+            <a href="{{ items[x]['detail_url'] }}">{{ items[x]['name'] }}</a>
           </h4>
           {% for attr in items[x]|sort %}
           {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
