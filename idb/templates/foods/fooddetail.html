@@ -16,6 +16,47 @@
 
   <p> <a href= "/stores">Grocery Stores</a> </p>
   <p> <a href= "/workouts">Workouts</a> </p>
+  <div id="model-links" class="text-center">
+    <h1 class="lead" style="font-variant: small-caps">Similar Foods</h1>
+    <hr>
+    <div class="row">
+      {% for x in range(0, similar_foods|count) %}
+      <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="{{ url_for('.detail', id=similar_foods[x]['id']) }}"><img class="card-img-top" alt="" src='{{ similar_foods[x]['image'] }}'/></a>
+
+          <div class="card-body card-img-overlay">           
+            <h4 class="card-title lead">
+              <a href="{{ url_for('.detail', id=similar_foods[x]['id']) }}">{{ similar_foods[x]['name'] }}</a>
+            </h4>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- TODO: Link to related or common workouts -->
+    <h1 class="lead">Workouts to Try</h1>
+    <hr>
+    <div class="row">
+      {% for x in range(0, similar_foods|count) %}
+      <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="{{ url_for('.detail', id=similar_foods[x]['id']) }}"><img class="card-img-top" alt="" src='{{ similar_foods[x]['image'] }}'/></a>
+          <div class="overlay"> 
+          </div>
+
+          <div class="card-body card-img-overlay">           
+            <h4 class="card-title lead">
+              <a href="{{ url_for('.detail', id=similar_foods[x]['id']) }}">{{ similar_foods[x]['name'] }}</a>
+            </h4>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+  </div>
 </div>
 
 <script type="text/babel" src="../../static/js/fooddetail.js"></script>

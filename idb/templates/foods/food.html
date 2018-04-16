@@ -7,6 +7,29 @@
     </style>
 {% endblock %}
 {% block gridhead %}Foods{% endblock %}
+{% block cards %}
+  <div class="row">
+    {% for x in range(0, items|count) %}
+    <div id="food-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+      <div class="card h-100 card-inverse ">
+          <a href="{{ url_for('.detail', id=items[x]['id']) }}"><img class="card-img-top" alt="" src='{{ items[x]['image'] }}'/></a>
+        <div class="overlay"> 
+        </div>
+        <div class="card-img-overlay over-title">
+          <a href="{{ url_for('.detail', id=items[x]['id']) }}">{{ items[x]['name'] }}</a>
+        </div>
+        <div class="card-img-overlay">
+          {% for attr in items[x]|sort %}
+          {% if attr != 'name' and attr != 'image' and attr != 'id'%}
+          <p class="card-text">{{ attr.title() }}: {{ items[x][attr] }}</p>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
 {% block content %}
 {{ super() }}
 {% endblock %}

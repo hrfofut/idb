@@ -54,6 +54,7 @@ footer {
   border-bottom: 1px solid #4dd0e1;
   box-shadow: 0 0px 0 0 #4dd0e1;
 }
+
 .search-bar input[type=text] {
   background-color: transparent;
   color: rgba(255, 255, 255, 0.75);
@@ -129,6 +130,33 @@ footer {
   height: 15%;
   opacity: 1;
 }
+
+#model-links .card-img-top {
+  object-fit: cover;
+  height: 125px;
+  border-bottom-right-radius: calc(.25rem - 1px);
+  border-bottom-left-radius: calc(.25rem - 1px); 
+}
+
+#model-links .card-img-overlay {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: right;
+  padding-top: 0.25rem;
+}
+
+#model-links a:link, #model-links a:visited, 
+#model-links a:hover, #model-links a:active {
+  color: white;
+}
+
 
 #food-detail h1 {
   text-transform: capitalize; 

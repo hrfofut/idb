@@ -44,7 +44,14 @@ def detail(id):
     if food is None:
         abort(404)
     food.name = capwords(food.name)
-    return render_template('foods/fooddetail.html', food=food)
+
+    similar_foods = []
+    query = db.session.query(Food).filter(Food.aisle == food.aisle).limit(4)
+    get_foods = query.all()
+    for s_food in get_foods:
+        similar_foods.append(create_item(s_food))
+
+    return render_template('foods/fooddetail.html', food=food, similar_foods=similar_foods)
 
 
 def create_item(raw):

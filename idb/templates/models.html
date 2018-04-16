@@ -31,14 +31,10 @@
     {% endif %}
   </h1>
 
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <a href="/">Home</a>
-    </li>
-    <li class="breadcrumb-item active">{{ self.gridhead() }}</li>
-  </ol>
-
+  <hr>
+  
   {% if items|count > 0 %}
+  {% block cards %}
   <div class="row">
     {% for x in range(0, items|count) %}
     <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
@@ -61,6 +57,8 @@
     </div>
     {% endfor %}
   </div>
+  {% endblock %}
+
 
   <!-- Pagination -->
   {% include 'pagination.html' %}
