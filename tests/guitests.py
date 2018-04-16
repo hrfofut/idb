@@ -73,11 +73,11 @@ class FirefoxTestCase(LiveServerTestCase):
 
         food_item = driver.find_element_by_class_name('card-title')
         food_name = food_item.text
-        print(driver.getTitle())
+        print(driver.title)
         food_item.click()
 
         wait = WebDriverWait(driver, 10)
-        print(driver.getTitle())
+        print(driver.title)
         element = wait.until(EC.title_is((food_name)))
         self.assertEqual(food_name, driver.find_element_by_tag_name('h1').text)
 
@@ -120,11 +120,11 @@ class FirefoxTestCase(LiveServerTestCase):
         self.assertIn("CKC - Stores", driver.title)
         store_item = driver.find_element_by_class_name('card-title')
         store_name = store_item.text
-        print(driver.getTitle())
+        print(driver.title)
         store_item.click()
 
         wait = WebDriverWait(driver, 10)
-        print(driver.getTitle())
+        print(driver.title)
         element = wait.until(EC.title_is((store_name)))
         self.assertEqual(store_name, driver.find_element_by_tag_name('h1').text)
 

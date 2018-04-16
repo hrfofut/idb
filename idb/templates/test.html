@@ -13,8 +13,8 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/modern-business.css') }}" rel="stylesheet">
-
-	<script src="{{ url_for('static', filename='js/cal_calc.js') }}"></script>
+    <script>var exports = {};</script>
+    <script src="{{ url_for('static', filename='js/cal_calc.js') }}"></script>
 
 
     <title>test page, please ignore.</title>   
@@ -27,15 +27,68 @@
 <p>Height in Inch: <input type="number" id="height" value="69"/></p>
 <p>Weight in Pound: <input type="number" id="weight" value="160"/></p>
 <p id="output"> </p>
+
+
+
+<p id="demo">Click the button to get your coordinates:</p>
+
+<button onclick="getLocation()">Try It</button>
+
+
+
+
 </body>
 </html>
+<script>
+function showError(PositionError)
+{
+    console.log(':(')
+    console.log(PositionError)
+}
+function showPosition(position) {
+
+    console.log('show');
+
+    console.log("Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude);
+    var x = document.getElementById("demo");
+    x.innerHTML="Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;  
+}
+
+function getLocation() {
+
+    console.log('get');
+    var x = document.getElementById("demo");
+    console.log('a');
+    if (navigator.geolocation) {
+        var location_timeout = setTimeout("geolocFail()", 10000);
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+            clearTimeout(location_timeout);
+
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+
+            showPosition(position);
+        }, function(error) {
+            clearTimeout(location_timeout);
+            console.log("Failed but Has")
+            showError(error);
+        });
+    } else {
+        // Fallback for no geolocation
+        console.log("Can't Geo")
+    }
+}
+</script>
 <script>
 function main() {
     var weight = document.getElementById('weight').value;
     var height = document.getElementById('height').value;
     var age = document.getElementById('age').value;
-    var bmr = calc_bmr(weight, height, age);
-    var ttb = to_burn(7.5, bmr, 250);
+    var bmr = c_bmr(weight, height, age);
+    var ttb = t_burn(7.5, bmr, 250);
     document.getElementById('output').innerHTML = "Your bmr is "+bmr+", if you were biking it would take "+ttb+" minutes to burn off 250 calories."; 
 }
 </script>
