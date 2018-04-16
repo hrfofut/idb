@@ -66,6 +66,7 @@ class FirefoxTestCase(LiveServerTestCase):
     # Test that food grid card title links lead to the correct instance that displays the name properly
     def test_food_grid_links(self):
         driver = self.driver
+        self.assertIn("Let's Get Fit", driver.title)
         driver.find_element_by_link_text('Foods').click()
 
         self.assertIn("CKC - Foods", driver.title)  # Adding to make it wait
@@ -81,6 +82,7 @@ class FirefoxTestCase(LiveServerTestCase):
     # Test that workout grid card title links lead to the correct instance that displays the name properly
     def test_workout_grid_links(self):
         driver = self.driver
+        self.assertIn("Let's Get Fit", driver.title)
         driver.find_element_by_link_text('Workouts').click()
 
         self.assertIn("CKC - Workouts", driver.title)
@@ -95,6 +97,7 @@ class FirefoxTestCase(LiveServerTestCase):
     # Test that gym grid card title links lead to the correct instance that displays the name properly
     def test_gym_grid_links(self):
         driver = self.driver
+        self.assertIn("Let's Get Fit", driver.title)
         driver.find_element_by_link_text('Gyms').click()
 
         self.assertIn("CKC - Gyms", driver.title)
@@ -109,6 +112,7 @@ class FirefoxTestCase(LiveServerTestCase):
     # Test that store grid card title links lead to the correct instance that displays the name properly
     def test_store_grid_links(self):
         driver = self.driver
+        self.assertIn("Let's Get Fit", driver.title)
         driver.find_element_by_link_text('Stores').click()
 
         self.assertIn("CKC - Stores", driver.title)

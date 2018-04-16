@@ -127,6 +127,7 @@ def add_pids(lidi, db):
             # print("setting parent: "+ str(workout['id']))
             parent_dict[workout['name']] = workout['id']
             db.session.query(Workouts).filter(and_(Workouts.name == workout['name'], Workouts.id != workout['id'])).update({Workouts.parent: workout['id']})
+    print("commiting pids.")
     db.session.commit()
 
 
@@ -149,7 +150,7 @@ if __name__ == '__main__':
     lidi += parse_file(3)
 
     # Add parsed information to the DB
-    # add_entries(lidi, db)
+    add_entries(lidi, db)
 
     # Set Parent IDs
     add_pids(lidi, db)

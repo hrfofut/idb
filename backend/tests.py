@@ -14,9 +14,13 @@
 # imports
 # -------
 
+# import flaskr
+
+
 from io import StringIO
 from unittest import main, TestCase
 
+from idb import create_app
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import exists, update, and_
@@ -30,19 +34,39 @@ from idb.views.workouts import overview, detail, create_item
 # -------
 
 
-class TestWeb (TestCase):
+class FlaskrTestCase (TestCase):
+
+    def setUp(self):
+        # self.db_fd, flaskr.app.config['DATABASE'] = tempfile.mkstemp()
+        # app = Flask(__name__, instance_relative_config=True)
+        app = create_app("__test__")
+        app.testing = True
+        app.config.from_pyfile('default_config.py')
+        app.config.from_pyfile('application.py', silent=True)
+
+        app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DB_URI']
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+        self.app = app.test_client()
+        # with flaskr.app.app_context():
+        #     flaskr.init_db()
+
+    # def tearDown(self):
+        # os.close(self.db_fd)
+        # os.unlink(flaskr.app.config['DATABASE'])
 
     def test_test(self):
         self.assertEqual(1, 1)
 
     def test_general_splash(self):
-        assert(splash() is not None)
+        assert(self.app.get('/') is not None)  # splash
+        print(self.app.get('/'))
 
     def test_general_search(self):
-        assert (search() is not None)
+        assert (self.app.get('/search') is not None)
 
     def test_general_about(self):
-        assert (about() is not None)
+        assert (self.app.get('/about') is not None)
+        print(self.app.get('/about'))
 
 # ----
 # main
@@ -50,11 +74,4 @@ class TestWeb (TestCase):
 
 
 if __name__ == "__main__":  # pragma: no cover
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_pyfile('default_config.py')
-    app.config.from_pyfile('application.py', silent=True)
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DB_URI']
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    print("DB created?")
     main()
