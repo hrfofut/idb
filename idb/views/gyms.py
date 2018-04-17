@@ -33,7 +33,7 @@ def overview():
     items = []
 
     query = gen_query(Gyms, items_per_page, page, sort, order, attribute, filters)
-    total_count = gen_query(Gyms, 10000000, page, sort, order, attribute, filters).count()
+    total_count = gen_query(Gyms, 10000000, 1, sort, order, attribute, filters).count()
 
     get_gyms = query.all()
     for gym in get_gyms:

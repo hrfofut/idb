@@ -33,7 +33,7 @@ def overview():
     items = []
 
     query = gen_query(Stores, items_per_page, page, sort, order, attribute, filters)
-    total_count = gen_query(Stores, 10000000, page, sort, order, attribute, filters).count()
+    total_count = gen_query(Stores, 10000000, 1, sort, order, attribute, filters).count()
 
     get_stores = query.all()
     for store in get_stores:
