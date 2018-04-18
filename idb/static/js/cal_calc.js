@@ -6,25 +6,26 @@
 
 
 
-
+//Calculates BMR given enough information
 function c_bmr(weight , height , age , sex) {
-	if(sex == 0){
+	if(sex == 0){ //If sex is 1, then it's movable-type, if sex is 0, it's female.
 		return 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
 	}
 	return 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age);
 }
-// function cals_burned(met = 1.0, bmr = 1925, minutes=60){
+//calculates the calories burned after a certain number of minutes.
 function c_burn(met, bmr, minutes) {
 	return met * (bmr / 1440) * minutes;
 }
-
+//calculates number of minutes to burn off a number of calories.
 function t_burn(met, bmr, cals){
 	return cals / (met * (bmr / 1440));
 }
-
+//converts degrees to radians
 function degToRad(deg){
 	return deg * Math.PI / 180;
 }
+//Calculates the distance in meters between two co-ordinates
 function r_dist(lat1, lng1, lat2, lng2){
 	//Credit to https://www.movable-type.co.uk/scripts/latlong.html
 	var R = 6371e3; // metres
