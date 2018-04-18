@@ -12,11 +12,15 @@ describe('Calculator Tests', function() {
 		done();
 	});
 
-//mocha doesn't like defaults.
-	// it('checks defaults', function(done) {
-	// 	assert.equal(Math.round(calc.calc_bmr(180, 69, 21, 0)), Math.round(calc.calc_bmr()));
-	// 	done();
-	// });
+	it('Checks that degrees to radians are being computed correctly', function(done) {
+		assert.equal(calc.degreesToRadians(360), Math.PI * 2);
+		done();
+	});
+
+	it('Compute distance between two co-ordinates', function(done) {
+		assert.equal(Math.round(calc.real_distance(30.3554513,-97.7346576,30.3012996,-97.7203696)), 6176);
+		done();
+	});
 
 	it('calculates time to burn 250 calories at MET 7.5', function(done) {
 		assert.equal(Math.round(calc.to_burn(7.5, calc.calc_bmr(160, 69, 21, 0), 250)), 27);
