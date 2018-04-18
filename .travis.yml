@@ -30,11 +30,10 @@ before_script:
     - export XDG_RUNTIME_DIR=/run/user/$(id -u)
     - Xvfb :99 &
     - export DISPLAY=:99
-    - npm install mocha
+    - npm install -g mocha --save-dev
 
 script:
     - make travis
-    - cat geckodriver.log
 
 notifications:
     slack: cs373-group10:wW0GSRNiXUC2f6VfRnM6DXsJ
