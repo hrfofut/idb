@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-  <div class="text-center">
+  <div class="text-center mt-3">
       <img class="detail-img" src='{{workout['img']}}'/>
   </div>
 	<h1 class="display-4" style="text-transform: capitalize; text-align: center">{{workout['name']}}</h1>
@@ -28,7 +28,26 @@
         </tr>
       </tbody>
     </table>
-    <p> <a href= "/foods">Foods</a> </p>
-    <p> <a href= "/gyms">Gyms</a> </p>
+
+  <p> <a href= "/gyms">Gyms</a> </p>
+  <div id="model-links" class="text-center">
+    <h1 class="lead">Foods That Can Be Burned Off in an Hour</h1>
+    <hr>
+    <div class="row">
+      {% for x in range(0, foods|count) %}
+      <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="{{ url_for('foods.detail', id=foods[x]['id']) }}"><img class="card-img-top" alt="" src='{{ foods[x]['image'] }}'/></a>
+
+          <div class="card-body card-img-overlay">           
+            <h4 class="card-title lead">
+              <a href="{{ url_for('foods.detail', id=foods[x]['id']) }}">{{ foods[x]['name'] }}</a>
+            </h4>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock %}
