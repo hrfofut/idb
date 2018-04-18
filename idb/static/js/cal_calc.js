@@ -15,15 +15,43 @@ function c_bmr(weight , height , age , sex) {
 }
 // function cals_burned(met = 1.0, bmr = 1925, minutes=60){
 function c_burn(met, bmr, minutes) {
-return met * (bmr / 1440) * minutes;
+	return met * (bmr / 1440) * minutes;
 }
 
 function t_burn(met, bmr, cals){
 	return cals / (met * (bmr / 1440));
 }
 
+function degToRad(deg){
+	return deg * Math.PI / 180;
+}
+function r_dist(lat1, lng1, lat2, lng2){
+	//Credit to https://www.movable-type.co.uk/scripts/latlong.html
+	var R = 6371e3; // metres
+	var φ1 = degToRad(lat1)
+	var φ2 = degToRad(lat2)
+	var Δφ = degToRad(lat2-lat1)
+	var Δλ = degToRad(lng2-lng1)
+
+	var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+	        Math.cos(φ1) * Math.cos(φ2) *
+	        Math.sin(Δλ/2) * Math.sin(Δλ/2);
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+	var d = R * c;
+
+	return d;
+}
+exports.degreesToRadians = function(deg){
+	return degToRad(deg)
+}
+//r_dist(30.3554513,-97.7346576,30.3012996,-97.7203696)
+exports.real_distance = function(lat1, lng1, lat2, lng2) {
+	return r_dist(lat1, lng1, lat2, lng2);
+}
+
 exports.calc_bmr = function(weight , height , age , sex) {
-	return  c_bmr(weight , height , age , sex)
+	return  c_bmr(weight , height , age , sex);
 }
 // function cals_burned(met = 1.0, bmr = 1925, minutes=60){
 
