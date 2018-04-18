@@ -19,7 +19,7 @@
         </h4>
         <div class="card-img-overlay">
           <h4 class="card-title title-overlay">
-            <a href="{{ url_for('.detail', id=items[x]['id']) }}">{{ items[x]['name'] }}</a>
+            <a class="title-link" href="{{ url_for('.detail', id=items[x]['id']) }}">{{ items[x]['name'] }}</a>
           </h4>
 
           {% for attr in items[x]|sort %}

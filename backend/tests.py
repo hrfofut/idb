@@ -59,17 +59,14 @@ class FlaskrTestCase (TestCase):
 
     def test_general_splash(self):
         assert(self.app.get('/') is not None)  # splash
-        print(self.app.get('/'))
 
     def test_general_search(self):
         # print("App info:"+str(type(self.app)))
         result = self.app.post('/search', data={'search': 'bacon'})
-        print(str(result))
         assert (result is not None)
 
     def test_general_about(self):
         assert (self.app.get('/about') is not None)
-        print(self.app.get('/about'))
 
 # ----
 # main
