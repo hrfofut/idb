@@ -12,7 +12,10 @@ from math import ceil
 
 from .db_functions import gen_query
 
-from backend.tools import unbinary
+from backend.tools import unbinary, real_dist
+
+from operator import attrgetter as at_get
+from heapq import nsmallest
 import base64
 
 stores = Blueprint('stores', __name__)
@@ -54,7 +57,23 @@ def detail(id):
     store.name = capwords(store.name)
     image = db.session.query(Images).get(store.pic_id).pic
     img = unbinary(str(base64.b64encode(image)))
-    return render_template('stores/storesdetail.html', store=store, pic=img)
+
+    # Search for the nearest gyms.
+    gyms = db.session.query(Gyms).all()
+    lat2 = at_get('lat')
+    lng2 = at_get('lng')
+
+    lat = lat2(store)
+    lng = lng2(store)
+    gym_list = nsmallest(4, gyms, lambda x: real_dist(lat, lng, lat2(x), lng2(x)))
+    images = []
+    for gym in gym_list:
+        g_image = db.session.query(Images).get(gym.pic_id).pic
+        images.append(unbinary(str(base64.b64encode(g_image))))
+    # add some foods
+    foods = db.session.query(Food).order_by(func.random()).limit(4).all()
+
+    return render_template('stores/storesdetail.html', store=store, pic=img, gyms=gym_list, foods=foods, images=images)
 
 
 def create_item(raw):

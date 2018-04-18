@@ -58,7 +58,7 @@ def detail(id):
     gym.name = capwords(gym.name)
     img = unbinary(str(base64.b64encode(image)))
 
-    # Search for the nearest store.
+    # Search for the nearest stores.
     stores = db.session.query(Stores).all()
     lat2 = at_get('lat')
     lng2 = at_get('lng')
