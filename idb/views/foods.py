@@ -1,5 +1,6 @@
 from flask import current_app as app
 from flask import Blueprint, render_template, abort, jsonify, request
+from sqlalchemy import or_, func
 from idb.models import Food, Workouts
 from idb import db
 from string import capwords
@@ -50,16 +51,11 @@ def detail(id):
     for s_food in get_foods:
         similar_foods.append(create_item(s_food))
 
-    # TODO: pass in relevant workouts instead of the same four every time
     workouts = []
-    running = db.session.query(Workouts).get(12030)
-    bicycling = db.session.query(Workouts).get(1003)
-    soccer = db.session.query(Workouts).get(15605)
-    yoga = db.session.query(Workouts).get(2150)
-    workouts.append(running)
-    workouts.append(bicycling)
-    workouts.append(soccer)
-    workouts.append(yoga)
+    workout = db.session.query(Workouts).filter(or_(Workouts.category == "conditioning exercise", Workouts.category == "sports", Workouts.category == "bicycling")).order_by(func.random()).limit(4)
+
+    for item in workout:
+        workouts.append(item)
 
     return render_template('foods/fooddetail.html', food=food, similar_foods=similar_foods, workouts=workouts)
 
