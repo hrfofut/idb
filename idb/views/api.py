@@ -7,10 +7,10 @@ api = Blueprint('api', __name__)
 
 @api.route("/")
 def api_splash():
-    return render_template('api.html')
+    return "API PAGE"
 
 
-@api.route("/foods")
+@api.route("/foods/")
 def food_api():
     foods = db.session.query(Food).all()
 
@@ -23,7 +23,17 @@ def food_api():
     return jsonify(food_json)
 
 
-@api.route("/workouts")
+@api.route("/foods/<int:id>")
+def food_details_api():
+    food = db.session.query(Food).get(id)
+    if food is None:
+        abort(404)
+
+    res = {'id': food.id, 'name': food.name, 'img': food.img, 'servings': food.servings, 'calorie': food.calorie, 'sodium': food.sodium, 'fat': food.fat, 'protein': food.protein}
+    return jsonify(res)
+
+
+@api.route("/workouts/")
 def workouts_api():
     workouts = db.session.query(Workouts).all()
 
@@ -36,7 +46,17 @@ def workouts_api():
     return jsonify(workout_json)
 
 
-@api.route("/stores")
+@api.route("/workouts/<int:id>")
+def workouts_details_api():
+    workout = db.session.query(Workouts).get(id)
+    if workout is None:
+        abort(404)
+
+    res = {'id': workout.id, 'name': workout.name, 'img': workout.img, 'category': workout.category, 'description': workout.description, 'met': workout.met, 'cid': workout.cid}
+    return jsonify(res)
+
+
+@api.route("/stores/")
 def stores_api():
     stores = db.session.query(Stores).all()
 
@@ -49,7 +69,17 @@ def stores_api():
     return jsonify(stores_json)
 
 
-@api.route("/gyms")
+@api.route("/stores/<int:id>")
+def stores_details_api():
+    store = db.session.query(Stores).get(id)
+    if store is None:
+        abort(404)
+
+    res = {'id': store.id, 'gid': store.gid, 'name': store.name, 'location': store.location, 'price_level': store.price_level, 'ratings': store.ratings}
+    return jsonify(res)
+
+
+@api.route("/gyms/")
 def gyms_api():
     gyms = db.session.query(Gyms).all()
 
@@ -60,3 +90,13 @@ def gyms_api():
         gyms_json.append(gym_dict)
 
     return jsonify(gyms_json)
+
+
+@api.route("/gyms/<int:id>")
+def gyms_details_api():
+    gym = db.session.query(Gyms).get(id)
+    if gym is None:
+        abort(404)
+
+    res = {'id': gym.id, 'gid': gym.gid, 'name': gym.name, 'location': gym.location, 'price_level': gym.price_level, 'ratings': gym.ratings}
+    return jsonify(res)
