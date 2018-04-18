@@ -62,7 +62,10 @@ class FlaskrTestCase (TestCase):
         print(self.app.get('/'))
 
     def test_general_search(self):
-        assert (self.app.get('/search') is not None)
+        # print("App info:"+str(type(self.app)))
+        result = self.app.post('/search', data={'search': 'bacon'})
+        print(str(result))
+        assert (result is not None)
 
     def test_general_about(self):
         assert (self.app.get('/about') is not None)
