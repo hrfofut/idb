@@ -24,7 +24,7 @@ def food_api():
 
 
 @api.route("/foods/<int:id>")
-def food_details_api():
+def food_details_api(id):
     food = db.session.query(Food).get(id)
     if food is None:
         abort(404)
@@ -47,7 +47,7 @@ def workouts_api():
 
 
 @api.route("/workouts/<int:id>")
-def workouts_details_api():
+def workouts_details_api(id):
     workout = db.session.query(Workouts).get(id)
     if workout is None:
         abort(404)
@@ -70,7 +70,7 @@ def stores_api():
 
 
 @api.route("/stores/<int:id>")
-def stores_details_api():
+def stores_details_api(id):
     store = db.session.query(Stores).get(id)
     if store is None:
         abort(404)
@@ -93,7 +93,7 @@ def gyms_api():
 
 
 @api.route("/gyms/<int:id>")
-def gyms_details_api():
+def gyms_details_api(id):
     gym = db.session.query(Gyms).get(id)
     if gym is None:
         abort(404)
