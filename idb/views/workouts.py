@@ -1,7 +1,8 @@
 from flask import current_app as app
 from flask import Blueprint, render_template, abort, request
 from flask_sqlalchemy import SQLAlchemy
-from idb.models import Workouts, Food
+from sqlalchemy import func
+from idb.models import Workouts, Food, Gyms, Images
 from idb import db
 from string import capwords
 import requests
@@ -10,6 +11,8 @@ from math import ceil
 
 from .db_functions import gen_query
 from .foods import create_item as food_create_item
+from backend.tools import unbinary
+import base64
 
 workouts = Blueprint('workouts', __name__)
 
@@ -60,7 +63,23 @@ def detail(id):
     for food in get_foods:
         foods.append(food_create_item(food))
 
-    return render_template('workouts/workoutsdetail.html', workout=workout, foods=foods)
+    similar_workouts = []
+    workout_query = db.session.query(Workouts).filter(Workouts.category == workout.category).limit(4)
+    for sim_workout in workout_query:
+        similar_workouts.append(sim_workout)
+
+    gyms = []
+    images = []
+    # TODO: Add gyms that have this workouts
+    if workout.category == "conditioning exercise":
+        gym_query = db.session.query(Gyms).order_by(func.random()).limit(4)
+        for gym in gym_query:
+            gyms.append(gym)
+            image = db.session.query(Images).get(gym.pic_id).pic
+            img = unbinary(str(base64.b64encode(image)))
+            images.append(img)
+
+    return render_template('workouts/workoutsdetail.html', workout=workout, foods=foods, similar_workouts=similar_workouts, gyms=gyms, images=images)
 
 
 def create_item(raw):
