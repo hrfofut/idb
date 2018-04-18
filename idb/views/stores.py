@@ -40,7 +40,7 @@ def overview():
         items.append(create_item(store))
     last_page = ceil(total_count / items_per_page)
 
-    return render_template('stores/stores.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
+    return render_template('stores/stores.html', items=items, sort=sort, order=order, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 
 
 @stores.route("/<int:id>")

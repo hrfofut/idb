@@ -69,6 +69,12 @@ footer {
   overflow-x: hidden;
 }
 
+#sort-order-arrow a:link, #sort-order-arrow a:visited,
+#sort-order-arrow a:hover, #sort-order-arrow a:active {
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
 #model-grid .card-img-top {
   object-fit: cover;
   height: 200px;

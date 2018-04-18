@@ -34,7 +34,7 @@ def overview():
         items.append(create_item(food))
     last_page = ceil(total_count / items_per_page)
 
-    return render_template('foods/food.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
+    return render_template('foods/food.html', items=items, sort=sort, order=order, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 
 
 @foods.route("/<int:id>")
