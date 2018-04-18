@@ -64,7 +64,7 @@ def detail(id):
         foods.append(food_create_item(food))
 
     similar_workouts = []
-    workout_query = db.session.query(Workouts).filter(Workouts.category == workout.category).limit(4)
+    workout_query = db.session.query(Workouts).filter(Workouts.category == workout.category, Workouts.name != workout.name).limit(4)
     for sim_workout in workout_query:
         similar_workouts.append(sim_workout)
 
