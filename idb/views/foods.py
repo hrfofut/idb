@@ -1,6 +1,6 @@
 from flask import current_app as app
 from flask import Blueprint, render_template, abort, jsonify, request
-from idb.models import Food
+from idb.models import Food, Workouts
 from idb import db
 from string import capwords
 from math import ceil
@@ -34,7 +34,7 @@ def overview():
         items.append(create_item(food))
     last_page = ceil(total_count / items_per_page)
 
-    return render_template('foods/food.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
+    return render_template('foods/food.html', items=items, sort=sort, order=order, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 
 
 @foods.route("/<int:id>")
@@ -50,7 +50,18 @@ def detail(id):
     for s_food in get_foods:
         similar_foods.append(create_item(s_food))
 
-    return render_template('foods/fooddetail.html', food=food, similar_foods=similar_foods)
+    # TODO: pass in relevant workouts instead of the same four every time
+    workouts = []
+    running = db.session.query(Workouts).get(12030)
+    bicycling = db.session.query(Workouts).get(1003)
+    soccer = db.session.query(Workouts).get(15605)
+    yoga = db.session.query(Workouts).get(2150)
+    workouts.append(running)
+    workouts.append(bicycling)
+    workouts.append(soccer)
+    workouts.append(yoga)
+
+    return render_template('foods/fooddetail.html', food=food, similar_foods=similar_foods, workouts=workouts)
 
 
 def create_item(raw):

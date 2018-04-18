@@ -10,7 +10,7 @@ class FoodDetail extends React.Component {
             </tr>
             <tr>
               <th scope="row">Amount Per 1 serving</th>
-              <th >{this.props.servings}</th>
+              <th >{this.props.servings} g</th>
             </tr>
           </thead>
           <tbody>

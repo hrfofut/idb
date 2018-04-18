@@ -10,28 +10,44 @@
   <h1 class="mt-4 mb-3">{% block gridhead %} {% endblock %}
     <small>List</small>
     {% if items|count > 0 %}
+    <div id="sort-order-arrow" class="float-right">
+      {% if order == 'desc' %}
+      <a href="{{ url_for('.overview', filters=filters, order='asc', sort=sort) }}">&#9652</a>
+      {% else %}
+      <a href="{{ url_for('.overview', filters=filters, order='desc', sort=sort) }}">&#9662</a>
+      {% endif %}
+    </div>
     <div class="float-right">
-      <button class="btn pull-right btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By</button>
+      <button class="btn pull-right btn-secondary btn-sm dropdown-toggle mr-2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By</button>
       <div class="dropdown-menu dropdown-menu-right">
         {% for attr in items[0]|sort %}
-        {% if (attr != 'image' and attr != 'id') %} 
+        {% if (attr != 'image' and attr != 'id' and attr != 'detail_url') %} 
         <a class="dropdown-item" href="{{ url_for('.overview', sort=attr, filters=filters) }}">{{ attr }}</a>
         {% endif %}
         {% endfor %}
       </div>
     </div>
     <div class="float-right">
-      <button class="btn pull-right btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
+      <button class="btn pull-right btn-secondary btn-sm dropdown-toggle mr-2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
       <div class="dropdown-menu dropdown-menu-right">
         {% for item in f_crit %}
-        <a class="dropdown-item" href="{{ url_for('.overview', filters=item, sort=sort) }}">{{ item }}</a>
+        <a class="dropdown-item" href="{{ url_for('.overview', filters=item, order=order, sort=sort) }}">{{ item }}</a>
         {% endfor %}
       </div>
     </div>
     {% endif %}
   </h1>
 
-  <hr>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item active">{{ self.gridhead() }}</li>
+    <li class="breadcrumb-item active">Sorting by {{ sort }}</li>
+    {% if filters != "" %}
+    <li class="breadcrumb-item active">Filtering by {{ filters }}</li>
+    {% endif %}
+  </ol>
   
   {% if items|count > 0 %}
   {% block cards %}

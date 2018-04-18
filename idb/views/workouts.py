@@ -1,7 +1,7 @@
 from flask import current_app as app
 from flask import Blueprint, render_template, abort, request
 from flask_sqlalchemy import SQLAlchemy
-from idb.models import Workouts
+from idb.models import Workouts, Food
 from idb import db
 from string import capwords
 import requests
@@ -9,6 +9,7 @@ import json
 from math import ceil
 
 from .db_functions import gen_query
+from .foods import create_item as food_create_item
 
 workouts = Blueprint('workouts', __name__)
 
@@ -40,7 +41,7 @@ def overview():
         items.append(item)
     last_page = ceil(total_count / items_per_page)
 
-    return render_template('workouts/workouts.html', items=items, sort=sort, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
+    return render_template('workouts/workouts.html', items=items, sort=sort, order=order, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
 
 
 @workouts.route("/<int:id>")
@@ -49,7 +50,17 @@ def detail(id):
     if workout is None:
         abort(404)
     workout.name = capwords(workout.name)
-    return render_template('workouts/workoutsdetail.html', workout=workout)
+
+    # calculate number of calories that would be burned off for an average person in an hour
+    calorie = workout.met * 62
+
+    foods = []
+    query = db.session.query(Food).filter(Food.calorie.between(calorie - 50, calorie + 50)).limit(4)
+    get_foods = query.all()
+    for food in get_foods:
+        foods.append(food_create_item(food))
+
+    return render_template('workouts/workoutsdetail.html', workout=workout, foods=foods)
 
 
 def create_item(raw):
