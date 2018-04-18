@@ -73,8 +73,7 @@ class FirefoxTestCase(LiveServerTestCase):
 
         food_item = driver.find_element_by_class_name('card-title')
         food_name = food_item.text
-        food_item = driver.find_element_by_class_name('card-img-top')
-        print("XX_DEBUGHERE")
+        food_item = driver.find_element_by_class_name('title-link')
         print(food_name)
         print(driver.title)
         food_item.click()
@@ -122,7 +121,6 @@ class FirefoxTestCase(LiveServerTestCase):
 
         self.assertIn("CKC - Stores", driver.title)
         store_item = driver.find_element_by_class_name('card-title')
-        print("XX_DEBUGHERE")
         store_name = store_item.text
         store_item = driver.find_element_by_class_name('card-img-top')
         print(store_name)

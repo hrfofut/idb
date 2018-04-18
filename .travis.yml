@@ -30,6 +30,7 @@ before_script:
     - export XDG_RUNTIME_DIR=/run/user/$(id -u)
     - Xvfb :99 &
     - export DISPLAY=:99
+    - npm install mocha
 
 script:
     - make travis
