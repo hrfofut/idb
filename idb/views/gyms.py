@@ -1,7 +1,10 @@
 from flask import current_app as app
 from flask import Blueprint, render_template, abort, request
 from flask_sqlalchemy import SQLAlchemy
-from idb.models import Gyms, Images
+
+from sqlalchemy import or_, func
+
+from idb.models import Gyms, Images, Stores, Workouts
 # Later lets have a python thing that has all db calls
 from idb import db
 from string import capwords
@@ -9,7 +12,10 @@ from math import ceil
 
 from .db_functions import gen_query
 
-from backend.tools import unbinary
+from backend.tools import unbinary, real_dist
+
+from operator import attrgetter as at_get
+from heapq import nsmallest
 import base64
 
 gyms = Blueprint('gyms', __name__)
@@ -51,7 +57,23 @@ def detail(id):
     image = db.session.query(Images).get(gym.pic_id).pic
     gym.name = capwords(gym.name)
     img = unbinary(str(base64.b64encode(image)))
-    return render_template('gyms/gymsdetail.html', gym=gym, pic=img)
+
+    # Search for the nearest store.
+    stores = db.session.query(Stores).all()
+    lat2 = at_get('lat')
+    lng2 = at_get('lng')
+
+    lat = lat2(gym)
+    lng = lng2(gym)
+    store_list = nsmallest(4, stores, lambda x: real_dist(lat, lng, lat2(x), lng2(x)))
+    images = []
+    for store in store_list:
+        s_image = db.session.query(Images).get(store.pic_id).pic
+        images.append(unbinary(str(base64.b64encode(s_image))))
+    # add some workouts
+    workouts = db.session.query(Workouts).filter(or_(Workouts.category == "conditioning exercise")).order_by(func.random()).limit(4).all()
+
+    return render_template('gyms/gymsdetail.html', gym=gym, pic=img, stores=store_list, workouts=workouts, images=images)
 
 
 def create_item(raw):

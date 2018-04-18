@@ -36,7 +36,47 @@
         </tr>
       </tbody>
     </table>
-    <p> <a href= "/workouts">Workouts</a> </p>
-    <p> <a href= "/stores">Grocery Stores</a> </p>
+
+    <div id="model-links" class="text-center">
+      <h1 class="lead">Nearby Stores</h1>
+      <hr>
+      <div class="row">
+        {% for x in range(0, stores|count) %}
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="{{ url_for('stores.detail', id=stores[x]['id']) }}"><img class="card-img-top" alt="" src='{{ images[x] }}'/></a>
+
+            <div class="card-body card-img-overlay">           
+              <h4 class="card-title lead">
+                <a href="{{ url_for('stores.detail', id=stores[x]['id']) }}">{{ stores[x]['name'] }}</a>
+              </h4>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- TODO: Link to related or common workouts -->
+      <h1 class="lead">Workouts to Try</h1>
+      <hr>
+      <div class="row">
+        {% for x in range(0, workouts|count) %}
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="{{ url_for('workouts.detail', id=workouts[x]['id']) }}"><img class="card-img-top" alt="" src='{{ workouts[x]['img'] }}'/></a>
+
+            <div class="card-body card-img-overlay">           
+              <h4 class="card-title lead" style = "text-transform: capitalize">
+                <a href="{{ url_for('workouts.detail', id=workouts[x]['id']) }}">{{ workouts[x]['name'] }}</a>
+              </h4>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+    </div>
+
+
 </div>
 {% endblock %}

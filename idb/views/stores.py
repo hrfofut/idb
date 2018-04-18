@@ -1,7 +1,10 @@
 from flask import current_app as app
 from flask import Blueprint, render_template, abort, request
 from flask_sqlalchemy import SQLAlchemy
-from idb.models import Stores, Images
+
+from sqlalchemy import or_, func
+
+from idb.models import Gyms, Images, Stores, Food
 # Later lets have a python thing that has all db calls
 from idb import db
 from string import capwords
