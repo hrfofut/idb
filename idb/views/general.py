@@ -41,50 +41,60 @@ def search():
     query = request.form.get('search', request.args.get('search'))
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
+
     items = []
+    foods = []
+    workouts = []
+    gyms = []
+    stores = []
 
     tokens = query.split(" ")
     for search in tokens:
         food_query = gen_query(Food, items_per_page, page, 'name', order, filter_string=search)
+        food_count = gen_query(Food, 10000000, 1, 'name', order, filter_string=search).count()
         get_foods = food_query.all()
         for food in get_foods:
-            items.append(foods_create_item(food))
+            foods.append(foods_create_item(food))
 
         workouts_query = gen_query(Workouts, items_per_page, page, 'name', order, filter_string=search)
+        workouts_count = gen_query(Workouts, 10000000, 1, 'name', order, filter_string=search).count()
         get_workouts = workouts_query.all()
         for workout in get_workouts:
-            items.append(workouts_create_item(workout))
+            workouts.append(workouts_create_item(workout))
 
         gyms_query = gen_query(Gyms, items_per_page, page, 'name', order, filter_string=search)
+        gyms_count = gen_query(Gyms, 10000000, 1, 'name', order, filter_string=search).count()
         get_gyms = gyms_query.all()
         for gym in get_gyms:
-            items.append(gyms_create_item(gym))
+            gyms.append(gyms_create_item(gym))
 
         stores_query = gen_query(Stores, items_per_page, page, 'name', order, filter_string=search)
+        stores_count = gen_query(Stores, 10000000, 1, 'name', order, filter_string=search).count()
         get_stores = stores_query.all()
         for store in get_stores:
-            items.append(stores_create_item(store))
+            stores.append(stores_create_item(store))
 
-    last_page = ceil(len(items) / items_per_page)
+    last_page = ceil(max(food_count, workouts_count, gyms_count, stores_count) / (items_per_page))
 
-    for item in items:
-        t = item.get(sort, None)
-        if t is not None:
-            t = type(t)
-            break
+    items.append(foods)
+    items.append(workouts)
+    items.append(gyms)
+    items.append(stores)
 
-    if items:
-        if t is str:
-            items = sorted(items, key=lambda k: k.get(sort, ""))[::-1]
-        else:
-            items = sorted(items, key=lambda k: k.get(sort, 0))[::-1]
+    for models in items:
+        for item in models:
+            t = item.get(sort, None)
+            if t is not None:
+                t = type(t)
+                break
 
     attributes = {'name'}
     f_crit = set()  # filter criteria
-    for item in items:
-        for key in item:
-            attributes.add(key)
-    return render_template('search.html', attributes=attributes, query=query, items=items, sort=sort, current_page=page, last_page=last_page)
+    for models in items:
+        for item in models:
+            for key in item:
+                attributes.add(key)
+    return render_template('search.html', attributes=attributes, query=query, foods=foods, workouts=workouts, gyms=gyms, stores=stores, sort=sort, current_page=page, last_page=last_page)
 
 
 @general.route("/about")
