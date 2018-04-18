@@ -41,11 +41,11 @@
       {% for x in range(0, workouts|count) %}
       <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="{{ url_for('.detail', id=workouts[x]['id']) }}"><img class="card-img-top" alt="" src='{{ workouts[x]['img'] }}'/></a>
+          <a href="{{ url_for('workouts.detail', id=workouts[x]['id']) }}"><img class="card-img-top" alt="" src='{{ workouts[x]['img'] }}'/></a>
 
           <div class="card-body card-img-overlay">           
             <h4 class="card-title lead">
-              <a href="{{ url_for('.detail', id=workouts[x]['id']) }}">{{ workouts[x]['name'] }}</a>
+              <a href="{{ url_for('workouts.detail', id=workouts[x]['id']) }}">{{ workouts[x]['name'] }}</a>
             </h4>
           </div>
         </div>
