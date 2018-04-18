@@ -35,13 +35,18 @@ class Stores(db.Model):
     phone = db.Column(db.String(15))
     pic_id = db.Column(db.Integer)
 
-    def __init__(self, id, gid, name, location, price_level, ratings, phone="", pic_id=0):
+    lat = db.Column(db.Float)
+    lng = db.Column(db.Float)
+
+    def __init__(self, id, gid, name, location, price_level, ratings, lat, lng, phone="", pic_id=0):
         self.id = id
         self.gid = gid
         self.name = name
         self.location = location
         self.price_level = price_level
         self.ratings = ratings
+        self.lat = lat
+        self.lng = lng
 
 
 class Gyms(db.Model):
@@ -54,13 +59,18 @@ class Gyms(db.Model):
     phone = db.Column(db.String(15))
     pic_id = db.Column(db.Integer)
 
-    def __init__(self, id, gid, name, location, price_level, ratings, phone="", pic_id=0):
+    lat = db.Column(db.Float)
+    lng = db.Column(db.Float)
+
+    def __init__(self, id, gid, name, location, price_level, ratings, lat, lng, phone="", pic_id=0):
         self.id = id
         self.gid = gid
         self.name = name
         self.location = location
         self.price_level = price_level
         self.ratings = ratings
+        self.lat = lat
+        self.lng = lng
 
 
 class Images(db.Model):

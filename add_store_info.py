@@ -6,7 +6,7 @@ from io import open as iopen
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from idb.models import Stores, Images, Gyms
+from idb.models import Stores, Images, Stores
 # Next three lines create the app and then load config from the instance folder.
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('default_config.py')
@@ -22,49 +22,49 @@ p_det2 = '&key=' + app.config['PLACE_KEY']  # The key header for place apis.
 p_img1 = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='
 print("running")
 
-# Changing type=gym to type=supermarket will change the search to be about stores.
-req_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2671530,-97.7430610&radius=15000&type=gym&key=' + app.config['PLACE_KEY']
-req_gyms = requests.get(req_url)
-if(req_gyms.status_code == requests.codes.ok):
-    # req_gyms_json = req_gyms.json()
+# Changing type=store to type=supermarket will change the search to be about stores.
+req_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.2671530,-97.7430610&radius=15000&type=supermarket&key=' + app.config['PLACE_KEY']
+req_stores = requests.get(req_url)
+if(req_stores.status_code == requests.codes.ok):
+    # req_stores_json = req_stores.json()
     print("here")
     ident = 0
     for page in range(1, 4):
-        req_gyms_json = req_gyms.json()
+        req_stores_json = req_stores.json()
         print(str(page))
-        for gyms in req_gyms_json['results']:
+        for stores in req_stores_json['results']:
             # print("next")
             pl = 0
             rating = 0
-            if 'price_level' in gyms:
-                pl = gyms['price_level']
+            if 'price_level' in stores:
+                pl = stores['price_level']
 
-            if 'rating' in gyms:
-                rating = gyms['rating']
-            if len(gyms['vicinity']) > 49 or len(gyms['name']) > 49:
+            if 'rating' in stores:
+                rating = stores['rating']
+            if len(stores['vicinity']) > 49 or len(stores['name']) > 49:
                 continue
-            gym = Gyms(
+            store = Stores(
                     id=ident,
-                    gid=gyms['place_id'],
-                    name=gyms['name'],
-                    location=gyms['vicinity'],
+                    gid=stores['place_id'],
+                    name=stores['name'],
+                    location=stores['vicinity'],
                     price_level=pl,
                     ratings=rating,
-                    lat=gyms['geometry']['location']['lat'],
-                    lng=gyms['geometry']['location']['lng']
+                    lat=stores['geometry']['location']['lat'],
+                    lng=stores['geometry']['location']['lng']
                     )
             ident += 1
             # place details
-            details_response = requests.get(p_det1 + gym.gid + p_det2)
+            details_response = requests.get(p_det1 + store.gid + p_det2)
             det_r = details_response.json()
             pr = ''
             # print('chk')
-            if 'photos' in gyms:
-                for photo in gyms['photos']:
+            if 'photos' in stores:
+                for photo in stores['photos']:
                     pr = photo['photo_reference']
                 if 'formatted_phone_number' in det_r['result']:
-                    gym.phone = det_r['result']['formatted_phone_number']
-                # print(gym.phone)
+                    store.phone = det_r['result']['formatted_phone_number']
+                # print(store.phone)
                 # print("pr:" + pr)
                 # place image
                 i = requests.get(p_img1 + pr + p_det2)
@@ -84,14 +84,14 @@ if(req_gyms.status_code == requests.codes.ok):
                 db.session.add(image)
                 # db.session.commit()
 
-                gym.pic_id = pid2
+                store.pic_id = pid2
 
-                db.session.add(gym)
-        if 'next_page_token' in req_gyms_json:
+                db.session.add(store)
+        if 'next_page_token' in req_stores_json:
             print("next page")
-            new_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=' + req_gyms_json['next_page_token'] + '&key=' + app.config['PLACE_KEY']
+            new_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=' + req_stores_json['next_page_token'] + '&key=' + app.config['PLACE_KEY']
             db.session.commit()
-            req_gyms = requests.get(new_url)
+            req_stores = requests.get(new_url)
         else:
             print("finished on page " + str(page))
             db.session.commit()
