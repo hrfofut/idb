@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort, jsonify
+from flask import Blueprint, render_template, abort, request, redirect, url_for, jsonify
 from idb.models import Food, Workouts, Stores, Gyms
 from idb import db
 
@@ -7,7 +7,7 @@ api = Blueprint('api', __name__)
 
 @api.route("/")
 def api_splash():
-    return "API PAGE"
+    return render_template('api.html')
 
 
 @api.route("/foods/")
