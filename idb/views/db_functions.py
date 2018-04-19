@@ -3,6 +3,9 @@ from sqlalchemy import or_
 
 
 def gen_query(relation, items_per_page, page, sort, order, attribute=None, filter_string=""):
+    """
+    Generates a query to retreive info from the database depending on what information is asked for.
+    """
     query = db.session.query(relation)
     if order == 'desc':
         query = query.order_by(getattr(relation, sort).desc())
@@ -20,6 +23,9 @@ def gen_query(relation, items_per_page, page, sort, order, attribute=None, filte
 
 
 def gen_query_f(relation, items_per_page, page, sort, order, attributes=[], filter_string=""):
+    """
+    Similar to gen_query, this function will filter on multiple attributes rather than a single one. This is useful for our food object.
+    """
     query = db.session.query(relation)
     if order == 'desc':
         query = query.order_by(getattr(relation, sort).desc())

@@ -22,8 +22,10 @@ general = Blueprint('general', __name__)
 
 
 @general.route("/calc")
-def test():
-    # if app.config['MODE'] != 'DEV': abort(404) #Figure out how to not include this in production later
+def calculator():
+    """
+    This page has a lot of information for calculating BMR and calorie info.
+    """
     # abort(404)
     return render_template('test.html')
 
@@ -47,7 +49,7 @@ def search():
     workouts = []
     gyms = []
     stores = []
-
+    # Goes through each of our models and searches them individually.
     tokens = query.split(" ")
     for search in tokens:
         food_query = gen_query(Food, items_per_page, page, 'name', order, filter_string=search)
@@ -84,6 +86,7 @@ def search():
 
     last_page = ceil(max(food_count, workouts_count, gyms_count, stores_count) / (items_per_page))
 
+    # Next collect all the results
     items.append(foods)
     items.append(workouts)
     items.append(gyms)

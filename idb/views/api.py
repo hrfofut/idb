@@ -12,6 +12,9 @@ def api_splash():
 
 @api.route("/foods/")
 def food_api():
+    """
+    Returns all foods in DB
+    """
     foods = db.session.query(Food).all()
 
     food_json = list()
@@ -25,6 +28,9 @@ def food_api():
 
 @api.route("/foods/<int:id>")
 def food_details_api(id):
+    """
+    Returns a food from DB
+    """
     food = db.session.query(Food).get(id)
     if food is None:
         abort(404)
@@ -35,6 +41,9 @@ def food_details_api(id):
 
 @api.route("/workouts/")
 def workouts_api():
+    """
+    Returns all workouts in DB
+    """
     workouts = db.session.query(Workouts).all()
 
     workout_json = list()
@@ -48,6 +57,9 @@ def workouts_api():
 
 @api.route("/workouts/<int:id>")
 def workouts_details_api(id):
+    """
+    Returns a workout from DB
+    """
     workout = db.session.query(Workouts).get(id)
     if workout is None:
         abort(404)
@@ -58,6 +70,9 @@ def workouts_details_api(id):
 
 @api.route("/stores/")
 def stores_api():
+    """
+    Returns all stores in DB
+    """
     stores = db.session.query(Stores).all()
 
     stores_json = list()
@@ -71,6 +86,9 @@ def stores_api():
 
 @api.route("/stores/<int:id>")
 def stores_details_api(id):
+    """
+    Returns a Store from DB
+    """
     store = db.session.query(Stores).get(id)
     if store is None:
         abort(404)
@@ -81,6 +99,9 @@ def stores_details_api(id):
 
 @api.route("/gyms/")
 def gyms_api():
+    """
+    Returns all gyms in DB
+    """
     gyms = db.session.query(Gyms).all()
 
     gyms_json = list()
@@ -94,6 +115,9 @@ def gyms_api():
 
 @api.route("/gyms/<int:id>")
 def gyms_details_api(id):
+    """
+    Returns a gym from DB
+    """
     gym = db.session.query(Gyms).get(id)
     if gym is None:
         abort(404)
