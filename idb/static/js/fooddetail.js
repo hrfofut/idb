@@ -2,7 +2,7 @@ class FoodDetail extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="display-4"><a href="https://www.google.com/search?q=">{this.props.name}</a></h1>
+        <h1 className="display-4"><a href={'https://www.google.com/search?q=' + this.props.name}>{this.props.name}</a></h1>
         <table class="table">
           <thead class="thead-light">
             <tr>
