@@ -89,6 +89,7 @@ def create_item(raw):
     item.pop('phone', None)
     item.pop('pic_id', None)
     item.pop('gid', None)
+    item.pop('price_level', None)
     item.pop('lat', None)
     item.pop('lng', None)
     return item

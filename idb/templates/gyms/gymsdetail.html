@@ -17,14 +17,6 @@
         <tr>
           <th scope="row">Location</th>
           <td>{{gym['location']}}</td>
-        </tr>        
-        <tr>
-          <th scope="row">Pricing</th>
-          {% if gym['price_level'] > 0 %}
-          <td>{% for i in range(0, gym['price_level'] + 1) %}${% endfor %}</td>
-          {% else %}
-          <td>N/A</td>
-          {% endif %}
         </tr>
         <tr>
           <th scope="row">Ratings</th>
