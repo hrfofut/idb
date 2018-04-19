@@ -81,7 +81,7 @@
           <a href="{{ url_for('.detail', id=similar_workouts[x]['id']) }}"><img class="card-img-top" alt="" src='{{ similar_workouts[x]['img'] }}'/></a>
 
           <div class="card-body card-img-overlay">           
-            <h4 class="card-title lead">
+            <h4 class="card-title lead" style = "text-transform: capitalize">
               <a href="{{ url_for('.detail', id=similar_workouts[x]['id']) }}">{{ similar_workouts[x]['name'] }}</a>
             </h4>
           </div>
