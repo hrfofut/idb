@@ -8,6 +8,9 @@ Object Food {
   String sodium
   String fat
   String protein
+  String aisle
+  String aisle2
+  String aisle3
 }
 
 Object Gyms {
@@ -15,8 +18,12 @@ Object Gyms {
   String gid
   String name
   String location
-  String price
-  Float ratings
+  Int price_level
+  Float ratings 
+  String phone
+  Int pic_id
+  Float lat
+  Float lng
 }
 
 Object Workouts {
@@ -38,10 +45,21 @@ Object Stores {
   String location
   Int price_level
   Float ratings 
+  String phone
+  Int pic_id
+  Float lat
+  Float lng
+}
+
+Object Images {
+  Int pic_id
+  LargeBinary pic
 }
 
 Food - Workouts
 Food - Stores
 Workouts - Gyms
 Gyms - Stores
+Images - Stores
+Images - Gyms
 @enduml
