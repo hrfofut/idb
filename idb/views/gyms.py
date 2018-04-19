@@ -73,7 +73,7 @@ def detail(id):
     # add some workouts
     workouts = db.session.query(Workouts).filter(or_(Workouts.category == "conditioning exercise")).order_by(func.random()).limit(4).all()
 
-    return render_template('gyms/gymsdetail.html', gym=gym, pic=img, stores=store_list, workouts=workouts, images=images, key=app.config['PLACE_API'])
+    return render_template('gyms/gymsdetail.html', gym=gym, pic=img, stores=store_list, workouts=workouts, images=images, key=app.config['EMBED_API'])
 
 
 def create_item(raw):

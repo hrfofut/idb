@@ -73,7 +73,7 @@ def detail(id):
     # add some foods
     foods = db.session.query(Food).order_by(func.random()).limit(4).all()
 
-    return render_template('stores/storesdetail.html', store=store, pic=img, gyms=gym_list, foods=foods, images=images, key=app.config['PLACE_API'])
+    return render_template('stores/storesdetail.html', store=store, pic=img, gyms=gym_list, foods=foods, images=images, key=app.config['EMBED_API'])
 
 
 def create_item(raw):
