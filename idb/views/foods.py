@@ -31,7 +31,7 @@ def overview():
     # query = gen_query(Food, items_per_page, page, sort, order, attribute, filters)
     query = gen_query_f(Food, items_per_page, page, sort, order, attributes, filters)
     # total_count = gen_query(Food, 10000000, 1, sort, order, attribute, filters).count()
-    total_count = gen_query_f(Food, items_per_page, page, sort, order, attributes, filters).count()
+    total_count = gen_query_f(Food, 10000000, 1, sort, order, attributes, filters).count()
 
     get_foods = query.all()
     for food in get_foods:
