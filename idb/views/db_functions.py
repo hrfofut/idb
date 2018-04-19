@@ -16,3 +16,10 @@ def gen_query(relation, items_per_page, page, sort, order, attribute=None, filte
              .limit(items_per_page)
              .offset((page - 1) * items_per_page))
     return query
+
+
+def gen_query_f(relation, items_per_page, page, sort, order, attributes=[], filter_string=""):
+    query = gen_query(relation, items_per_page, page, sort, order)
+    query = query.filter(or_(filter_string == a for a in attributes))
+
+    return query
