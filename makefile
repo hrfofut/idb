@@ -45,7 +45,7 @@ gecko:
 	- echo "#!/bin/bashpath/to/geckodriver \"\$\@\" --marionette-port 2828" >> geckodriver 
 	- cp gs ./env/bin/geckodriver
 	- chmod +x env/bin/geckodriver 
-	
+
 clean:
 	- rm -rf .git/hooks/pre-commit
 	- rm -rf *.egg*
@@ -62,3 +62,61 @@ travis:
 	make install
 	ls -a
 	make test
+
+# Requirements for the last phase
+GithubID = hrfofut
+RepoName = idb
+
+githubid:
+	@echo "${GithubID}"
+
+reponame:
+	@echo "${RepoName}"
+
+sha:
+	git rev-parse HEAD
+
+github:
+	@echo "http://www.github.com/${GithubID}/${RepoName}"
+
+issues:
+	@echo "http://www.github.com/${GithubID}/${RepoName}/issues"
+
+stories:
+	@echo "http://www.github.com/${GithubID}/${RepoName}/projects"
+
+uml:
+	@echo "http://www.github.com/${GithubID}/${RepoName}/blob/master/docs/diagram.png"
+
+selenium: idb/ tests/guitests.py instance/
+	( \
+		. env/bin/activate; \
+		python3 tests/guitests.py; \
+	) # Used to tell makefile to use the virtualenv shell
+
+frontend: idb/ tests/guitests.py instance/
+	( \
+		. env/bin/activate; \
+		mocha ./frontend/tests.js; \
+	) # Used to tell makefile to use the virtualenv shell
+
+backend: idb/ tests/guitests.py instance/
+	( \
+		. env/bin/activate; \
+		python3 backend/tests.py; \
+	) # Used to tell makefile to use the virtualenv shell
+
+website:
+	@echo "http://caloriekiller.club"
+
+report:
+	@echo "https://hrfofut.gitbooks.io/report/content/"
+
+apidoc:
+	@echo "https://hrfofut.gitbooks.io/api/content/"
+
+self:
+	@echo "https://hrfofut.gitbooks.io/report/content/self-critiques.html"
+
+other:
+	@echo "https://hrfofut.gitbooks.io/report/content/other-critiques.html"
