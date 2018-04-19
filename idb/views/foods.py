@@ -1,12 +1,14 @@
 from flask import current_app as app
 from flask import Blueprint, render_template, abort, jsonify, request
 from sqlalchemy import or_, func
-from idb.models import Food, Workouts
+from idb.models import Food, Workouts, Stores, Images
 from idb import db
 from string import capwords
 from math import ceil
 
 from .db_functions import gen_query, gen_query_f
+from backend.tools import unbinary
+import base64
 
 foods = Blueprint('foods', __name__)
 
@@ -56,11 +58,19 @@ def detail(id):
 
     workouts = []
     workout = db.session.query(Workouts).filter(or_(Workouts.category == "conditioning exercise", Workouts.category == "sports", Workouts.category == "bicycling")).order_by(func.random()).limit(4)
-
     for item in workout:
         workouts.append(item)
 
-    return render_template('foods/fooddetail.html', food=food, similar_foods=similar_foods, workouts=workouts)
+    stores = []
+    images = []
+    store_query = db.session.query(Stores).order_by(func.random()).limit(4)
+    for store in store_query:
+        stores.append(store)
+        image = db.session.query(Images).get(store.pic_id).pic
+        img = unbinary(str(base64.b64encode(image)))
+        images.append(img)
+
+    return render_template('foods/fooddetail.html', food=food, similar_foods=similar_foods, workouts=workouts, stores=stores, images=images)
 
 
 def create_item(raw):
