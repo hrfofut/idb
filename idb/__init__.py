@@ -31,6 +31,7 @@ def create_app(config_name):
         app.config['DB_URI'] = environ.get('DB_URI')
         app.config['PLACE_KEY'] = environ.get('PLACE_KEY')
         app.config['CSE_ID'] = environ.get('CSE_ID')
+        app.config['EMBED_API'] = environ.get('EMBED_KEY')
 
     # Convert scss files to css
     assets = Environment(app)
