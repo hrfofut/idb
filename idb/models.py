@@ -12,8 +12,10 @@ class Food(db.Model):
     fat = db.Column(db.Float)
     protein = db.Column(db.Float)
     aisle = db.Column(db.String(40))
+    aisle2 = db.Column(db.String(40))
+    aisle3 = db.Column(db.String(40))
 
-    def __init__(self, id, name, img, servings, calorie, sodium, fat, protein, aisle):
+    def __init__(self, id, name, img, servings, calorie, sodium, fat, protein, aisle, aisle2="", aisle3=""):
         self.id = id
         self.name = name
         self.img = img
@@ -23,6 +25,8 @@ class Food(db.Model):
         self.fat = fat
         self.protein = protein
         self.aisle = aisle
+        self.aisle2 = aisle2
+        self.aisle3 = aisle3
 
 
 class Stores(db.Model):

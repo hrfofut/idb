@@ -50,19 +50,38 @@ aisle_d = {
 'Gluten Free': 536870912
 }
 large = 0
-for food in food_list:
+for food_o in food_list:
+    # print(type(food))
+    food = food_o.__dict__
+    # print(type(food))
     x += 1
-    s = food.aisle
+    s = food['aisle']
     s_list = s.split(';')
     i = 0
     for aisle in s_list:
         aisles.add(aisle)
         i += aisle_d[aisle]
+    food['aisle'] = s_list[0]
+    length = len(s_list)
+    if length > 1:
+        if length > 2:
+            food_o.aisle3 = s_list[2]
+        food_o.aisle2 = s_list[1]
+    db.session.query(Food).filter(Food.id == food_o.id).\
+    update({"aisle": s_list[0]}, synchronize_session='evaluate')
+    # Food.select_for_update().filter(id=food_o.id).update(aisle = food['aisle'])
+    # stmt = Food.update().\
+   # values(aisle=(s_list[0])).\
+   # where(Food.id == food_o.id)
+   #  db.session.execute(stmt)
     print(format(x, '04d') + ": " + s + " => " + str(s_list) + " will become " + format(i, '#030b'))
     large = max(large, len(s_list))
+    # break
 print(str(aisles))
 print(str(len(aisles)))
 print("largest " + str(large))
+db.session.commit()
+
 # print("{")
 # i = 1
 # for aisle in aisles:

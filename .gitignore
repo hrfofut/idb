@@ -36,3 +36,8 @@ test.jpg
 #Add info file
 ./add_info.py
 
+# Node
+node_modules
+
+# Gecko
+geckodriver
