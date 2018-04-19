@@ -19,7 +19,7 @@
           <td>{{workout['category']}}</td>
         </tr>
         <tr>
-          <th scope="row">Met</th>
+          <th scope="row">Met <small>*</small></th>
           <td>{{workout['met']}}</td>
         </tr>
         <tr>
@@ -90,6 +90,7 @@
       {% endfor %}
     </div>
 
+  <small>* MET (metabolic equivalent) is a ratio measuring how much energy it takes for an average person to perform an activity per hour. 1 MET is the resting metabolic rate.</small>
   </div>
 </div>
 {% endblock %}
