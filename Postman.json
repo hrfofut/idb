@@ -6,12 +6,67 @@
 	},
 	"item": [
 		{
+			"name": "Default page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2dc4f85b-d58d-4e6b-9ddb-9c94a7804924",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Food\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Workouts\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Gyms\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Stores\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Click on one of the link below to go to our API page for each of the models\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.caloriekiller.club/",
+					"protocol": "http",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Test foods",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "36025046-f423-4857-8e25-3934645e658e",
+						"id": "bb6de0be-5768-4194-849c-1656129f877d",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -34,8 +89,8 @@
 							"    pm.expect(pm.response.text()).to.include(\"italian beans\");",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 300ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
 							"});"
 						]
 					}
@@ -215,7 +270,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "089d8662-021c-4ebe-af11-1339650672b6",
+						"id": "a70119c1-7042-4776-bbc6-6f364cc397f9",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -246,8 +301,8 @@
 							"    pm.expect(pm.response.text()).to.include(\"ballroom\");",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 300ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
 							"});"
 						]
 					}
@@ -267,6 +322,198 @@
 					],
 					"path": [
 						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test individual food",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c36bc4b8-3acc-402b-83c8-a7653587d631",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"calorie\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"white chocolate chips\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"539\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.caloriekiller.club/foods/10019087",
+					"protocol": "http",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						"foods",
+						"10019087"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test individual workout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52b62113-945e-4b60-978e-4be9d99b4f87",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"rope skipping\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"conditioning exercise\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"2068\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.caloriekiller.club/workouts/2068",
+					"protocol": "http",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						"workouts",
+						"2068"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test individual gym",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6657a407-25dc-4d8e-8da1-62e29d413f4b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Planet Fitness\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"1100 West Anderson Lane, Austin\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"4\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.caloriekiller.club/gyms/6",
+					"protocol": "http",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						"gyms",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test individual store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f673997b-164a-4976-804f-6ae8a883a4f1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Walmart Supercenter\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"5017 W Highway 290, Austin\");",
+							"});",
+							"",
+							"pm.test(\"Body has string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"3.9\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.caloriekiller.club/stores/2",
+					"protocol": "http",
+					"host": [
+						"api",
+						"caloriekiller",
+						"club"
+					],
+					"path": [
+						"stores",
+						"2"
 					]
 				}
 			},
