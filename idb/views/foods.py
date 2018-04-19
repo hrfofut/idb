@@ -6,7 +6,7 @@ from idb import db
 from string import capwords
 from math import ceil
 
-from .db_functions import gen_query
+from .db_functions import gen_query, gen_query_f
 
 foods = Blueprint('foods', __name__)
 
@@ -19,6 +19,7 @@ def overview():
     filters = request.args.get('filters', default="", type=str)
 
     attribute = Food.aisle
+    attributes = [Food.aisle, Food.aisle2, Food.aisle3]
     cat = db.session.query(Food).distinct(attribute)
     f_crit = set()  # filter criteria
     for c in cat:
@@ -27,8 +28,10 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    query = gen_query(Food, items_per_page, page, sort, order, attribute, filters)
-    total_count = gen_query(Food, 10000000, 1, sort, order, attribute, filters).count()
+    # query = gen_query(Food, items_per_page, page, sort, order, attribute, filters)
+    query = gen_query_f(Food, items_per_page, page, sort, order, attributes, filters)
+    # total_count = gen_query(Food, 10000000, 1, sort, order, attribute, filters).count()
+    total_count = gen_query_f(Food, items_per_page, page, sort, order, attributes, filters).count()
 
     get_foods = query.all()
     for food in get_foods:
@@ -68,6 +71,15 @@ def create_item(raw):
     item['name'] = capwords(item['name'])
     item['image'] = image
     item['detail_url'] = "foods/" + str(item['id'])
+
+    item['Aisles'] = item['aisle']
+    if item['aisle2'] is not None:
+        item['Aisles'] += "; " + item['aisle2']
+    if item['aisle3'] is not None:
+        item['Aisles'] += "; " + item['aisle3']
+    item.pop('aisle')
+    item.pop('aisle2')
+    item.pop('aisle3')
     item.pop('_sa_instance_state', None)
     item.pop('img', None)
     item.pop('servings', None)
