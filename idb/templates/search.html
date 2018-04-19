@@ -28,171 +28,171 @@
     </li>
     <li class="breadcrumb-item active">Search Results</li>
   </ol>
-
   {% if foods|count > 0 or workouts|count > 0 or gyms|count > 0 or stores|count > 0 %}
-  {% if foods|count > 0 %}
-  <h1>Food</h1>
-  <div class="row">
-    {% for x in range(0, foods|count) %}
-    <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-      <div class="card h-100">
-        <a href="{{ foods[x]['detail_url'] }}">
-          <img class="card-img-top" alt="" src="{{ foods[x]['image'] }}"/>
-        </a>
-        <div class="overlay"> 
-        </div>
+  <div class="results">
+    {% if foods|count > 0 %}
+    <h1>Food</h1>
+    <div class="row">
+      {% for x in range(0, foods|count) %}
+      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="{{ foods[x]['detail_url'] }}">
+            <img class="card-img-top" alt="" src="{{ foods[x]['image'] }}"/>
+          </a>
+          <div class="overlay"> 
+          </div>
 
-        <div class="card-body">
-          <h4 class="card-title" id="title-{{x}}">
-            <a href="{{ foods[x]['detail_url'] }}">{{ foods[x]['name'] }}</a>
-          </h4>
-          {% for attr in foods[x]|sort %}
-          {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
-          <p class="card-text">{{ attr.title() }}: {{ foods[x][attr] }}</p>
-          {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  {% if workouts|count > 0 %}
-  <h1>Workouts</h1>
-  <div class="row">
-    {% for x in range(0, workouts|count) %}
-    <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-      <div class="card h-100">
-        <a href="{{ workouts[x]['detail_url'] }}">
-          <img class="card-img-top" alt="" src="{{ workouts[x]['image'] }}"/>
-        </a>
-        <div class="overlay"> 
-        </div>
-
-        <div class="card-body">
-          <h4 class="card-title" id="title-{{x}}">
-            <a href="{{ workouts[x]['detail_url'] }}">{{ workouts[x]['name'] }}</a>
-          </h4>
-          {% for attr in workouts[x]|sort %}
-          {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
-          <p class="card-text">{{ attr.title() }}: {{ workouts[x][attr] }}</p>
-          {% endif %}
-          {% endfor %}
+          <div class="card-body">
+            <h4 class="card-title" id="title-{{x}}">
+              <a href="{{ foods[x]['detail_url'] }}">{{ foods[x]['name'] }}</a>
+            </h4>
+            {% for attr in foods[x]|sort %}
+            {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
+            <p class="card-text">{{ attr.title() }}: {{ foods[x][attr] }}</p>
+            {% endif %}
+            {% endfor %}
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-  {% endif %}
+    {% endif %}
 
-  {% if gyms|count > 0 %}
-  <h1>Gyms</h1>
-  <div class="row">
-    {% for x in range(0, gyms|count) %}
-    <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-      <div class="card h-100">
-        <a href="{{ gyms[x]['detail_url'] }}">
-          <img class="card-img-top" alt="" src="{{ gyms[x]['image'] }}"/>
-        </a>
-        <div class="overlay"> 
-        </div>
+    {% if workouts|count > 0 %}
+    <h1>Workouts</h1>
+    <div class="row">
+      {% for x in range(0, workouts|count) %}
+      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="{{ workouts[x]['detail_url'] }}">
+            <img class="card-img-top" alt="" src="{{ workouts[x]['image'] }}"/>
+          </a>
+          <div class="overlay"> 
+          </div>
 
-        <div class="card-body">
-          <h4 class="card-title" id="title-{{x}}">
-            <a href="{{ gyms[x]['detail_url'] }}">{{ gyms[x]['name'] }}</a>
-          </h4>
-          {% for attr in gyms[x]|sort %}
-          {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
-          <p class="card-text">{{ attr.title() }}: {{ gyms[x][attr] }}</p>
-          {% endif %}
-          {% endfor %}
+          <div class="card-body">
+            <h4 class="card-title" id="title-{{x}}">
+              <a href="{{ workouts[x]['detail_url'] }}">{{ workouts[x]['name'] }}</a>
+            </h4>
+            {% for attr in workouts[x]|sort %}
+            {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
+            <p class="card-text">{{ attr.title() }}: {{ workouts[x][attr] }}</p>
+            {% endif %}
+            {% endfor %}
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-  {% endif %}
+    {% endif %}
 
-  {% if stores|count > 0 %}
-  <h1>Stores</h1>
-  <div class="row">
-    {% for x in range(0, stores|count) %}
-    <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-      <div class="card h-100">
-        <a href="{{ stores[x]['detail_url'] }}">
-          <img class="card-img-top" alt="" src="{{ stores[x]['image'] }}"/>
-        </a>
-        <div class="overlay"> 
-        </div>
+    {% if gyms|count > 0 %}
+    <h1>Gyms</h1>
+    <div class="row">
+      {% for x in range(0, gyms|count) %}
+      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="{{ gyms[x]['detail_url'] }}">
+            <img class="card-img-top" alt="" src="{{ gyms[x]['image'] }}"/>
+          </a>
+          <div class="overlay"> 
+          </div>
 
-        <div class="card-body">
-          <h4 class="card-title" id="title-{{x}}">
-            <a href="{{ stores[x]['detail_url'] }}">{{ stores[x]['name'] }}</a>
-          </h4>
-          {% for attr in stores[x]|sort %}
-          {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
-          <p class="card-text">{{ attr.title() }}: {{ stores[x][attr] }}</p>
-          {% endif %}
-          {% endfor %}
+          <div class="card-body">
+            <h4 class="card-title" id="title-{{x}}">
+              <a href="{{ gyms[x]['detail_url'] }}">{{ gyms[x]['name'] }}</a>
+            </h4>
+            {% for attr in gyms[x]|sort %}
+            {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
+            <p class="card-text">{{ attr.title() }}: {{ gyms[x][attr] }}</p>
+            {% endif %}
+            {% endfor %}
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+    {% endif %}
+
+    {% if stores|count > 0 %}
+    <h1>Stores</h1>
+    <div class="row">
+      {% for x in range(0, stores|count) %}
+      <div id="model-grid" class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="{{ stores[x]['detail_url'] }}">
+            <img class="card-img-top" alt="" src="{{ stores[x]['image'] }}"/>
+          </a>
+          <div class="overlay"> 
+          </div>
+
+          <div class="card-body">
+            <h4 class="card-title" id="title-{{x}}">
+              <a href="{{ stores[x]['detail_url'] }}">{{ stores[x]['name'] }}</a>
+            </h4>
+            {% for attr in stores[x]|sort %}
+            {% if attr != 'name' and attr != 'image' and attr != 'id' and attr != 'detail_url' %}
+            <p class="card-text">{{ attr.title() }}: {{ stores[x][attr] }}</p>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center">
+      {% if current_page > 1 %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=1) }}">First</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page - 1))}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+        {% if current_page > 2 %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page - 2)) }}"> {{ current_page - 2 }}</a>
+      </li>
+      {% endif %}
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page - 1)) }}"> {{ current_page - 1 }}</a>
+      </li>
+      {% endif %}
+      
+      <li class="page-item active">
+        <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=current_page) }}">{{ current_page }}</a>
+      </li>
+
+      {% if current_page < last_page %}
+                           <li class="page-item">
+                             <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page + 1)) }}">{{ current_page + 1 }}</a>
+                           </li>
+                           {% if current_page + 1 < last_page %}
+                                                    <li class="page-item">
+                                                      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page + 2)) }}">{{ current_page + 2 }}</a>
+                                                    </li>
+                                                    {% endif %}
+                                                    
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page + 1)) }}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=last_page) }}">Last</a>
+      </li>
+      {% endif %}
+    </ul>
   </div>
-  {% endif %}
-
-  <!-- Pagination -->
-  <ul class="pagination justify-content-center">
-    {% if current_page > 1 %}
-    <li class="page-item">
-      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=1) }}">First</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page - 1))}}" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    {% if current_page > 2 %}
-    <li class="page-item">
-      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page - 2)) }}"> {{ current_page - 2 }}</a>
-    </li>
+    {% else %}
+    <h3><p id="NothingHere" class="text-center"> Oops, there's nothing here...</p></h3>
     {% endif %}
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page - 1)) }}"> {{ current_page - 1 }}</a>
-    </li>
-    {% endif %}
-    
-    <li class="page-item active">
-      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=current_page) }}">{{ current_page }}</a>
-    </li>
-
-    {% if current_page < last_page %}
-    <li class="page-item">
-       <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page + 1)) }}">{{ current_page + 1 }}</a>
-    </li>
-    {% if current_page + 1 < last_page %}
-    <li class="page-item">
-      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page + 2)) }}">{{ current_page + 2 }}</a>
-    </li>
-    {% endif %}
-    
-    <li class="page-item">
-      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=(current_page + 1)) }}" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="{{ url_for('.search', search=query, sort=sort, page=last_page) }}">Last</a>
-    </li>
-    {% endif %}
-  </ul>
-
-  {% else %}
-  <h3><p class="text-center"> Oops, there's nothing here...</p></h3>
-  {% endif %}
 </div>
 {% endblock %}
 

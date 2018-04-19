@@ -50,7 +50,6 @@ def search():
 
     tokens = query.split(" ")
     for search in tokens:
-        print("Search token: {}".format(search))
         food_query = gen_query(Food, items_per_page, page, 'name', order, filter_string=search)
         food_count = gen_query(Food, 10000000, 1, 'name', order, filter_string=search).count()
         get_foods = food_query.all()
@@ -58,7 +57,6 @@ def search():
             food_item = foods_create_item(food)
             if food_item not in foods:
                 foods.append(food_item)
-        print("foods: {}".format(len(foods)))
 
         workouts_query = gen_query(Workouts, items_per_page, page, 'name', order, filter_string=search)
         workouts_count = gen_query(Workouts, 10000000, 1, 'name', order, filter_string=search).count()
