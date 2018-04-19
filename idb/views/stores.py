@@ -81,7 +81,7 @@ def create_item(raw):
     img = unbinary(str(base64.b64encode(image)))
 
     # get a dict of all attributes and remove ones we don't care about
-    item = vars(raw)
+    item = vars(raw).copy()  # and don't alter the real thing
     item['name'] = capwords(item['name'])
     item['image'] = img
     item['detail_url'] = "stores/" + str(item['id'])

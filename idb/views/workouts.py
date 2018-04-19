@@ -84,7 +84,7 @@ def detail(id):
 
 def create_item(raw):
     # get a dict of all attributes and remove ones we don't care about
-    item = vars(raw)
+    item = vars(raw).copy()  # and don't alter the real thing
     item['name'] = capwords(item['name'])
     item['image'] = item['img']
     item['detail_url'] = "workouts/" + str(item['id'])

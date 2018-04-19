@@ -67,7 +67,7 @@ def create_item(raw):
     image = 'https://spoonacular.com/cdn/ingredients_500x500/' + raw.img
 
     # get a dict of all attributes and remove ones we don't care about
-    item = vars(raw)
+    item = vars(raw).copy()  # and don't alter the real thing
     item['name'] = capwords(item['name'])
     item['image'] = image
     item['detail_url'] = "foods/" + str(item['id'])

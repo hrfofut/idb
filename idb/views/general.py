@@ -50,29 +50,39 @@ def search():
 
     tokens = query.split(" ")
     for search in tokens:
+        print("Search token: {}".format(search))
         food_query = gen_query(Food, items_per_page, page, 'name', order, filter_string=search)
         food_count = gen_query(Food, 10000000, 1, 'name', order, filter_string=search).count()
         get_foods = food_query.all()
         for food in get_foods:
-            foods.append(foods_create_item(food))
+            food_item = foods_create_item(food)
+            if food_item not in foods:
+                foods.append(food_item)
+        print("foods: {}".format(len(foods)))
 
         workouts_query = gen_query(Workouts, items_per_page, page, 'name', order, filter_string=search)
         workouts_count = gen_query(Workouts, 10000000, 1, 'name', order, filter_string=search).count()
         get_workouts = workouts_query.all()
         for workout in get_workouts:
-            workouts.append(workouts_create_item(workout))
+            workout_item = workouts_create_item(workout)
+            if workout_item not in workouts:
+                workouts.append(workout_item)
 
         gyms_query = gen_query(Gyms, items_per_page, page, 'name', order, filter_string=search)
         gyms_count = gen_query(Gyms, 10000000, 1, 'name', order, filter_string=search).count()
         get_gyms = gyms_query.all()
         for gym in get_gyms:
-            gyms.append(gyms_create_item(gym))
+            gym_item = gyms_create_item(gym)
+            if gym_item not in gyms:
+                gyms.append(gym_item)
 
         stores_query = gen_query(Stores, items_per_page, page, 'name', order, filter_string=search)
         stores_count = gen_query(Stores, 10000000, 1, 'name', order, filter_string=search).count()
         get_stores = stores_query.all()
         for store in get_stores:
-            stores.append(stores_create_item(store))
+            store_item = stores_create_item(store)
+            if store_item not in stores:
+                stores.append(store_item)
 
     last_page = ceil(max(food_count, workouts_count, gyms_count, stores_count) / (items_per_page))
 

@@ -3,7 +3,6 @@
 {% block head %}
 {{ super() }}
 {% endblock %}
-
 {% block content %}
 <div class="container">
   <!-- Page Heading/Breadcrumbs -->
@@ -195,4 +194,10 @@
   <h3><p class="text-center"> Oops, there's nothing here...</p></h3>
   {% endif %}
 </div>
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.min.js"></script>
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
 {% endblock %}
