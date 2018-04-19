@@ -58,13 +58,13 @@ def detail(id):
     calorie = workout.met * 62
 
     foods = []
-    query = db.session.query(Food).filter(Food.calorie.between(calorie - 50, calorie + 50)).limit(4)
+    query = db.session.query(Food).filter(Food.calorie.between(calorie - 50, calorie + 50)).order_by(func.random()).limit(4)
     get_foods = query.all()
     for food in get_foods:
         foods.append(food_create_item(food))
 
     similar_workouts = []
-    workout_query = db.session.query(Workouts).filter(Workouts.category == workout.category, Workouts.name != workout.name).limit(4)
+    workout_query = db.session.query(Workouts).filter(Workouts.category == workout.category, Workouts.name != workout.name).order_by(func.random()).limit(4)
     for sim_workout in workout_query:
         similar_workouts.append(sim_workout)
 

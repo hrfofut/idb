@@ -51,7 +51,7 @@ def detail(id):
     food.name = capwords(food.name)
 
     similar_foods = []
-    query = db.session.query(Food).filter(Food.aisle == food.aisle, Food.name != food.name).limit(4)
+    query = db.session.query(Food).filter(Food.aisle == food.aisle, Food.name != food.name).order_by(func.random()).limit(4)
     get_foods = query.all()
     for s_food in get_foods:
         similar_foods.append(create_item(s_food))
