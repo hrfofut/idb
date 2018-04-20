@@ -23,6 +23,11 @@ gyms = Blueprint('gyms', __name__)
 
 @gyms.route("/")
 def overview():
+    """
+    The overview page for gyms that shows all of the gyms in the
+    database.
+    """
+
     page = request.args.get('page', default=1, type=int)
     sort = request.args.get('sort', default='name', type=str)
     order = request.args.get('order', default='asc', type=str)
@@ -47,6 +52,11 @@ def overview():
 
 @gyms.route("/<int:id>")
 def detail(id):
+    """
+    The individual detail page for gyms that show all of the information
+    we have about a gym item.
+    """
+
     gym = db.session.query(Gyms).get(id)
     if gym is None:
         abort(404)
@@ -73,6 +83,14 @@ def detail(id):
 
 
 def create_item(raw):
+    """
+    Create a dictionary item that represents the database item with
+    some of the spurious things like internal ids and such for 
+    presentation and organization on the actual site.  Also do any
+    preprocessing like determing the URL for the detail page or processing
+    images before being displayed.
+    """
+
     image = db.session.query(Images).get(raw.pic_id).pic
     img = unbinary(str(base64.b64encode(image)))
 

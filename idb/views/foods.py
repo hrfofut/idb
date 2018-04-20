@@ -15,6 +15,10 @@ foods = Blueprint('foods', __name__)
 
 @foods.route("/")
 def overview():
+    """
+    The overview page for foods that shows all of the foods in the
+    database.
+    """
     page = request.args.get('page', default=1, type=int)
     sort = request.args.get('sort', default='name', type=str)
     order = request.args.get('order', default='asc', type=str)
@@ -38,21 +42,21 @@ def overview():
 
 @foods.route("/<int:id>")
 def detail(id):
+    """
+    The individual detail page for foods that show all of the information
+    we have about a food item.
+    """
     food = db.session.query(Food).get(id)
     if food is None:
         abort(404)
     food.name = capwords(food.name)
 
-    similar_foods = []
     query = db.session.query(Food).filter(Food.aisle == food.aisle, Food.name != food.name).order_by(func.random()).limit(4)
     get_foods = query.all()
-    for s_food in get_foods:
-        similar_foods.append(create_item(s_food))
+    similar_foods = [create_item(s) for s in get_foods]
 
-    workouts = []
     workout = db.session.query(Workouts).filter(or_(Workouts.category == "conditioning exercise", Workouts.category == "sports", Workouts.category == "bicycling")).order_by(func.random()).limit(4)
-    for item in workout:
-        workouts.append(item)
+    workouts = [item for item in workout]
 
     stores = []
     images = []
@@ -67,6 +71,14 @@ def detail(id):
 
 
 def create_item(raw):
+    """
+    Create a dictionary item that represents the database item with
+    some of the spurious things like internal ids and such for 
+    presentation and organization on the actual site.  Also do any
+    preprocessing like determing the URL for the detail page or processing
+    images before being displayed.
+    """
+
     image = 'https://spoonacular.com/cdn/ingredients_500x500/' + raw.img
 
     # get a dict of all attributes and remove ones we don't care about

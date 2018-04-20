@@ -19,6 +19,11 @@ workouts = Blueprint('workouts', __name__)
 
 @workouts.route("/")
 def overview():
+    """
+    The overview page for workouts that shows all of the workouts in the
+    database.
+    """
+
     page = request.args.get('page', default=1, type=int)
     sort = request.args.get('sort', default='name', type=str)
     order = request.args.get('order', default='asc', type=str)
@@ -44,6 +49,11 @@ def overview():
 
 @workouts.route("/<int:id>")
 def detail(id):
+    """
+    The individual detail page for workouts that show all of the information
+    we have about a workout item.
+    """
+
     workout = db.session.query(Workouts).get(id)
     if workout is None:
         abort(404)
@@ -78,6 +88,14 @@ def detail(id):
 
 
 def create_item(raw):
+    """
+    Create a dictionary item that represents the database item with
+    some of the spurious things like internal ids and such for 
+    presentation and organization on the actual site.  Also do any
+    preprocessing like determing the URL for the detail page or processing
+    images before being displayed.
+    """
+
     # get a dict of all attributes and remove ones we don't care about
     item = vars(raw).copy()  # and don't alter the real thing
     item['name'] = capwords(item['name'])
