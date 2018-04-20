@@ -31,19 +31,15 @@ def overview():
     attributes = [Stores.price_level]
 
     cat = db.session.query(Stores).distinct(attributes[0])
-    f_crit = set()  # filter criteria
-    for c in cat:
-        f_crit.add(c.price_level)
+    f_crit = {c.price_level for c in cat}
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
-    items = []
 
     query = gen_query(Stores, items_per_page, page, sort, order, attributes, filters)
     total_count = gen_query(Stores, 10000000, 1, sort, order, attributes, filters).count()
 
     get_stores = query.all()
-    for store in get_stores:
-        items.append(create_item(store))
+    items = [create_item(store) for store in get_stores]
     last_page = ceil(total_count / items_per_page)
 
     return render_template('stores/stores.html', items=items, sort=sort, order=order, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)

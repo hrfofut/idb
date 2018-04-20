@@ -31,19 +31,15 @@ def overview():
     attributes = [Gyms.price_level]
 
     cat = db.session.query(Gyms).distinct(attributes[0])
-    f_crit = set()  # filter criteria
-    for c in cat:
-        f_crit.add(c.price_level)
+    f_crit = {c.price_level for c in cat}
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
-    items = []
 
     query = gen_query(Gyms, items_per_page, page, sort, order, attributes, filters)
     total_count = gen_query(Gyms, 10000000, 1, sort, order, attributes, filters).count()
 
     get_gyms = query.all()
-    for gym in get_gyms:
-        items.append(create_item(gym))
+    items = [create_item(gym) for gym in get_gyms]
     last_page = ceil(total_count / items_per_page)
 
     return render_template('gyms/gyms.html', items=items, sort=sort, order=order, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)

@@ -22,19 +22,15 @@ def overview():
 
     attributes = [Food.aisle, Food.aisle2, Food.aisle3]
     cat = db.session.query(Food).distinct(attributes[0])
-    f_crit = set()  # filter criteria
-    for c in cat:
-        f_crit.add(c.aisle)
+    f_crit = {c.aisle for c in cat}
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
-    items = []
 
     query = gen_query(Food, items_per_page, page, sort, order, attributes, filters)
     total_count = gen_query(Food, 10000000, 1, sort, order, attributes, filters).count()
 
     get_foods = query.all()
-    for food in get_foods:
-        items.append(create_item(food))
+    items = [create_item(food) for food in get_foods]
     last_page = ceil(total_count / items_per_page)
 
     return render_template('foods/food.html', items=items, sort=sort, order=order, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)

@@ -28,20 +28,15 @@ def overview():
 
     cat = db.session.query(Workouts).distinct(attributes[0])
     f_crit = set()  # filter criteria
-    for c in cat:
-        f_crit.add(c.category)
+    f_crit = {c.category for c in cat}
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
-    items = []
 
     query = gen_query(Workouts, items_per_page, page, sort, order, attributes, filters)
     total_count = gen_query(Workouts, 10000000, 1, sort, order, attributes, filters).count()
 
     get_workouts = query.all()
-    for workout in get_workouts:
-        # if workout.parent is None: #Only include excercises that are the original. This doesn't actually work because gen_query only every returns 20 objects.
-        item = create_item(workout)
-        items.append(item)
+    items = [create_item(workout) for workout in get_workouts]
     last_page = ceil(total_count / items_per_page)
 
     return render_template('workouts/workouts.html', items=items, sort=sort, order=order, filters=filters, current_page=page, last_page=last_page, f_crit=f_crit)
