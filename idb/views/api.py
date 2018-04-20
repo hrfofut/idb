@@ -26,7 +26,7 @@ def food_api():
     food_json = list()
 
     for food in foods:
-        food_dict = {'id': food.id, 'name': food.name, 'img': food.img, 'servings': food.servings, 'calorie': food.calorie, 'sodium': food.sodium, 'fat': food.fat, 'protein': food.protein, 'aisle': food.aisle, 'aisle2': food.aisle2, 'aisle3': food.aisle3}
+        food_dict = {'id': food.id, 'name': food.name, 'img': food.img, 'servings': food.servings, 'calorie': food.calorie, 'sodium': food.sodium, 'fat': food.fat, 'protein': food.protein, 'aisle': food.aisle}
         food_json.append(food_dict)
 
     return jsonify(food_json)
@@ -39,7 +39,7 @@ def food_details_api(id):
     if food is None:
         abort(404)
 
-    res = {'id': food.id, 'name': food.name, 'img': food.img, 'servings': food.servings, 'calorie': food.calorie, 'sodium': food.sodium, 'fat': food.fat, 'protein': food.protein, 'aisle': food.aisle, 'aisle2': food.aisle2, 'aisle3': food.aisle3}
+    res = {'id': food.id, 'name': food.name, 'img': food.img, 'servings': food.servings, 'calorie': food.calorie, 'sodium': food.sodium, 'fat': food.fat, 'protein': food.protein, 'aisle': food.aisle}
     return jsonify(res)
 
 
