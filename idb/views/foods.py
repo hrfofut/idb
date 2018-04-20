@@ -6,7 +6,7 @@ from idb import db
 from string import capwords
 from math import ceil
 
-from .db_functions import gen_query, gen_query_f
+from .db_functions import gen_query
 from backend.tools import unbinary
 import base64
 
