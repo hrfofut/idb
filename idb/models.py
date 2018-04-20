@@ -1,7 +1,14 @@
+"""
+This file describes the different models in the database for SQLAlchemy.
+
+Each individual model is given a class with various attributes and
+a constructor to build said class.  This is used for defining the 
+schema of the database when quries are made to the database.
+"""
+
 from idb import db
 
 
-# Need to figure out what to put in here
 class Food(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)

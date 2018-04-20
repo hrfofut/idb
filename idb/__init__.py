@@ -1,12 +1,22 @@
+"""
+The main driver of the application.
+
+This file is called upon launch of the application.  It sets up the
+blueprints of the various parts of the site, prepares the config file,
+sets up logging, converts all files to be ready for the web (like
+scss to css), hosts the server, and sets up general sitewide routes
+like the 404 page.  This was set up in this way so that the whole
+project can be installed as a python application instead of simply
+called on some entrance.
+"""
+
+
 from flask import Flask, render_template
 from flask_assets import Environment, Bundle
 
 import logging
 from os import environ
 from logging.handlers import RotatingFileHandler
-
-
-# We can probably edit the file structure to make things easier
 
 from flask_sqlalchemy import SQLAlchemy
 
