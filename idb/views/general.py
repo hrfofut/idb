@@ -52,7 +52,7 @@ def search():
     # Goes through each of our models and searches them individually.
     tokens = query.split(" ")
     for search in tokens:
-        food_query = gen_query(Food, items_per_page, page, 'name', order, filter_string=search)
+        food_query = gen_query(Food, items_per_page, page, sort, order, filter_string=search)
         food_count = gen_query(Food, 10000000, 1, 'name', order, filter_string=search).count()
         get_foods = food_query.all()
         for food in get_foods:
@@ -60,7 +60,7 @@ def search():
             if food_item not in foods:
                 foods.append(food_item)
 
-        workouts_query = gen_query(Workouts, items_per_page, page, 'name', order, filter_string=search)
+        workouts_query = gen_query(Workouts, items_per_page, page, sort, order, filter_string=search)
         workouts_count = gen_query(Workouts, 10000000, 1, 'name', order, filter_string=search).count()
         get_workouts = workouts_query.all()
         for workout in get_workouts:
@@ -68,7 +68,7 @@ def search():
             if workout_item not in workouts:
                 workouts.append(workout_item)
 
-        gyms_query = gen_query(Gyms, items_per_page, page, 'name', order, filter_string=search)
+        gyms_query = gen_query(Gyms, items_per_page, page, sort, order, filter_string=search)
         gyms_count = gen_query(Gyms, 10000000, 1, 'name', order, filter_string=search).count()
         get_gyms = gyms_query.all()
         for gym in get_gyms:
@@ -76,7 +76,7 @@ def search():
             if gym_item not in gyms:
                 gyms.append(gym_item)
 
-        stores_query = gen_query(Stores, items_per_page, page, 'name', order, filter_string=search)
+        stores_query = gen_query(Stores, items_per_page, page, sort, order, filter_string=search)
         stores_count = gen_query(Stores, 10000000, 1, 'name', order, filter_string=search).count()
         get_stores = stores_query.all()
         for store in get_stores:
@@ -98,6 +98,12 @@ def search():
             if t is not None:
                 t = type(t)
                 break
+
+        if models:
+            if t is str:
+                models = sorted(models, key=lambda k: k.get(sort, ""))[::-1]
+            else:
+                models = sorted(models, key=lambda k: k.get(sort, 0))[::-1]
 
     attributes = {'name'}
     f_crit = set()  # filter criteria
