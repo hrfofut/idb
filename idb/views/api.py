@@ -1,3 +1,11 @@
+"""
+This file describes the various api routes for the project.
+
+This file is a blueprint which is prefixed by 'api' in the subdomain.
+Routes that start with 'api.caloriekiller.club' will be routed here
+and then handled appropriately.
+"""
+
 from flask import Blueprint, render_template, abort, request, redirect, url_for, jsonify
 from idb.models import Food, Workouts, Stores, Gyms
 from idb import db
@@ -12,9 +20,7 @@ def api_splash():
 
 @api.route("/foods/")
 def food_api():
-    """
-    Returns all foods in DB
-    """
+    """Return all foods in the database"""
     foods = db.session.query(Food).all()
 
     food_json = list()
@@ -28,9 +34,7 @@ def food_api():
 
 @api.route("/foods/<int:id>")
 def food_details_api(id):
-    """
-    Returns a food from DB
-    """
+    """Return an individual food item from the database by id"""
     food = db.session.query(Food).get(id)
     if food is None:
         abort(404)
@@ -41,9 +45,7 @@ def food_details_api(id):
 
 @api.route("/workouts/")
 def workouts_api():
-    """
-    Returns all workouts in DB
-    """
+    """Return all workouts in the database"""
     workouts = db.session.query(Workouts).all()
 
     workout_json = list()
@@ -57,9 +59,7 @@ def workouts_api():
 
 @api.route("/workouts/<int:id>")
 def workouts_details_api(id):
-    """
-    Returns a workout from DB
-    """
+    """Return an individual workout item from the database by id"""
     workout = db.session.query(Workouts).get(id)
     if workout is None:
         abort(404)
@@ -70,9 +70,7 @@ def workouts_details_api(id):
 
 @api.route("/stores/")
 def stores_api():
-    """
-    Returns all stores in DB
-    """
+    """Return all stores in the database"""
     stores = db.session.query(Stores).all()
 
     stores_json = list()
@@ -86,9 +84,7 @@ def stores_api():
 
 @api.route("/stores/<int:id>")
 def stores_details_api(id):
-    """
-    Returns a Store from DB
-    """
+    """Return an individual store item from the database by id"""
     store = db.session.query(Stores).get(id)
     if store is None:
         abort(404)
@@ -99,9 +95,7 @@ def stores_details_api(id):
 
 @api.route("/gyms/")
 def gyms_api():
-    """
-    Returns all gyms in DB
-    """
+    """Return all gyms in the database"""
     gyms = db.session.query(Gyms).all()
 
     gyms_json = list()
@@ -115,9 +109,7 @@ def gyms_api():
 
 @api.route("/gyms/<int:id>")
 def gyms_details_api(id):
-    """
-    Returns a gym from DB
-    """
+    """Return an individual gym item from the database by id"""
     gym = db.session.query(Gyms).get(id)
     if gym is None:
         abort(404)

@@ -28,9 +28,9 @@ def overview():
     order = request.args.get('order', default='asc', type=str)
     filters = request.args.get('filters', default='', type=str)
 
-    attribute = Stores.price_level
+    attributes = [Stores.price_level]
 
-    cat = db.session.query(Stores).distinct(attribute)
+    cat = db.session.query(Stores).distinct(attributes[0])
     f_crit = set()  # filter criteria
     for c in cat:
         f_crit.add(c.price_level)
@@ -38,8 +38,8 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    query = gen_query(Stores, items_per_page, page, sort, order, attribute, filters)
-    total_count = gen_query(Stores, 10000000, 1, sort, order, attribute, filters).count()
+    query = gen_query(Stores, items_per_page, page, sort, order, attributes, filters)
+    total_count = gen_query(Stores, 10000000, 1, sort, order, attributes, filters).count()
 
     get_stores = query.all()
     for store in get_stores:

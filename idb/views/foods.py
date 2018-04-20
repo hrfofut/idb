@@ -20,9 +20,8 @@ def overview():
     order = request.args.get('order', default='asc', type=str)
     filters = request.args.get('filters', default="", type=str)
 
-    attribute = Food.aisle
     attributes = [Food.aisle, Food.aisle2, Food.aisle3]
-    cat = db.session.query(Food).distinct(attribute)
+    cat = db.session.query(Food).distinct(attributes[0])
     f_crit = set()  # filter criteria
     for c in cat:
         f_crit.add(c.aisle)
@@ -30,10 +29,8 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    # query = gen_query(Food, items_per_page, page, sort, order, attribute, filters)
-    query = gen_query_f(Food, items_per_page, page, sort, order, attributes, filters)
-    # total_count = gen_query(Food, 10000000, 1, sort, order, attribute, filters).count()
-    total_count = gen_query_f(Food, 10000000, 1, sort, order, attributes, filters).count()
+    query = gen_query(Food, items_per_page, page, sort, order, attributes, filters)
+    total_count = gen_query(Food, 10000000, 1, sort, order, attributes, filters).count()
 
     get_foods = query.all()
     for food in get_foods:
@@ -82,12 +79,11 @@ def create_item(raw):
     item['image'] = image
     item['detail_url'] = "foods/" + str(item['id'])
 
-    item['Aisles'] = item['aisle']
+    item['aisle'] = item['aisle']
     if item['aisle2'] is not None:
-        item['Aisles'] += "; " + item['aisle2']
+        item['aisle'] += "; " + item['aisle2']
     if item['aisle3'] is not None:
-        item['Aisles'] += "; " + item['aisle3']
-    item.pop('aisle')
+        item['aisle'] += "; " + item['aisle3']
     item.pop('aisle2')
     item.pop('aisle3')
     item.pop('_sa_instance_state', None)

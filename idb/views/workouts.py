@@ -24,9 +24,9 @@ def overview():
     order = request.args.get('order', default='asc', type=str)
     filters = request.args.get('filters', default='', type=str)
 
-    attribute = Workouts.category
+    attributes = [Workouts.category]
 
-    cat = db.session.query(Workouts).distinct(attribute)
+    cat = db.session.query(Workouts).distinct(attributes[0])
     f_crit = set()  # filter criteria
     for c in cat:
         f_crit.add(c.category)
@@ -34,8 +34,8 @@ def overview():
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
     items = []
 
-    query = gen_query(Workouts, items_per_page, page, sort, order, attribute, filters)
-    total_count = gen_query(Workouts, 10000000, 1, sort, order, attribute, filters).count()
+    query = gen_query(Workouts, items_per_page, page, sort, order, attributes, filters)
+    total_count = gen_query(Workouts, 10000000, 1, sort, order, attributes, filters).count()
 
     get_workouts = query.all()
     for workout in get_workouts:
