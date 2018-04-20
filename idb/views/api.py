@@ -20,7 +20,7 @@ def food_api():
     food_json = list()
 
     for food in foods:
-        food_dict = {'id': food.id, 'name': food.name, 'img': food.img, 'servings': food.servings, 'calorie': food.calorie, 'sodium': food.sodium, 'fat': food.fat, 'protein': food.protein}
+        food_dict = {'id': food.id, 'name': food.name, 'img': food.img, 'servings': food.servings, 'calorie': food.calorie, 'sodium': food.sodium, 'fat': food.fat, 'protein': food.protein, 'aisle': food.aisle, 'aisle2': food.aisle2, 'aisle3': food.aisle3}
         food_json.append(food_dict)
 
     return jsonify(food_json)
@@ -35,7 +35,7 @@ def food_details_api(id):
     if food is None:
         abort(404)
 
-    res = {'id': food.id, 'name': food.name, 'img': food.img, 'servings': food.servings, 'calorie': food.calorie, 'sodium': food.sodium, 'fat': food.fat, 'protein': food.protein}
+    res = {'id': food.id, 'name': food.name, 'img': food.img, 'servings': food.servings, 'calorie': food.calorie, 'sodium': food.sodium, 'fat': food.fat, 'protein': food.protein, 'aisle': food.aisle, 'aisle2': food.aisle2, 'aisle3': food.aisle3}
     return jsonify(res)
 
 
@@ -78,7 +78,7 @@ def stores_api():
     stores_json = list()
 
     for store in stores:
-        store_dict = {'id': store.id, 'gid': store.gid, 'name': store.name, 'location': store.location, 'price_level': store.price_level, 'ratings': store.ratings}
+        store_dict = {'id': store.id, 'gid': store.gid, 'name': store.name, 'location': store.location, 'price_level': store.price_level, 'ratings': store.ratings, 'latitude': store.lat, 'longitude': store.lng}
         stores_json.append(store_dict)
 
     return jsonify(stores_json)
@@ -93,7 +93,7 @@ def stores_details_api(id):
     if store is None:
         abort(404)
 
-    res = {'id': store.id, 'gid': store.gid, 'name': store.name, 'location': store.location, 'price_level': store.price_level, 'ratings': store.ratings}
+    res = {'id': store.id, 'gid': store.gid, 'name': store.name, 'location': store.location, 'price_level': store.price_level, 'ratings': store.ratings, 'latitude': store.lat, 'longitude': store.lng}
     return jsonify(res)
 
 
@@ -107,7 +107,7 @@ def gyms_api():
     gyms_json = list()
 
     for gym in gyms:
-        gym_dict = {'id': gym.id, 'gid': gym.gid, 'name': gym.name, 'location': gym.location, 'price_level': gym.price_level, 'ratings': gym.ratings}
+        gym_dict = {'id': gym.id, 'gid': gym.gid, 'name': gym.name, 'location': gym.location, 'price_level': gym.price_level, 'ratings': gym.ratings, 'latitude': gym.lat, 'longitude': gym.lng}
         gyms_json.append(gym_dict)
 
     return jsonify(gyms_json)
@@ -122,5 +122,5 @@ def gyms_details_api(id):
     if gym is None:
         abort(404)
 
-    res = {'id': gym.id, 'gid': gym.gid, 'name': gym.name, 'location': gym.location, 'price_level': gym.price_level, 'ratings': gym.ratings}
+    res = {'id': gym.id, 'gid': gym.gid, 'name': gym.name, 'location': gym.location, 'price_level': gym.price_level, 'ratings': gym.ratings, 'latitude': gym.lat, 'longitude': gym.lng}
     return jsonify(res)
