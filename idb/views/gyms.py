@@ -33,15 +33,21 @@ def overview():
     order = request.args.get('order', default='asc', type=str)
     filters = request.args.get('filters', default='', type=str)
 
-    attributes = [Gyms.price_level]
+    attributes = [Gyms.ratings]
 
-    cat = db.session.query(Gyms).distinct(attributes[0])
-    f_crit = {c.price_level for c in cat}
+    f_crit = [str(x) + "-" + str(x + 1) for x in range(0, 5)]
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
 
-    query = gen_query(Gyms, items_per_page, page, sort, order, attributes, filters)
-    total_count = gen_query(Gyms, 10000000, 1, sort, order, attributes, filters).count()
+    if filters != "":
+        b, e = filters.split('-')
+        b, e = int(b), int(e)
+        query = db.session.query(Gyms).filter(Gyms.ratings.between(b, e))
+        total_count = query.count()
+
+    else:
+        query = gen_query(Gyms, items_per_page, page, sort, order, attributes, filters)
+        total_count = gen_query(Gyms, 10000000, 1, sort, order, attributes, filters).count()
 
     get_gyms = query.all()
     items = [create_item(gym) for gym in get_gyms]
@@ -85,7 +91,7 @@ def detail(id):
 def create_item(raw):
     """
     Create a dictionary item that represents the database item with
-    some of the spurious things like internal ids and such for 
+    some of the spurious things like internal ids and such for
     presentation and organization on the actual site.  Also do any
     preprocessing like determing the URL for the detail page or processing
     images before being displayed.
