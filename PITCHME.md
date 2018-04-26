@@ -1,4 +1,4 @@
-# Calorie Killer Club Presentation
+## Calorie Killer Club Presentation
 
 ### Let's Get Fit
 ---
@@ -7,11 +7,11 @@
 
 <br>
 
-- Brandon Harrison: Backend
-- Harrison Foreman: Backend/Database Design
-- Bao Than: Backend/Server/Database
-- Cindy Truong: Frontend/Designer
-- Wesley Joe: Frontend/Backend
+- Brandon Harrison: Backend |
+- Harrison Foreman: Backend/Database Design |
+- Bao Than: Backend/Server/Database |
+- Cindy Truong: Frontend/Designer |
+- Wesley Joe: Frontend/Backend |
 
 ---
 
@@ -48,6 +48,7 @@
 
 <a href="" target="_blank">Check This Out!</a>
 
----?image=assets/image/gitpitch-audience.jpg
+---?image=assets/image/gitpitch-audience.jpg&opacity=100
 
 ### Questions?
+
