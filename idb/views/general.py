@@ -32,11 +32,32 @@ def calculator():
 
 @general.route("/visualization")
 def visualization():
-    """
-    This page has a lot of information for calculating BMR and calorie info.
-    """
-    # abort(404)
-    return render_template('visualization.html')
+    url = "http://api.musepy.me/"
+    params = {"result_per_page": 99999}
+    r_album = requests.get(url=url + "album", params=params).json()
+    r_artist = requests.get(url=url + "artist", params=params).json()
+    r_cities = requests.get(url=url + "city", params=params).json()
+    r_songs = requests.get(url=url + "song", params=params).json()
+    sizes = list()
+    temp1 = dict()
+    temp2 = dict()
+    temp3 = dict()
+    temp4 = dict()
+    temp1['title'] = 'albums'
+    temp1['Size'] = r_album['num_results']
+    sizes.append(temp1)
+    temp2['title'] = 'artists'
+    temp2['Size'] = r_artist['num_results']
+    sizes.append(temp2)
+    temp3['title'] = 'cities'
+    temp3['Size'] = r_cities['num_results']
+    sizes.append(temp3)
+    temp4['title'] = 'songs'
+    temp4['Size'] = r_songs['num_results']
+    sizes.append(temp4)
+    data = {'chart_data': sizes}
+    print(sizes)
+    return render_template('visualization.html', ral=r_album, rar=r_artist, rc=r_cities, rs=r_songs, data=data)
 
 
 @general.route("/")
