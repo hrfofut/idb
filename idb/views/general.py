@@ -30,6 +30,15 @@ def calculator():
     return render_template('test.html')
 
 
+@general.route("/visualization")
+def visualization():
+    """
+    This page has a lot of information for calculating BMR and calorie info.
+    """
+    # abort(404)
+    return render_template('visualization.html')
+
+
 @general.route("/")
 def splash(name=None):
     return render_template('index.html')
