@@ -6,7 +6,6 @@
 ## Our Team
 
 <br>
-
 - Brandon Harrison: Backend |
 - Harrison Foreman: Backend/Database Design |
 - Bao Than: Backend/Server/Database |
@@ -27,20 +26,20 @@
 
 ## Self Critique
 
-- What Did We Do Well ? 
-- What Did We Learn ?
-- What Can We Do Better ?
-- What Puzzles Us ?
+- What Did We Do Well? |
+- What Did We Learn?	|
+- What Can We Do Better? |
+- What Puzzles Us? |
 
 ---
 
 ## Musepy Critique
 <!--Talk about there pem and keys file -->
-- Security Issue
-- What Did They Do Well?
-- What Did We Learn From Their Website?
-- What Can They Do Better?
-- What Puzzles Us About Their Website?
+- Security Issue 	|
+- What Did They Do Well?  |
+- What Did We Learn From Their Website? |
+- What Can They Do Better? |
+- What Puzzles Us About Their Website? |
 
 ---
 
@@ -48,7 +47,8 @@
 
 <a href="" target="_blank">Check This Out!</a>
 
----?image=assets/image/gitpitch-audience.jpg&opacity=100
+---?image=/GitPitch/assets/image/gitpitch-audience.jpg
 
 ### Questions?
+
 
