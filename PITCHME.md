@@ -1,1 +1,0 @@
-Calorie Killer Club Presentation!
