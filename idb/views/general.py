@@ -57,6 +57,7 @@ def visualization():
     sizes.append(temp4)
     data = {'chart_data': sizes}
     print(sizes)
+
     return render_template('visualization.html', ral=r_album, rar=r_artist, rc=r_cities, rs=r_songs, data=data)
 
 

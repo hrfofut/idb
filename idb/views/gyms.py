@@ -33,10 +33,10 @@ def overview():
     order = request.args.get('order', default='asc', type=str)
     filters = request.args.get('filters', default='', type=str)
 
-    attributes = [Gyms.price_level]
+    attributes = [Gyms.ratings]
 
     cat = db.session.query(Gyms).distinct(attributes[0])
-    f_crit = {c.price_level for c in cat}
+    f_crit = {int(c.ratings) for c in cat}
 
     items_per_page = app.config.get('ITEMS_PER_PAGE', 20)
 
