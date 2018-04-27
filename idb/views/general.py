@@ -58,7 +58,7 @@ def visualization():
     data = {'chart_data': sizes}
     print(sizes)
 
-    return render_template('visualization.html', ral=r_album, rar=r_artist, rc=r_cities, rs=r_songs, data=data)
+    return render_template('visualization.html', dynamic=data)
 
 
 @general.route("/")
