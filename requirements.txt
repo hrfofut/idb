@@ -9,7 +9,7 @@ Flask-Testing==0.6.2
 gunicorn==19.7.1
 libsass==0.13.7
 psycopg2-binary==2.7.4
-pylint==1.8.2
+pylint==2.7.0
 requests==2.18.4
 selenium==3.9.0
 virtualenv==15.1.0
