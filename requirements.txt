@@ -6,7 +6,7 @@ Flask-Restless==1.0.0b1
 Flask-SQLAlchemy==2.3.2
 Flask-Assets==0.12
 Flask-Testing==0.6.2
-gunicorn==19.7.1
+gunicorn==23.0.0
 libsass==0.13.7
 psycopg2-binary==2.7.4
 pylint==2.6.1
